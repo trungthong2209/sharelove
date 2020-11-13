@@ -1,0 +1,116 @@
+{
+    "swagger": "2.0",
+    "info": {
+    "version": "1.0.0",
+    "title": "API with ShareLove",
+    "description": "My User Project Application API",
+    "license": {
+    "name": "Trung Thong"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+    {
+    "name": "Users",
+    "description": "API for users in the system"
+    }
+    ],
+    "schemes": [
+    "http",
+    "https"
+    ],
+    "consumes": [
+    "application/json"
+    ],
+    "produces": [
+    "application/json"
+    ],
+"paths":{
+    "/users":{
+          "get" :{
+             "tags": [ "Users" ],
+               "summary" : "Returns a list of users.",
+                "description": "",
+                 "responses":{
+                    "200":   
+                     {    
+                        "description": "OK",
+           
+                     "schema": {
+
+                           "$ref" : "#/definitions/Users"
+                        }
+              
+                     }
+                   }     
+        }
+    },
+     "/user/{id}": {
+        "parameters": [
+        {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of user that we want to find",
+                    "type": "integer"
+            }
+        ],
+       "delete": {
+                  "summary": "Delete user with given ID",
+                  "tags": [
+                    "Users"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "User is deleted",
+                      "schema": {
+                        "$ref": "#/definitions/User"
+                      }
+                    }
+                  }
+                }
+            
+    },
+    "/addUser" :{
+
+      "post": {
+                  "summary": "Create new user",
+                  "tags": [
+                    "Users"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Create new user success",
+                      "schema": {
+                        "$ref": "#/definitions/User"
+                      }
+                    }
+                  }
+                }
+    } 
+},
+    "definitions": {
+        "User": {
+        "required": [
+        "name",
+        "email"
+        ],
+        "properties": {
+        "name": {
+            "type": "string"
+              },
+        "email": {
+            "type": "string"
+              }
+
+        }
+    },
+        "Users": {
+            "type": "array",
+            "$ref": "#/definitions/User"
+           }
+        }
+    
+
+}

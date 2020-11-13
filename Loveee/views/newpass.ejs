@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>new pass</title>
+    <link href="stylesheets/Dangki.css" rel="stylesheet">
+</head>
+<body>
+    <form action="/forgetpassword/<%= token %>" method="POST">
+        <div class="container">
+          <h1>new pass</h1>
+          <p>new pass</p>
+          <hr>
+        <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="newpassword" id="newpassword" required>
+      
+          <label for="psw-repeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" name="psw2" id="psw-repeat" required>
+          <hr>
+            <button type="submit" class="registerbtn">OK</button>
+        </div>
+</form>
+    
+</body>
+</html>

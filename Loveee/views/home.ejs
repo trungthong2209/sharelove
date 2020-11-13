@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Home</title>
+    <link href="stylesheets/Dangki.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    
+  </head>
+    <div id = "infevents" >
+    <% infevents.forEach(function(infevent){ %>
+    <div class="container" >
+
+    <hr>
+    <label for="nameu"><b> <%= infevent.purpose %> </b></label>
+
+    <label for="user"><b> <%= infevent.user_name %> </b></label>
+
+    <label for="adress"><b><%= infevent.address %></b></label>
+    
+    <label for="constUser"><b><%= infevent.execution_date %></b></label>
+        
+    <label for="description"><b><%= infevent.description %></b></label>
+     
+    <img class= "img-fluid rounded" width="180" height="180" src="<%= infevent.Image_URL %>" alt="">
+   <hr>
+</div>
+    <% }) %>
+</div>
+
+<script>
+  var socket = io("http://localhost:3000");
+      socket.on('SV_new_post', function(emit_data)
+      {
+         var html = "";
+        html +='<div class="container" >';
+        html +='<<hr>';
+        html +='<<label for="nameu"><b> '+emit_data.purpose +'</b></label>';
+        html +='<<label for="user"><b> '+emit_data.name_user +'</b></label>';
+        html +='<<label for="adress"><b> '+emit_data.address +' </b></label>';
+        html +='< <label for="constUser"><b>'+emit_data.execution_date +'</b></label>';
+        html +='< <label for="description"><b>'+emit_data.description +'</b></label>';
+        html +='<<img class= "img-fluid rounded" width="180" height="180" src="/upload/' + emit_data.image +'"alt="">';
+        html +='<<hr>';
+        html +='<</div>';
+       $("#infevents").prepend(html);
+       
+  });
+  </script>
+</html>

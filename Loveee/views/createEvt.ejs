@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Create Event</title>
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+       
+          <link href="stylesheets/Dangki.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+
+        
+</head>
+<body>
+  
+    <form  action="/create/CrtEvent"  method="POST"  enctype="multipart/form-data" >
+        <div class="container">
+          <h1>Infomation    </h1>
+          <p>Please fill in this form to create the event.</p>
+          <hr>
+          <label for="nameu"><b>Tiêu đề  </b></label>
+          <input type="text" placeholder="Enter Name" name="purpose" id="purpose" required>
+          <label for="adress"><b>Địa chỉ</b></label>
+          <input type="text" placeholder="Enter adress" name="address" id="address" required>
+          <label for="constUser"><b>Thời gian hoàn thành</b></label>
+          <input type="date" name="execution_date" id="execution_date" required>
+          <label for="description"><b>description</b></label>
+          <input type="text" placeholder="Enter description" name="description" id="description" required>
+          <label for="image"><b>Image</b></label>
+          <input type="file" class="form-control" name="image" id="image" multiple = 'multiple'>
+          <hr>
+          <button type="submit" onClick="getName()" id ="btnsend" class="registerbtn">Create</button>
+        </div>
+        </form>   
+      <script>
+        var socket = io.connect("http://localhost:3000")
+      function getName(){
+            var fileImage = document.getElementById('image').value
+            var nameSplit = fileImage.substring(fileImage.lastIndexOf('\\')+1);
+             
+            var formData = {
+                purpose: document.getElementById('purpose').value,
+                address: document.getElementById('address').value,
+                execution_date: document.getElementById('execution_date').value,
+                description: document.getElementById('description').value,
+                image: nameSplit
+            }
+            socket.emit("new_post", formData);
+                 
+
+                
+} 
+   </script>
+</body>
+
+</html>
