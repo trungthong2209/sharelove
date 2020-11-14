@@ -1,56 +1,579 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Create Event</title>
-       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-       
-          <link href="stylesheets/Dangki.css" rel="stylesheet">
+<%include header %>
+    <main>
+      <div class="px"></div>
+      <div class="main-section">
+        <div class="container">
+          <div class="main-section-data">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 pd-left-none no-pd">
+                <div class="main-left-sidebar no-margin">
+                  <div class="user-data full-width">
+                    <div class="user-profile">
+                      <div class="username-dt">
+                        <div class="usr-pic">
+                          <img
+                            src="http://via.placeholder.com/100x100"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <!--username-dt end-->
+                      <div class="user-specs">
+                        <h3>Tên</h3>
+                        
+                      </div>
+                    </div>
+                    <!--user-profile end-->
+                    <ul class="user-fw-status">
+                      
+                      <li>
+                        <a href="profile.html" title="">Trang cá nhân</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!--user-data end-->
+                  <div class="tags-sec full-width">
+                    <ul>
+                      <li><a href="#" title="">Trợ giúp</a></li>
+                      <li><a href="#" title="">Giới thiệu</a></li>
+                      
+                      <li><a href="#" title="">Điều khoản</a></li>
+                      <li><a href="#" title="">Ngôn ngữ</a></li>
+                      <li><a href="#" title="">Cài đặt</a></li>
+                      
+                    </ul>
+                    <div class="cp-sec">
+                      <p><img src="images/cp.png" alt="" />SPREAD LOVE © 2020</p>
+                    </div>
+                  </div>
+                  <!--tags-sec end-->
+                  
+                  
+               
+                </div>
+                <!--main-left-sidebar end-->
+              </div>
+              <div class="col-lg-6 col-md-8 no-pd">
+                <div class="main-ws-sec">
+                  <div class="post-topbar">
+                    <div class="user-avatar">
+                      <img src="http://via.placeholder.com/100x100" alt="" />
+                    </div>
+                    <div class="post-st">
+                      <ul>
+                        <li>
+                          <a class="post_event" href="#" title=""
+                            >Thêm tin mới</a
+                          >
+                        </li>
+                        <li>
+                          <a class="post-jb active" href="#" title=""
+                            >Đăng tin</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <!--post-st end-->
+                  </div>
+                  
+
+
+
+                  <!--post-topbar end-->
+                  <div class="posts-section">
+                    <div class="post-bar">
+                      <div class="post_topbar">
+                        <div class="usy-dt">
+                          <img
+                            src="http://via.placeholder.com/50x50"
+                            alt=""
+                          />
+                          <div class="usy-name">
+                            <h3>Tên</h3>
+                            <span
+                              ><img src="images/clock.png" alt="" />Thời gian đăng</span
+                            >
+                          </div>
+                        </div>
+                        <div class="ed-opts">
+                          <a href="#" title="" class="ed-opts-open"
+                            ><i class="la la-ellipsis-v"></i
+                          ></a>
+                          <ul class="ed-options">
+                            <li><a href="#" title="">Lưu trữ</a></li>
+                            <li><a href="#" title="">Ẩn sự kiện</a></li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="epi-sec">
+                        <ul class="descp">
+      
+                          <li>
+                            <img src="images/icon9.png" alt="" /><span
+                              >Địa chỉ</span
+                            >
+                          </li>
+                        </ul>
+                        
+                      </div>
+                      <div class="event_descp">
+                        <h3>Tên sự kiện</h3>
+                        <ul class="event-dt">
+                          <li><a href="#" title="">Thời gian bắt đầu</a></li>
+                          <li><a href="#" title="">Số người tham gia/ chỉ tiêu</a></li>
+                          
+                        </ul>
+                        <p>
+                          Nội dung
+                          <a href="#" title="">view more</a>
+                        </p>
+                  
+                      </div>
+                      <div class="event-status-bar">
+                        <ul class="like-com">
+                          <li>
+                            <a href="#"><i class="la la-heart"></i> số lượt thích</a>
+                          </li>
+                          <li>
+                            <a href="#"><i class="fa fa-comment"></i></i> số bình luận</a>
+                          </li>
+                          <li>
+                            <a href="#"><i class="fa fa-plus-circle"></i></i> Tham gia</a>
+                          </li>
+                          <li>
+                            <a href="#"><i class="fa fa-usd"></i></i> Ủng hộ</a>
+                          </li>
+                        </ul>
+                       
+                      </div>
+                    </div>
+                    <!--post-bar end-->
+                    
+                    
+                    
+                    
+                  </div>
+                  <!--posts-section end-->
+                </div>
+                <!--main-ws-sec end-->
+              </div>
+              <div class="col-lg-3 pd-right-none no-pd">
+                
+              
+                  <div class="widget suggestions full-width">
+                    <div class="sd-title">
+                      <h3>Top sự kiện nổi bật</h3>
+                      <i class="la la-ellipsis-v"></i>
+                    </div>
+                    <!--sd-title end-->
+                    <div class="suggestions-list">
+                      <div class="suggestion-item">
+                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <div class="sgt-text">
+                          <h4>Tên</h4>
+                          <span>Người tổ chức</span>
+                        </div>
+                        <span><i class="la la-plus"></i></span>
+                      </div>
+                      <div class="suggestion-item">
+                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <div class="sgt-text">
+                          <h4>Tên</h4>
+                          <span>Người tổ chức</span>
+                        </div>
+                        <span><i class="la la-plus"></i></span>
+                      </div>
+                      <div class="suggestion-item">
+                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <div class="sgt-text">
+                          <h4>Tên</h4>
+                          <span>Người tổ chức</span>
+                        </div>
+                        <span><i class="la la-plus"></i></span>
+                      </div>
+                      
+                      
+                      
+                      <div class="view-more">
+                        <a href="#" title="">Xem thêm</a>
+                      </div>
+                    </div>
+                    <!--suggestions-list end-->
+                  </div>
+
+
+                  <div class="widget suggestions full-width">
+                    <div class="sd-title">
+                      <h3>Top Người ủng hộ</h3>
+                      <i class="la la-ellipsis-v"></i>
+                    </div>
+                    <!--sd-title end-->
+                    <div class="suggestions-list">
+                      <div class="suggestion-item">
+                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <div class="sgt-text">
+                          <h4>Tên</h4>
+                          <span>$ Số tiền</span>
+                        </div>
+                        <span><i class="la la-plus"></i></span>
+                      </div>
+                      <div class="suggestion-item">
+                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <div class="sgt-text">
+                          <h4>Tên</h4>
+                          <span>$ Số tiền</span>
+                        </div>
+                        <span><i class="la la-plus"></i></span>
+                      </div>
+                      <div class="suggestion-item">
+                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <div class="sgt-text">
+                          <h4>Tên</h4>
+                          <span>$ Số tiền</span>
+                        </div>
+                        <span><i class="la la-plus"></i></span>
+                      </div>
+                      
+                      
+                      
+                      <div class="view-more">
+                        <a href="#" title="">Xem thêm</a>
+                      </div>
+                    </div>
+                    <!--suggestions-list end-->
+                  </div>
+                  
+                </div>
+                
+                <!--right-sidebar end-->
+              </div>
+            </div>
+          </div>
+          <!-- main-section-data end-->
+        </div>   
+    </main>
+
+    <div class="post-popup pst-pj widget" >
+      <div class="post-event">
+        <h3>Thêm tin</h3>
+        <div class="post-event-fields">
+          <form style="height:500px; overflow-x:hidden"; action="/create/CrtEvent"  method="POST"  enctype="multipart/form-data" >
+            <div class="row">
+              <div class="col-lg-12">
+                <input type="text" name="title" id="title" placeholder="Tiêu đề" />
+              </div>
+              <div class="col-lg-12">
+                <div class="inp-field">
+                  <select
+                    tabindex="1"
+                    class="select_300"
+                    id="city"
+                    name="city"
+                    style="font-size: 13px"
+                  >
+                    <option value=""selected="-1">--Tỉnh/Thành phố--</option>
+                    <option value="An Giang">An Giang</option>
+                    <option value="Bà Rịa Vũng Tàu">Bà Rịa Vũng Tàu</option>
+                    <option value="Bình Dương">Bình Dương</option>
+                    <option value="Bình Phước">Bình Phước</option>
+                    <option value="Bình Thuận">Bình Thuận</option>
+                    <option value="Bình Định">Bình Định</option>
+                    <option value="Bạc Liêu">Bạc Liêu</option>
+                    <option value="Bắc Cạn">Bắc Cạn</option>
+                    <option value="Bắc Giang">Bắc Giang</option>
+                    <option value="Bắc Ninh">Bắc Ninh</option>
+                    <option value="Bến Tre">Bến Tre</option>
+                    <option value="Cao Bằng">Cao Bằng</option>
+                    <option value="Cà Mau">Cà Mau</option>
+                    <option value="Cần Thơ">Cần Thơ</option>
+                    <option value="Đà Nẵng">Đà Nẵng</option>
+                    <option value="Đăk Lăk">Đăk Lăk</option>
+                    <option value="Điện Biên">Điện Biên</option>
+                    <option value="Đồng Nai">Đồng Nai</option>
+                    <option value="Đồng Tháp">Đồng Tháp</option>
+                    <option value="Gia Lai">Gia Lai</option>
+                    <option value="Hà Giang">Hà Giang</option>
+                    <option value="Hà Nam">Hà Nam</option>
+                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="Hà Tây">Hà Tây</option>
+                    <option value="Hà Tĩnh">Hà Tĩnh</option>
+                    <option value="Hà Đông">Hà Đông</option>
+                    <option value="Hòa Bình">Hòa Bình</option>
+                    <option value="Hưng Yên">Hưng Yên</option>
+                    <option value="Hạ Long">Hạ Long</option>
+                    <option value="Hải Dương">Hải Dương</option>
+                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                    <option value="Khánh Hòa">Khánh Hòa</option>
+                    <option value="Kiên Giang">Kiên Giang</option>
+                    <option value="KonTum">KonTum</option>
+                    <option value="Lai Châu">Lai Châu</option>
+                    <option value="Long An">Long An</option>
+                    <option value="Lào Cai">Lào Cai</option>
+                    <option value="Lâm Đồng">Lâm Đồng</option>
+                    <option value="Lạng Sơn">Lạng Sơn</option>
+                    <option value="Nam Định">Nam Định</option>
+                    <option value="Nghệ An">Nghệ An</option>
+                    <option value="Ninh Bình">Ninh Bình</option>
+                    <option value="Ninh Thuận">Ninh Thuận</option>
+                    <option value="Phú Thọ">Phú Thọ</option>
+                    <option value="Phú Yên">Phú Yên</option>
+                    <option value="Quảng Bình">Quảng Bình</option>
+                    <option value="Quảng Nam">Quảng Nam</option>
+                    <option value="Quảng Ngãi">Quảng Ngãi</option>
+                    <option value="Quảng Ninh">Quảng Ninh</option>
+                    <option value="Quảng Trị">Quảng Trị</option>
+                    <option value="Sóc Trăng">Sóc Trăng</option>
+                    <option value="Sơn La">Sơn La</option>
+                    <option value="Thanh Hóa">Thanh Hóa</option>
+                    <option value="Thái Bình">Thái Bình</option>
+                    <option value="Thái Nguyên">Thái Nguyên</option>
+                    <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                    <option value="Tiền Giang">Tiền Giang</option>
+                    <option value="Trà Vinh">Trà Vinh</option>
+                    <option value="Tuyên Quang">Tuyên Quang</option>
+                    <option value="Tây Ninh">Tây Ninh</option>
+                    <option value="Vĩnh Long">Vĩnh Long</option>
+                    <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                    <option value="Yên Bái">Yên Bái</option>
+                    
+                  </select>
+                </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="price-sec">
+          <div class="price-br">
+          <input type="text" name="quan" id="quan" placeholder="Quận" />
+          </div>
+          <span> </span>
+          <div class="price-br">
+          <input type="text" name="phuong" id="phuong" placeholder="Phường" />
+          </div>
+        </div>
+        </div>
+      <div class="col-lg-12">
+        <div class="price-sec">
+          <div class="price-br">
+            <div class="md-form md-outline">
+              <input type="time" id="default-picker" class="form-control" placeholder="Chọn giờ">
+            </div>
+          </div>
+          <span> </span>
+          <div class="price-br">
+            <input placeholder="Chọn ngày" type="date" id="date"  class="form-control">
+          </div>
+          <span> </span>
+          
+
+        </div>
+        </div>
+        
+              <div class="col-lg-12">
+                <input type="text" name="add" id="add" placeholder="Số nhà, tên đường" />
+              </div>
+              <div class="col-lg-12">
+                <textarea
+                  name="description"
+                  id="description"
+                  placeholder="Mô tả"
+                ></textarea>
+      </div>
+      <div class="col-lg-12 text-center">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-input">
+            <label for="file-ip-1">Hình ảnh 1</label>
+            <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+            <div class="preview">
+              <img id="file-ip-1-preview">
+            </div>
+          </div>
+          </div>
+
+
+          
+          
+          
+          
+                
+        </div>
+        </div>
+              <div class="col-lg-12">
+                <ul>
+                  <li>
+                    <button class="active registerbtn" type="submit" onClick="alert(getName())" id ="btnsend"  >
+                      Đăng bài
+                    </button>
+                  </li>
+                  <li><a href="#" title="" class= "cancel">Cancel</a></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--post- event-fields end-->
+        <a href="#" title="" class= "cancel"><i class="la la-times-circle-o " ></i></a>
+      </div>
+      <!--post- event end-->
+    </div>
+    <!--post- event-popup end-->
+    
+    
+
+    <div class="chatbox-list">
+      <div class="chatbox">
+        <div class="chat-mg bx">
+          <a href="#" title=""><img src="images/chat.png" alt="" /></a>
+          <span>!</span>
+        </div>
+        <div class="conversation-box">
+          <div class="con-title">
+            <h3>Tin nhắn</h3>
+            <a href="#" title="" class="close-chat"
+              ><i class="la la-minus-square"></i
+            ></a>
+          </div>
+          <div class="chat-list">
+            <div class="conv-list active">
+              <div class="usrr-pic">
+                <img src="http://via.placeholder.com/50x50" alt="" />
+                <span class="active-status activee"></span>
+              </div>
+              <div class="usy-info">
+                <h3>Tên</h3>
+                <span
+                  >Nội dung <img src="images/smley.png" alt=""
+                /></span>
+              </div>
+              <div class="ct-time">
+                <span>1:55 PM</span>
+              </div>
+              <span class="msg-numbers">2</span>
+            </div>
+            <div class="conv-list">
+              <div class="usrr-pic">
+                <img src="http://via.placeholder.com/50x50" alt="" />
+              </div>
+              <div class="usy-info">
+                <h3>Tên</h3>
+                <span
+                  >Nội dung <img src="images/smley.png" alt=""
+                /></span>
+              </div>
+              <div class="ct-time">
+                <span>11:39 PM</span>
+              </div>
+            </div>
+            <div class="conv-list">
+              <div class="usrr-pic">
+                <img src="http://via.placeholder.com/50x50" alt="" />
+              </div>
+              <div class="usy-info">
+                <h3>Tên</h3>
+                <span
+                  >Nội dung <img src="images/smley.png" alt=""
+                /></span>
+              </div>
+              <div class="ct-time">
+                <span>0.28 AM</span>
+              </div>
+            </div>
+          </div>
+          <!--chat-list end-->
+        </div>
+        <!--conversation-box end-->
+      </div>
+    </div>
+    <!--chatbox-list end-->
+  </div>
+  <!--theme-layout end-->
+
+  <!--Modal form login-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title h5modal" id="exampleModalLabel">Đăng nhập</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="sign_in_sec current" id="tab-1">
+              <form>
+                <div class="row">
+                  <div class="col-lg-12 no-pdd">
+                    <div class="sn-field">
+                      <input type="text" name="username" placeholder="Tên đăng nhập">
+                      <i class="la la-user"></i>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 no-pdd">
+                    <div class="sn-field">
+                      <input type="password" name="password" placeholder="Mật khẩu">
+                      <i class="la la-lock"></i>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 no-pdd">
+                    <div class="checky-sec">
+                      <div class="fgt-sec">
+                        <input type="checkbox" name="cc" id="c1">
+                        <a  href="#" title="">Quên mật khẩu?</a>
+                      </div><!--fgt-sec end-->
+                      <a  href="#" title="">Chưa có tài khoản?</a>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 no-pdd ">
+                    <button class="btnlog" type="submit" value="submit">Đăng nhập</button>
+                  </div>
+                </div>
+              </form>
+                
+              <div class="login-resources">
+                <h4>Hoặc đăng nhập với</h4>
+                <ul>
+                  <li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Đăng nhập với Facebook</a></li>
+                  <li><a href="#" title="" class="tw"><i class="fa fa-google"></i>Đăng nhập với Google</a></li>
+                </ul>
+              </div><!--login-resources end-->
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+
+         <!-- Footer -->
+
+
+  <script>
+    var socket = io.connect("http://localhost:3000")
+      function getName(){
+     var fileImage = document.getElementById('file-ip-1').value;
+     var nameSplit = fileImage.substring(fileImage.lastIndexOf('\\')+1);
+
+     var address = document.getElementById('add').value + ", " + document.getElementById('phuong').value + ", " + document.getElementById('quan').value + ", " + document.getElementById('city').value;
+     var times = document.getElementById('default-picker').value +" "+ document.getElementById('date').value;
+
+
+      var formData = {
+        name: document.getElementById('title').value,
+        adress: address,
+        constUser: times,
+        description: document.getElementById('description').value,
+        image: nameSplit
+        }
+        
+       socket.emit("new_post", formData);
+       var x = "Post Successfully";
+         return x;
+}
+  </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>    
     <script src="/socket.io/socket.io.js"></script>
 
-        
-</head>
-<body>
-  
-    <form  action="/create/CrtEvent"  method="POST"  enctype="multipart/form-data" >
-        <div class="container">
-          <h1>Infomation    </h1>
-          <p>Please fill in this form to create the event.</p>
-          <hr>
-          <label for="nameu"><b>Tiêu đề  </b></label>
-          <input type="text" placeholder="Enter Name" name="purpose" id="purpose" required>
-          <label for="adress"><b>Địa chỉ</b></label>
-          <input type="text" placeholder="Enter adress" name="address" id="address" required>
-          <label for="constUser"><b>Thời gian hoàn thành</b></label>
-          <input type="date" name="execution_date" id="execution_date" required>
-          <label for="description"><b>description</b></label>
-          <input type="text" placeholder="Enter description" name="description" id="description" required>
-          <label for="image"><b>Image</b></label>
-          <input type="file" class="form-control" name="image" id="image" multiple = 'multiple'>
-          <hr>
-          <button type="submit" onClick="getName()" id ="btnsend" class="registerbtn">Create</button>
-        </div>
-        </form>   
-      <script>
-        var socket = io.connect("http://localhost:3000")
-      function getName(){
-            var fileImage = document.getElementById('image').value
-            var nameSplit = fileImage.substring(fileImage.lastIndexOf('\\')+1);
-             
-            var formData = {
-                purpose: document.getElementById('purpose').value,
-                address: document.getElementById('address').value,
-                execution_date: document.getElementById('execution_date').value,
-                description: document.getElementById('description').value,
-                image: nameSplit
-            }
-            socket.emit("new_post", formData);
-                 
-
-                
-} 
-   </script>
-</body>
-
-</html>
+    <%include footer %>

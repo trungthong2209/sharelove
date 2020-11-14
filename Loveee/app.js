@@ -131,5 +131,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+global.loggedIn = null;
+app.use("*", (req, res, next) => {
+    loggedIn = req.cookies;
+    next()
+});
 
 module.exports = app;

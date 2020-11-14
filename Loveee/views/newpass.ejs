@@ -1,26 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>new pass</title>
-    <link href="stylesheets/Dangki.css" rel="stylesheet">
-</head>
-<body>
-    <form action="/forgetpassword/<%= token %>" method="POST">
-        <div class="container">
-          <h1>new pass</h1>
-          <p>new pass</p>
-          <hr>
-        <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="newpassword" id="newpassword" required>
-      
-          <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input type="password" placeholder="Repeat Password" name="psw2" id="psw-repeat" required>
-          <hr>
-            <button type="submit" class="registerbtn">OK</button>
-        </div>
-</form>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SPREAD LOVE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/line-awesome.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="stylesheets/css/line-awesome-font-awesome.min.css"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/font-awesome.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="stylesheets/css/jquery.mCustomScrollbar.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="lib/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/style.css" />
     
-</body>
-</html>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">LOGO</a>
+        <form class="form-inline h3tg">
+          <h3>Trợ giúp?</h3>
+        </form>
+      </nav>
+    
+      <div class="px"></div>
+      <div class="px"></div>
+      <main>
+        <form action="/forgetpassword/<%= token %>" method="POST">
+          <div class="tab-pane " id="nav-password" role="tabpanel" >
+              <div class="tdmk">
+              <div class="acc-setting">
+                <h3>Thay đổi mật khẩu</h3>
+                <form>
+                    
+                    <div class="cp-field">
+                        <h5>Mật khẩu mới</h5>
+                        <div class="cpp-fiel">
+                            <input type="password" name="new-password" placeholder="Mật khẩu mới">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="cp-field">
+                        <h5>Nhập lại mật khẩu mới</h5>
+                        <div class="cpp-fiel">
+                            <input type="password" name="repeat-password" placeholder="Nhập lại mật khẩu mới">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="save-stngs pd2">
+                        <ul>
+                            <li><button type="submit" class="registerbtn">Đồng ý</button></li>
+                            
+                        </ul>
+                    </div>
+                </form>
+            </div>
+          </div>
+          </div>
+          </form>
+      </main>
+  <%include footer %>
+  </body>
+  </html>
