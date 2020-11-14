@@ -16,7 +16,7 @@ FogetPassword(req, res, next){
 }
 async fogetPass(req, res, next){
         
-    var login_name = req.body.remail;
+    var login_name = req.body.name_login;
     
       await User.findOne({login_name: login_name}, async function (error, user) { 
            if (user) { 
@@ -35,9 +35,7 @@ async fogetPass(req, res, next){
                     if(error){
                         
                            return res.status(400).json({
-                               error:" error update reset link "
-                            
-                            });
+                               error:" error update reset link " });
                                
                     }
                     else{
@@ -64,7 +62,7 @@ async fogetPass(req, res, next){
             });           
        }
       
-     }).lean();   
+     });   
 }
 async GetresetPassword(req, res, next){
    var resetPasswordToken = req.params.token;

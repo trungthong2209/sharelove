@@ -96,7 +96,7 @@
           </button>
           <div class="d-flex justify-content-center h-100 navbar-nav mr-auto mar-search">
             <div class="searchbar">
-            <form action="/search/store" method="GET">
+            <form action="/search/post" method="GET">
               <input class="search_input" type="text" name="search" id="search" placeholder="Tìm kiếm ...">
               <button type="submit" class="search_icon registerbtn"><i class="la la-search"></i></button>
             </form>
@@ -116,16 +116,17 @@
               <li class="nav-item">
                 <a class="nav-link" href="Top-donate">Tấm lòng vàng</a>
               </li>
-              
+            
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
-              <% if(!loggedIn) { %>
-                <a href="">HELLO</a>
+              <% if(loggedIn) { %>
+                  <a href="">HELLO</a>
               <% } else{ %>
                 <a type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" >Đăng nhập / Đăng ký</a>
               <% } %>
             </form>
+           
           </div>
         </nav>
       </header>

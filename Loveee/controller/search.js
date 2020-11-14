@@ -1,4 +1,4 @@
-const infEvent = require('../model/infEvent').default;
+const infEvent = require('../model/infEvent');
 const User = require('../model/user');
 
 class SearchController{
@@ -8,7 +8,6 @@ Search(req, res, next){
 }
 async Search_post(req, res, next){
     var query = req.query.search;
-
 
     if(req.query.search) {
     await infEvent.find({$text: {$search: query}}, function(err, All_infEvent){
