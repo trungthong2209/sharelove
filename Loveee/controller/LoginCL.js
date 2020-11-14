@@ -2,7 +2,7 @@ const User = require('../model/user');
 const bcrypt = require('bcrypt'); 
 const jwt = require("jsonwebtoken");
 
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "access-token-secret-share-love.com-a@";
+const accessTokenSecret = process.env.accessTokenSecret;
 // const refreshTokenLife = process.env.REFRESH_TOKEN_LIFE || "3650d";
 // const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET || "refresh-token-secret-share-love.com-a@";
 

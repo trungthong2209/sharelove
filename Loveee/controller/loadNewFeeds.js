@@ -34,6 +34,7 @@ newsFeed(req, res, next){
        
        res.render('home', { infevents: infevents})
        console.log(infevents);
+       
 }
 
 )

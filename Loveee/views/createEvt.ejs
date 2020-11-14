@@ -402,7 +402,7 @@
               <div class="col-lg-12">
                 <ul>
                   <li>
-                    <button class="active registerbtn" type="submit" onClick="alert(getName())" id ="btnsend"  >
+                    <button class="active registerbtn" type="submit" onClick="getName()" id ="btnsend"  >
                       Đăng bài
                     </button>
                   </li>
@@ -447,8 +447,7 @@
         }
         
        socket.emit("new_post", formData);
-       var x = "Post Successfully";
-         return x;
+       
 }
   </script>
 

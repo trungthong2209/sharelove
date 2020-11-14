@@ -2,17 +2,16 @@ const User = require('../model/user');
 const bcrypt = require('bcrypt'); 
 const jwt = require("jsonwebtoken");
 const mailgun = require("mailgun-js");
-const DOMAIN = 'sandboxcfc9851b495e4c588808592559093e9f.mailgun.org';
-let MAILGUN_KEY = '4cc3b4817d4b703bba1c4eebcbe7d382-53c13666-e3110969';
-let CLIENT_URL = 'http://localhost:3000';
+const DOMAIN = process.env.DOMAIN;
+let MAILGUN_KEY = process.env.MAILGUN_KEY;
+let CLIENT_URL = process.env.CLIENT_URL;
 const mg = mailgun({apiKey : MAILGUN_KEY , domain: DOMAIN});
-const forgotPassword_Token = process.env.ACCESS_TOKEN_SECRET || "forgotPassword-secret-share-love.com-a@";
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "access-token-secret-share-love.com-a@";
-// const refreshTokenLife = process.env.REFRESH_TOKEN_LIFE || "3650d";
-// const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET || "refresh-token-secret-share-love.com-a@";
+const forgotPassword_Token = process.env.forgotPassword_Token;
+
 class Fogetpass{  
 FogetPassword(req, res, next){
     res.render('foget')
+    console.log();
 }
 async fogetPass(req, res, next){
         

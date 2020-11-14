@@ -1,6 +1,6 @@
 
 const infEvent = require('../model/infEvent');
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "access-token-secret-share-love.com-a@";
+const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
 const cloudinary = require('../middleware/cloudinary');
 const path = require("path");
@@ -8,7 +8,6 @@ const path = require("path");
 class CreateEvent{
 Event(req, res, next){
         res.render('createEvt');
-        
 }
 async EventPost (req, res){
     const token = req.cookies.token;

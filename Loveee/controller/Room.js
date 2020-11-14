@@ -2,7 +2,7 @@ const moment = require("moment");
 const chatMessage = require('../model/ChatMessage');
 const User = require('../model/user');
 const events = require('../model/infEvent');
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "access-token-secret-share-love.com-a@";
+const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
 
 const users = [];
@@ -22,10 +22,7 @@ async function getID(token){
 async function userJoin(id, token, room){
     let username = await getname(token);
     let ID_user = await getID(token);
-    console.log(username);
     const user = {id, username, room, ID_user};
- 
-    
     if(users.length==0){
         users.push(user);
     }
@@ -33,12 +30,11 @@ async function userJoin(id, token, room){
         var pos = users.map(function(e) { 
             return e.ID_user; 
         }).indexOf(ID_user); 
-        console.log("pos: "+ pos);
+        
         if(pos == -1){
             users.push(user);
         }
    }
-    
     return user;
 }
 function formatMessage(username, text){
@@ -57,11 +53,13 @@ function userLeave(id){
         return users.splice(index, 1)[0];
     }
 }
-async function Save_message(req, res, next){
+async function Save_message(req, res){
     var room = req.params.room;
     console.log("req.params.room:" + room)
-    var new_message = req.body.mess;
+    var new_message = req.body.msg;
     console.log("new_message:" + new_message)
+    const token = req.cookies.token;
+    const userID =  jwt.verify(token, accessTokenSecret);
      await chatMessage.findOne({"post_id": room}, async function(err, mess){ 
          if(mess==null){
             var message = new chatMessage({
@@ -96,7 +94,7 @@ async function Save_message(req, res, next){
         }
      
   }) 
-   
+
 }
 function getRoomUsers(room){
        
@@ -107,7 +105,7 @@ async function Update_UserJoin(req, res, next){
     var room = req.params.room;
     const token = req.cookies.token;
     const userID =  jwt.verify(token, accessTokenSecret);
-     // check tổn tại room
+    
       await events.findById(room, async function(err, event){ 
         if(event){ 
             await event.updateOne({$addToSet:{user_joinEvent: userID.id}}, async function(err, results){ 
@@ -119,6 +117,7 @@ async function Update_UserJoin(req, res, next){
                         console.log("ERROR UPDATE user_joinEvent: "+err)
                         }
                 })
+
          
 }  
     else {

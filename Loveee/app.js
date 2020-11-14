@@ -9,7 +9,7 @@ const fileUpload = require('express-fileupload')
 const cookie = require ('cookie');
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./swagger.json');
-
+require('dotenv').config();
 const {userJoin, getCurrentUser,userLeave,getRoomUsers,formatMessage} = require("./controller/Room");
 
 //connect database
@@ -29,7 +29,7 @@ var deletee = require('./routes/delete_Event');
 var home = require('./routes/loadNewfeeds');
 var search = require('./routes/search');
 var register = require('./routes/register');
-
+var room = require('./routes/room');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -113,7 +113,17 @@ app.use(search);
 app.use(createEvent);
 app.use(home);
 app.use(deletee);
+app.use(room);
 
+
+
+global.loggedIn = null;
+app.use("*", (req, res, next) => {
+ 
+    loggedIn = req.cookies.token;
+    
+    next()
+});
 //swagger test
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -131,10 +141,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-global.loggedIn = null;
-app.use("*", (req, res, next) => {
-    loggedIn = req.cookies;
-    next()
-});
+
+
 
 module.exports = app;
