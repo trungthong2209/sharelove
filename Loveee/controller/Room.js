@@ -74,7 +74,7 @@ async function Save_message(req, res){
                  console.log("Save schema chatMessage success")
            })
         .catch(error =>{
-            console.log("Save schema chatMessage fail "+error);
+            console.log("Save schema chatMessage fail "+ error);
           }) 
         } 
         else { 
@@ -93,7 +93,7 @@ async function Save_message(req, res){
           })
         }
      
-  }) 
+  })
 
 }
 function getRoomUsers(room){

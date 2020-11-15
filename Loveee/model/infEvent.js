@@ -3,8 +3,11 @@ const Schema = mongoose.Schema;
 
 const infEvent = new Schema({
     purpose: {type: String},
-    address: {type: String},
-    execution_date: {type: String},
+    address_City : {type: String},
+    address_District : {type: String},
+    address_Ward : {type: String},
+    time:{type: String},
+    date: {type: String},
     description: {type: String},
     ID_image:[{
         multiple_image: { type: String},

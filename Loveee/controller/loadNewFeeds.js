@@ -16,13 +16,14 @@ newsFeed(req, res, next){
     },{
         $project: {
             purpose : 1,
-            address: 1,
-            execution_date: 1,
-            description: 1,
+            address_City: 1,
+            address_District: 1,
+            address_Ward: 1,
             TimePost: 1,
+            time:1,
+            date:1,
             Image_URL: '$ID_image.image_url',
             user_name: "$user_post.fullname",
-
         }
     },
     {
@@ -32,7 +33,7 @@ newsFeed(req, res, next){
     {
         if(err) return console.log(err)
        
-       res.render('home', { infevents: infevents})
+       res.render('Newfeeds', {infevents: infevents})
        console.log(infevents);
        
 }

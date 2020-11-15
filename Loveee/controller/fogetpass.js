@@ -75,7 +75,7 @@ async GetresetPassword(req, res, next){
                 message: "Userr does not exist"
             });           
        }
-}).lean();    
+});    
 }
 
 async PostresetPassword(req, res, next){
@@ -102,7 +102,7 @@ async PostresetPassword(req, res, next){
          })
 
         }
-    }).lean();
+    });
 }) 
 
 }   else { 
@@ -112,7 +112,7 @@ async PostresetPassword(req, res, next){
              });           
         }
        
-      }).lean()    
+      })    
  }
 
 }

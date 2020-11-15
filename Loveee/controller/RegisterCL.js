@@ -41,7 +41,7 @@ User.findOne({email: emailcheck}, function(err, data){
                                 });
                          }
                 
-                }).lean()
+                })
        
 
 }
@@ -51,7 +51,7 @@ else{
                         message: "Email already exist."
                 });
         }
-}).lean()
+})
 }
 }
 

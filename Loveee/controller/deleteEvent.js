@@ -34,7 +34,7 @@ let  DeletePost =  async function (req, res, next){
           });  
         }
 
-}).lean();
+})
 
 
 }  

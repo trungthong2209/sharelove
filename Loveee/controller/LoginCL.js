@@ -38,7 +38,7 @@ class LoginCL{
                     message: "Email does not exist"
                 });           
            }
-    }).lean();
+    });
 }
 
 Logout(req, res, next){
