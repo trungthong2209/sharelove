@@ -6,6 +6,9 @@ body{
 	user-select: none;
 	background-color: white;
 }
+a:focus, a:active { outline: none }
+
+
 .white-col{
 	color: white;
 }
@@ -279,14 +282,13 @@ nav > ul > li > a:hover {
 	right: 0;
 	width: 240px;
 	background-color: #fff;
-	border-left: 1px solid #e5e5e5;
-	border-bottom: 1px solid #e5e5e5;
-	border-right: 1px solid #e5e5e5;
-	-webkit-border-radius: 0 0 5px 5px;
-	-moz-border-radius: 0 0 5px 5px;
-	-ms-border-radius: 0 0 5px 5px;
-	-o-border-radius: 0 0 5px 5px;
-	border-radius: 0 0 5px 5px;
+	border: 1px solid #e5e5e5;
+	
+	-webkit-border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-ms-border-radius: 5px 5px 5px 5px;
+	-o-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
 	-webkit-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
 	-moz-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
 	-ms-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
@@ -323,8 +325,9 @@ nav > ul > li > a:hover {
 .show{
 	background-color: #53D690;
 }
-
-
+.btnout{
+	border:none;
+}
 /* ============ us-links ============= */
 
 .us-links {
@@ -1013,14 +1016,21 @@ img {
     display: inline-block;
     font: inherit;
     background: none;
-    border: none;
+    
     color: inherit;
     padding: 0;
-    cursor: pointer;
+	cursor: pointer;
+	border:none !important; 
+    outline:none !important;
 }
 
 .btn:focus {
-    outline: 0.5rem auto #4d90fe;
+	border:none !important; 
+    outline:none !important;
+}
+.btn:active{
+	border:none !important; 
+    outline:none !important;
 }
 
 .visually-hidden {
