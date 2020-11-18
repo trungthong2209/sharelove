@@ -2,11 +2,7 @@ const infEvent = require('../model/infEvent');
 const User = require('../model/user');
 
 class SearchController{
-    
-Search(req, res, next){
-        res.render('search_post'); 
-}
-async Search_post(req, res, next){
+   async Search_post(req, res, next){
     var query = req.query.search;
 
     if(req.query.search) {
@@ -23,7 +19,6 @@ async Search_post(req, res, next){
                 status: "error",
                 message: "Query is not correct"
             });          
-         
     }
 }
 async Search_user(req, res, next){

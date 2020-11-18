@@ -6,7 +6,6 @@ const search = require('../controller/search.js');
 const verify = require('../middleware/verifyToken');
 
 router
-.get('/search', verify, search.Search)
 .get('/search/post', search.Search_post)
 .get('/search/user', search.Search_user)
 

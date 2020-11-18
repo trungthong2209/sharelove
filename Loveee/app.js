@@ -18,11 +18,8 @@ dataDB.connect();
 var app = express();
 io = socket_io();
 app.io = io;
-
- //router
- 
-var indexRouter = require('./routes/index');
-var login = require('./routes/login');
+//router
+ var login = require('./routes/login');
 var forget = require('./routes/forget_password');
 var createEvent = require('./routes/create_Event');
 var deletee = require('./routes/delete_Event');
@@ -41,16 +38,22 @@ io.on("connection", function( socket )
     
      console.log( "A user is connected: " + socket.id);
     //news feed
-     socket.on('new_post',  function (formData) {
+     socket.on('new_post', async function (formData) {
        console.log("formData đã nhận")
+       const buffer = Buffer.from(formData.image);
+       await fs.writeFile('/tmp/image', buffer).catch(console.error); 
        var cookies = cookie.parse(socket.request.headers.cookie); 
-             const emit_data ={
+          const emit_data ={
                   purpose: formData.purpose,
                   name_user: cookies.fullname,
                   address: formData.address,
-                  execution_date: formData.execution_date,
-                  image: formData.image,
-              }
+                  address_1: formData.address_1,
+                  address_2:formData.address_2,
+                  time: formData.time,
+                  date: formData.date,
+                  description: formData.description,
+                  image: formData.image.toString('base64'),
+          }
           io.sockets.emit('SV_new_post', emit_data)
           console.log("Emit Data"+ emit_data);
 
@@ -60,22 +63,29 @@ io.on("connection", function( socket )
           var cookies = cookie.parse(socket.request.headers.cookie); 
           
           const user = await userJoin(socket.id, cookies.token, room);
-           socket.join(user.room);
-          socket.emit("message", formatMessage(botname, "Welcome to room"));
-          socket.broadcast.to(user.room).emit("message", formatMessage(botname,`${user.username} has joned the room`));
+          if(user==1) {
+            var destination ='/home';
+             socket.emit("CheckID", destination)
+          }
+           else{
+          socket.join(user.room);
+          socket.emit("message", formatMessage(botname, `${user.username} đã vào phòng`));
+          socket.broadcast.to(user.room).emit("message", formatMessage(botname,`${user.username} đã vào phòng`));
           io.to(user.room).emit("roomUsers", {
-              room: user.room,
-              users: getRoomUsers(user.room)
+          room: user.room,
+          users: getRoomUsers(user.room)
           });
-      });
-      socket.on("chatMessage", msg =>{
+          }
+         });
+        
+         socket.on("chatMessage", msg =>{
           const user = getCurrentUser(socket.id);
           io.to(user.room).emit("message", formatMessage(user.username,msg));
       });
       socket.on("disconnect",()=>{
           const user = userLeave(socket.id);
           if(user){
-          io.to(user.room).emit("message", formatMessage(botname,`${user.username} has left the chat`));
+          io.to(user.room).emit("message", formatMessage(botname,`${user.username} đã rời phòng`));
           io.to(user.room).emit("roomUsers", {
               room: user.room,
               users: getRoomUsers(user.room)
@@ -105,7 +115,7 @@ app.use(fileUpload({
   useTempFiles:true
 }));
 // use router
-app.use(indexRouter);
+
 app.use(login);
 app.use(register);
 app.use(forget);

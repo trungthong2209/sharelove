@@ -20,7 +20,7 @@ async function getID(token){
 }
 
 async function userJoin(id, token, room){
-    let username = await getname(token);
+   let username = await getname(token);
     let ID_user = await getID(token);
     const user = {id, username, room, ID_user};
     if(users.length==0){
@@ -33,6 +33,9 @@ async function userJoin(id, token, room){
         
         if(pos == -1){
             users.push(user);
+        }
+        else{
+            return 1;
         }
    }
     return user;
@@ -53,42 +56,43 @@ function userLeave(id){
         return users.splice(index, 1)[0];
     }
 }
-async function Save_message(req, res){
+async function Save_message(req, res, next){
     var room = req.params.room;
-    console.log("req.params.room:" + room)
-    var new_message = req.body.msg;
-    console.log("new_message:" + new_message)
     const token = req.cookies.token;
     const userID =  jwt.verify(token, accessTokenSecret);
-     await chatMessage.findOne({"post_id": room}, async function(err, mess){ 
-         if(mess==null){
+    chatMessage.findOne({"post_id": room},  function(err, mess){ 
+        if(mess==null){
             var message = new chatMessage({
                 post_id: room,
-                messages: [{
+                messages: {
                     authorUsername: userID.id,
-                    message: new_message,
-                 }]
+                    message: req.body.msg,
+                 }
               })
-        await message.save()
+        message.save()
          .then(()=>{
                  console.log("Save schema chatMessage success")
+                 return res.status(200);
            })
         .catch(error =>{
-            console.log("Save schema chatMessage fail "+ error);
-          }) 
+               console.log("Save schema chatMessage fail "+ error);
+               return res.status(500);
+            }) 
         } 
         else { 
-           var messages_Update = {
+           const messages_Update = {
                 authorUsername: userID.id,
-                message: new_message,
-             }
-            await mess.updateOne({$push:{messages: messages_Update }}, async function(err, results){ 
+                message: req.body.msg,
+            }
+             mess.updateOne({$push:{messages: messages_Update}}, function(err, results){ 
               if(results){
-                console.log("Save message success:" + new_message)
-                    }
+                console.log("Save message success:" + req.body.msg)
+                return res.status(200);
+                  }
                 else 
                 {
                   console.log("ERROR Save message success: "+ err)
+                  return res.status(500);
                 }
           })
         }
@@ -101,27 +105,27 @@ function getRoomUsers(room){
          return users.filter(user =>  user.room === room);
 }
 
-async function Update_UserJoin(req, res, next){
+ function Update_UserJoin(req, res, next){
     var room = req.params.room;
     const token = req.cookies.token;
     const userID =  jwt.verify(token, accessTokenSecret);
-    
-      await events.findById(room, async function(err, event){ 
+       events.findById(room, function(err, event){ 
         if(event){ 
-            await event.updateOne({$addToSet:{user_joinEvent: userID.id}}, async function(err, results){ 
-                    if(results){
-                           res.render('room', {room: room});
+             event.updateOne({$addToSet:{user_joinEvent: userID.id}}, function(err, results){ 
+                    if(results)
+                        { 
+                          return res.render('room', {room: room});
+         
                           }
                       else 
                       {
-                        console.log("ERROR UPDATE user_joinEvent: "+err)
-                        }
+                        return res.status(500);
+                    }
                 })
 
-         
 }  
     else {
-            res.json({
+            res.status(404).json({
               status: "error",
               message: "Không tìm thấy phòng"
             })

@@ -36,7 +36,7 @@ async EventPost (req, res){
     await InfEvent.save()
      .then(()=>{
        console.log("lưu thành công");
-       res.redirect('/home')
+      // res.redirect('/home')
        
       })
       .catch(error =>{

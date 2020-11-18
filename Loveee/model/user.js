@@ -3,13 +3,21 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt') 
 
 const User = new Schema({
-    fullname : {type: String},
-    login_name : {type: String},
+    fullname : {type: String,
+      lowercase: true,},
+    login_name : {
+      type: String,lowercase: true,
+      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+      index: true},
     password: {type: String},
-    email: {type: String},
+    email: {type: String, 
+      lowercase: true,
+      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+      index: true},
     Numberphone: {type: String},
     reset_link: {type: String},
-    accesstoken:{type: String}
+    accesstoken:{type: String},
+    image:{type: String}
     
 });
 User.pre('save', function (next) { 
@@ -27,5 +35,14 @@ User.pre('save', function (next) {
       throw error;
     }
   } 
- User.index({'$**': 'text'});
+  User.methods.toAuthJSON = function(){
+    return {
+      username: this.username,
+      email: this.email,
+      token: this.generateJWT(),
+           image: this.image
+    };
+  };
+  
+User.index({'$**': 'text'});
 module.exports = mongoose.model('user', User)
