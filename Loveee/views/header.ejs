@@ -120,7 +120,7 @@
             <form class="form-inline my-2 my-lg-0">
 
               <% if(loggedIn) { %>
-                <form action="/logout" method="GET">
+                
                   <div class="user-account">
                     <div class="user-info">
                       <img src="http://via.placeholder.com/30x30" alt="">
@@ -129,10 +129,10 @@
                     </div>
                     <div class="user-account-settingss">
                       <h3 class="tc"><a href="setting" title="">Cài đặt</a></h3>
-                      <h3 class="tc"><button class="btn" type="submit" title="">Đăng xuất</button></h3>
+                      <h3 class="tc"><button class="btn" href="/logout" title="">Đăng xuất</button></h3>
                     </div><!--user-account-settingss end-->
                   </div>
-                </form>
+               
               <% } else{ %>
                 <a type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" >Đăng nhập / Đăng ký</a>
               <% } %>

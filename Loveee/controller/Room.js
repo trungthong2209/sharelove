@@ -55,9 +55,8 @@ function userLeave(id){
 }
 async function Save_message(req, res){
     var room = req.params.room;
-    console.log("req.params.room:" + room)
     var new_message = req.body.msg;
-    console.log("new_message:" + new_message)
+  
     const token = req.cookies.token;
     const userID =  jwt.verify(token, accessTokenSecret);
      await chatMessage.findOne({"post_id": room}, async function(err, mess){ 

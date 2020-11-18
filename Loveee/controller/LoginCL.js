@@ -42,8 +42,9 @@ class LoginCL{
 }
 
 Logout(req, res, next){
-    res.clearCookie('token');
-       res.redirect('/');
+    res.clearCookie('token')
+   
+    res.redirect('/' );
 }
 }
 module.exports = new LoginCL();
