@@ -20,8 +20,8 @@ class LoginCL{
                         const token =  jwt.sign({ id: user._id}, accessTokenSecret );
                       
                        res.cookie("token", token, {httpOnly: true});
-                              
-                       res.redirect('/');
+                                             
+                        res.redirect('/');
                       } else {  
                          console.log(error);
                         res.json({
@@ -43,7 +43,9 @@ class LoginCL{
 
 Logout(req, res, next){
     res.clearCookie('token');
+ 
        res.redirect('/');
+       
 }
 }
 module.exports = new LoginCL();
