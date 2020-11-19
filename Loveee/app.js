@@ -11,7 +11,7 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./swagger.json');
 require('dotenv').config();
 const {userJoin, getCurrentUser,userLeave,getRoomUsers,formatMessage} = require("./controller/Room");
-
+const data_event = require('./controller/Event');
 //connect database
 dataDB.connect();
 
@@ -40,8 +40,7 @@ io.on("connection", function( socket )
     //news feed
      socket.on('new_post', async function (formData) {
        console.log("formData đã nhận")
-       const buffer = Buffer.from(formData.image);
-       await fs.writeFile('/tmp/image', buffer).catch(console.error); 
+     
        var cookies = cookie.parse(socket.request.headers.cookie); 
           const emit_data ={
                   purpose: formData.purpose,
@@ -54,8 +53,10 @@ io.on("connection", function( socket )
                   description: formData.description,
                   image: formData.image.toString('base64'),
           }
+        
           io.sockets.emit('SV_new_post', emit_data)
-          console.log("Emit Data"+ emit_data);
+          console.log(emit_data.image)
+          
 
       });  
         //Create room 
@@ -65,15 +66,15 @@ io.on("connection", function( socket )
           const user = await userJoin(socket.id, cookies.token, room);
           if(user==1) {
             var destination ='/home';
-             socket.emit("CheckID", destination)
+                socket.emit("CheckID", destination)
           }
            else{
           socket.join(user.room);
           socket.emit("message", formatMessage(botname, `${user.username} đã vào phòng`));
           socket.broadcast.to(user.room).emit("message", formatMessage(botname,`${user.username} đã vào phòng`));
           io.to(user.room).emit("roomUsers", {
-          room: user.room,
-          users: getRoomUsers(user.room)
+                room: user.room,
+                users: getRoomUsers(user.room)
           });
           }
          });
@@ -94,8 +95,6 @@ io.on("connection", function( socket )
   });
 
 });
-
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

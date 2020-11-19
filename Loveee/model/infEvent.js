@@ -14,7 +14,7 @@ const infEvent = new Schema({
         image_url:{type: String},
     }],
     user_joinEvent:[{type: mongoose.Schema.ObjectId, ref: 'User'}],
-    TimePost: {type: Date, default: Date.now}, 
+    time_post: {type: String},
     email_posted: {type: mongoose.Schema.ObjectId, ref: 'User'},
 });
 

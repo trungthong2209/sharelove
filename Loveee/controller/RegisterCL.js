@@ -9,9 +9,10 @@ Store(req, res, next){
   var login_namecheck = req.body.login_name;
   var emailcheck = req.body.email;
     const user = new User({
-        fullname: req.body.Fullname,
+        fullname: req.body.fullname,
         email:req.body.email,
         login_name: req.body.login_name,
+        Numberphone:req.body.Numberphone,
         password:req.body.psw,
        
 })

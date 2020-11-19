@@ -8,9 +8,12 @@ router.get('/', function(req, res, next) {
     res.render('index');
  })
 //test
-router.get('/home', verify, function(req, res, next) {
+router.get('/test', function(req, res, next) {
    res.render('Newsfeeds');
 })
+//-end
+router.get('/home', verify, loadNewFeeds.newsFeed)
+
 router.get('/news', function(req, res, next) {
     res.render('news');
  });

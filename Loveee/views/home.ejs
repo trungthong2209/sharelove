@@ -11,15 +11,14 @@
     <div id = "infevents" >
     <% infevents.forEach(function(infevent){ %>
     <div class="container" >
-
     <hr>
     <label for="nameu"><b> <%= infevent.purpose %> </b></label>
 
     <label for="user"><b> <%= infevent.user_name %> </b></label>
 
-    <label for="adress"><b><%= infevent.address %></b></label>
+    <label for="adress"><b><%= infevent.address_city %></b></label>
     
-    <label for="constUser"><b><%= infevent.execution_date %></b></label>
+    <label for="constUser"><b><%= infevent.date %></b></label>
         
     <label for="description"><b><%= infevent.description %></b></label>
      
@@ -33,9 +32,8 @@
      var socket = io("http://localhost:3000");
       socket.on('SV_new_post', function(emit_data)
       {
-        const img = new Image();
-        img.src = `data:image/jpg;base64, ${emit_data.image}`; 
-        var html = "";
+  
+         var html = "";
         html +='<div class="container" >';
         html +='<<hr>';
         html +='<<label for="nameu"><b> '+emit_data.purpose +'</b></label>';
@@ -47,7 +45,7 @@
         html +='< <label for="constUser"><b>'+emit_data.date +'</b></label>';
         html +='< <label for="constUser"><b>'+emit_data.description +'</b></label>';
         html +='< <label for="description"><b>'+emit_data.description +'</b></label>';
-        html +='<<img class= "img-fluid rounded" width="180" height="180" src="' + img.src +'"alt="">';
+        html +='<<img class= "img-fluid rounded" width="180" height="180" src="' + emit_data.image +'"alt="">';
         html +='<<hr>';
         html +='<</div>';
        $("#infevents").prepend(html);

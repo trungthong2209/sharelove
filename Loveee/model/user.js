@@ -4,22 +4,23 @@ const bcrypt = require('bcrypt')
 
 const User = new Schema({
     fullname : {type: String,
-      lowercase: true,},
-    login_name : {
-      type: String,lowercase: true,
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      index: true},
-    password: {type: String},
-    email: {type: String, 
+    required:true},
+      login_name : {
+      type: String,
       lowercase: true,
       match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      index: true},
-    Numberphone: {type: String},
+      index: true,
+      required:true},
+      password: {type: String, required:true},
+      email: {type: String, 
+      lowercase: true,
+      index: true
+    },
+    Numberphone: {type: Number},
     reset_link: {type: String},
     accesstoken:{type: String},
     image:{type: String}
-    
-});
+  });
 User.pre('save', function (next) { 
     const user = this 
     bcrypt.hash(user.password, 10, (error, hash) => { 
