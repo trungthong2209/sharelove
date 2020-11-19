@@ -272,3 +272,59 @@ function showPreview(event){
         document.getElementById('submit-pass').disabled = true;
     }
 }
+
+//change avt
+var upload = document.getElementById("upload");
+var preview = document.getElementById("preview");
+var avatar = document.getElementById("avatar");
+/** Handle uploading of files */
+upload.addEventListener("change", handleFiles, false);
+function handleFiles() {
+  var files = this.files;
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+    var imageType = /^image\//;
+    if (!imageType.test(file.type)) {
+      avatar.classList.add("avatar--upload-error");
+      setTimeout(function(){
+        avatar.classList.remove("avatar--upload-error");
+      },1200);
+      continue;
+    }
+    avatar.classList.remove("avatar--upload-error");
+    while(preview.firstChild) {
+      preview.removeChild(preview.firstChild);
+    }
+    var img = document.createElement("img");
+    img.file = file;
+    img.src = window.URL.createObjectURL(file);
+    img.onload = function() { }
+    img.className ="avatar_img";
+    document.activeElement.blur();
+    window.getSelection().removeAllRanges();
+    preview.appendChild(img);
+  }
+}
+window.changeAvatarName = function(event, key, name) {
+  if (event.keyCode != 13 && event != 'blur') return;
+  key = parseInt(key);
+  if ( !name ) return;
+  var change = avatars.changeName(key, name);
+  document.activeElement.blur();
+  window.getSelection().removeAllRanges();
+};
+
+window.changeAvatar = function(dir){
+  if ( dir === 'next' ) {
+    avatars.showNext();
+  }
+  else {
+    avatars.showLast();
+  }
+};
+window.handleAriaUpload = function(e, obj) {
+  if(e.keyCode == 13) {
+    obj.click();
+  }
+};
+
