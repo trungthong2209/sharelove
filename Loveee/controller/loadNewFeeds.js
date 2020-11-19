@@ -34,7 +34,7 @@ newsFeed(req, res, next){
         if(err) return console.log(err)
        
        res.render('Newfeeds', {infevents: infevents})
-       console.log(infevents);
+       
        
 }
 
