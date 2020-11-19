@@ -328,3 +328,21 @@ window.handleAriaUpload = function(e, obj) {
   }
 };
 
+var checkDate = function(){
+    const date = new Date();
+  const formattedDate = date.toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'numeric', year: 'numeric'
+  }).replace(/ /g, '-');
+  console.log(formattedDate);
+  let birthdate = document.getElementById("date").value ;
+  
+    // Check whether the provided date is equal to or less than the current date.
+    if (birthdate <= formattedDate && birthdate.length > 8 ) {
+        document.getElementById('checkdate').innerHTML = '';
+        document.getElementById('submit-ch').disabled = false;
+    } else {
+        document.getElementById('checkdate').style.color = 'red';
+        document.getElementById('checkdate').innerHTML = 'Ngày sinh không hợp lệ, hãy nhập theo định dạng ngày/tháng/năm';
+        document.getElementById('submit-ch').disabled = true;
+    }
+  }

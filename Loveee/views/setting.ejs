@@ -40,8 +40,10 @@
 											<div class="cp-field">
 												<h5>Ngày sinh</h5>
 												<div class="cpp-fiel">
-													<input placeholder="Chọn ngày" type="date" id="date"  >
+													<input type="datetime" maxlength="10" name="date" id="date" list="date" placeholder="Nhập ngày sinh" onkeyup='checkDate();'>
+													
 													<i class="fa fa-birthday-cake"></i>
+													<span id='checkdate'></span>
 												</div>
 											</div>
 											<div class="cp-field">
@@ -67,7 +69,7 @@
 											</div>
 											<div class="save-stngs pd2">
 												<ul>
-													<li><button type="submit">Thay đổi</button></li>
+													<li><button type="submit" id="submit-ch">Thay đổi</button></li>
 													<li><button type="submit">Thoát</button></li>
 												</ul>
 											</div><!--save-stngs end-->
