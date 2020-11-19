@@ -342,7 +342,8 @@ var checkDate = function(){
         document.getElementById('submit-ch').disabled = false;
     } else {
         document.getElementById('checkdate').style.color = 'red';
-        document.getElementById('checkdate').innerHTML = 'Ngày sinh không hợp lệ, hãy nhập theo định dạng ngày/tháng/năm';
+        document.getElementById('checkdate').innerHTML = 'Ngày sinh không hợp lệ, hãy nhập theo định dạng ngày/tháng/năm
+        ';
         document.getElementById('submit-ch').disabled = true;
     }
   }
