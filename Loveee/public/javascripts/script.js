@@ -260,3 +260,15 @@ function showPreview(event){
     }
   }
  
+  var check = function() {
+    if (document.getElementById('new-password').value ==
+        document.getElementById('re-password').value) {
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = 'mật khẩu đã trùng khớp';
+        document.getElementById('submit-pass').disabled = false;
+    } else {
+            document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerHTML = 'Mật khẩu chưa trùng khớp';
+        document.getElementById('submit-pass').disabled = true;
+    }
+}

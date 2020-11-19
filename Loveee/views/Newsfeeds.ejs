@@ -80,7 +80,10 @@
 
 
                   <!--post-topbar end-->
-                  <div class="posts-section">
+
+
+                  <div class="posts-section" id = "infevents">
+                    <% infevents.forEach(function(infevent){ %>
                     <div class="post-bar">
                       <div class="post_topbar">
                         <div class="usy-dt">
@@ -89,9 +92,9 @@
                             alt=""
                           />
                           <div class="usy-name">
-                            <h3>Tên</h3>
+                            <h3><%= infevent.user_name %></h3>
                             <span
-                              ><img src="images/clock.png" alt="" />Thời gian đăng</span
+                              ><img src="images/clock.png" alt="" /><%= infevent.execution_date %></span
                             >
                           </div>
                         </div>
@@ -111,23 +114,24 @@
       
                           <li>
                             <img src="images/icon9.png" alt="" /><span
-                              >Địa chỉ</span
+                              ><%= infevent.address %></span
                             >
                           </li>
                         </ul>
                         
                       </div>
                       <div class="event_descp">
-                        <h3>Tên sự kiện</h3>
+                        <h3><%= infevent.purpose %></h3>
                         <ul class="event-dt">
                           <li><a href="#" title="">Thời gian bắt đầu</a></li>
                           <li><a href="#" title="">Số người tham gia/ chỉ tiêu</a></li>
                           
                         </ul>
                         <p>
-                          Nội dung
+                          <%= infevent.description %>
                           <a href="#" title="">view more</a>
                         </p>
+                        <img class= "img-fluid rounded" width="180" height="180" src="<%= infevent.Image_URL %>" alt="">
                   
                       </div>
                       <div class="event-status-bar">
@@ -149,12 +153,15 @@
                       </div>
                     </div>
                     <!--post-bar end-->
+                    <% }) %>
                     
                     
                     
                     
                   </div>
                   <!--posts-section end-->
+
+
                 </div>
                 <!--main-ws-sec end-->
               </div>
@@ -392,7 +399,7 @@
               <div class="col-lg-12">
                 <ul>
                   <li>
-                    <button class="active registerbtn" onClick="getName()" type="submit"  id ="btnsend"  >
+                    <button class="active registerbtn" type="submit" onClick="getName()" id ="btnsend"  >
                       Đăng bài
                     </button>
                   </li>
@@ -406,18 +413,24 @@
         <a href="#" title="" class= "cancel"><i class="la la-times-circle-o " ></i></a>
       </div>
       <!--post- event end-->
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>    
+    </div>
+    <!--post- event-popup end-->
+    
+    
+
+    
+
+
+
+         <!-- Footer -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>    
       <script src="/socket.io/socket.io.js"></script>
 
   <script>
     var socket = io.connect("http://localhost:3000")
       function getName(){
-        const reader = new FileReader();
-        // var fileImage = document.getElementById('image').value;
-        // var nameSplit = fileImage.substring(fileImage.lastIndexOf('\\')+1);
-      
-         reader.onload = function() {
-       const base64 = new Uint8Array(this.result);
+        var fileImage = document.getElementById('image').value;
+        var nameSplit = fileImage.substring(fileImage.lastIndexOf('\\')+1);
         var formData = {
         title: document.getElementById('title').value,
         address: document.getElementById('city').value,
@@ -426,23 +439,14 @@
         time:document.getElementById('picker').value,
         date:document.getElementById('date').value,
         description: document.getElementById('description').value,
-        image: base64,
+        image: nameSplit
         }
          console.log(formData);
          socket.emit("new_post", formData);
-      };
-      reader.readAsArrayBuffer(this.FileReader);
-        
        
 }
   </script>
 
-    </div>
-    <!--post- event-popup end-->
-  
-
-  <!-- Footer -->
 
 
-
-<%include footer %>
+    <%include footer %>

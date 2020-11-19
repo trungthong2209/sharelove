@@ -14,6 +14,7 @@ router.get('/home', verify, function(req, res, next) {
 router.get('/news', function(req, res, next) {
     res.render('news');
  });
+
  router.get('/List_event',function(req, res, next) {
     res.render('List_event');
  });

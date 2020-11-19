@@ -2960,8 +2960,16 @@ select {
 
 
 /* ============== widget-adver ============ */
-
-.widget-adver {
-	width: 100%;
-	padding-bottom: 30px;
+.sn-field > b {
+    position: absolute;
+	top: 50%;
+	right: 15px;
+	font-weight: 700;
+	color: #000;
+	font-size: 22px;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
