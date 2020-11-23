@@ -17,6 +17,7 @@ const User = new Schema({
       lowercase: true,
       index: true
     },
+    sex:{Type: String},
     Dob: {type: Date},
     Numberphone: {type: Number},
     reset_link: {type: String},

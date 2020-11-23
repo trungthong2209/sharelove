@@ -167,8 +167,7 @@ function Update_UserJoin(req, res, next) {
         }
         else {
             res.status(404).json({
-                status: "error",
-                message: "Không tìm thấy phòng"
+                    message: "Không tìm thấy phòng"
             })
         }
 
