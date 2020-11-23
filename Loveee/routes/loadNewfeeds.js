@@ -13,6 +13,7 @@ router.get('/home', verify, loadNewFeeds.newsFeed)
 router.get('/news', function(req, res, next) {
     res.render('news');
  });
+
  router.get('/List_event',function(req, res, next) {
     res.render('List_event');
  });

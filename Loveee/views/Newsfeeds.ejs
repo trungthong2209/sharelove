@@ -12,14 +12,14 @@
                       <div class="username-dt">
                         <div class="usr-pic">
                           <img
-                            src="http://via.placeholder.com/100x100"
+                            src="<%=user.imageUser %>"
                             alt=""
                           />
                         </div>
                       </div>
                       <!--username-dt end-->
                       <div class="user-specs">
-                        <h3>Tên</h3>
+                        <h3><%= user.fullname %></h3>
                         
                       </div>
                     </div>
@@ -81,8 +81,8 @@
                     <div class="post-bar">
                       <div class="post_topbar">
                         <div class="usy-dt">
-                          <img
-                            src="http://via.placeholder.com/50x50"
+                          <img width="50" height="50"
+                            src="<%= infevent.imageUser %>"
                             alt=""
                           />
                           <div class="usy-name">
@@ -381,7 +381,7 @@
           <div class="col-lg-4">
             <div class="form-input">
             <label for="image">Hình ảnh 1</label>
-            <input type="file" id="image" name ="image">
+            <input type="file" id="image" name ="image" multiple>
             <div class="preview">
               <img id="file-ip-1-preview">
             </div>
@@ -409,18 +409,12 @@
     </div>
     <!--post- event-popup end-->
     
-    
-
-    
-
-
-
-         <!-- Footer -->
+    <!-- Footer -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>    
-      <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
   <script>
-    var socket = io.connect("http://localhost:3000")
+     var socket = io.connect("http://localhost:3000")
       function getName(){
         var fileImage = document.getElementById('image').value;
         var nameSplit = fileImage.substring(fileImage.lastIndexOf('\\')+1);
@@ -440,6 +434,13 @@
 }
   </script>
 
-
+  <script>
+    $(document).ready(function(){
+      
+      setInterval(function(){
+      $("#infevents").load('home')
+      }, 5000);
+    });
+  </script>
 
     <%include footer %>

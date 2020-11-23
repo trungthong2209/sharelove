@@ -429,7 +429,7 @@ nav > ul > li > a:hover {
 	font-weight: 500;
 }
 .tags-sec ul li a:hover {
-	color: #e44d3a;
+	color: #53D690;
 }
 .cp-sec {
 	float: left;
@@ -1064,13 +1064,13 @@ img {
     clear: both;
 }
 
-.profile-image {
+.profile-img {
     float: left;
-    width: calc(33.333% - 1rem);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 3rem;
+    margin: 0 auto;
 }
 
 .profile-image img {
@@ -2888,7 +2888,7 @@ select {
 	font-weight: 600;
 }
 .react-links li a:hover {
-	color: #e44d3a;
+	color: #53D690;
 }
 .react-links li a i {
 	padding-right: 10px;
@@ -3043,7 +3043,7 @@ select {
 }
 .comment > a.active,
 .comment > a:hover {
-	color: #e44d3a;
+	color: #53D690;
 }
 .comment > a i {
 	font-weight: 600;
@@ -3101,7 +3101,7 @@ select {
 .post_comment_sec form button {
 	color: #ffffff;
 	font-size: 14px;
-	background-color: #e44d3a;
+	background-color: #53D690;
 	padding: 10px 25px;
 	border: 0;
 	font-weight: 600;
@@ -3201,3 +3201,325 @@ select {
 	width: 100%;
 	padding-bottom: 30px;
 }
+/* ============= account-tabs-setting ============ */
+
+.profile-account-setting {
+}
+.account-tabs-setting {
+	float: left;
+	width: 100%;
+	padding: 70px 0;
+}
+.acc-leftbar {
+	float: left;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	
+}
+.acc-leftbar .nav-tabs > a {
+	float: left;
+	width: 100%;
+	background: none;
+	padding: 18px 20px;
+	border-bottom: 1px solid #e5e5e5;
+	border-left: 0;
+	border-right: 0;
+	color: #000000;
+	font-size: 16px;
+	font-weight: 600;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	border-top: 0;
+}
+.nav-tabs {
+	border-bottom: 0;
+}
+.acc-leftbar .nav-tabs > a:last-child {
+	border-bottom: 0;
+}
+.acc-leftbar .nav-tabs > a i {
+	padding-right: 15px;
+	font-size: 20px;
+	position: relative;
+	top: 2px;
+	font-weight: 700;
+	width: 40px;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	background-color: inherit;
+	color: #e44d3a;
+	border-color: inherit;
+}
+/* ============= acc-setting ============ */
+
+.acc-setting {
+	float: left;
+	width: 100%;
+	background-color: #fff;
+	border-left: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	border-right: 1px solid #e5e5e5;
+	-webkit-box-shadow: 1px 0 4px rgba(0,0,0,0.24);
+	-moz-box-shadow: 1px 0 4px rgba(0,0,0,0.24);
+	-ms-box-shadow: 1px 0 4px rgba(0,0,0,0.24);
+	-o-box-shadow: 1px 0 4px rgba(0,0,0,0.24);
+	box-shadow: 1px 0 4px rgba(0,0,0,0.24);
+}
+.acc-setting form {
+	float: left;
+	width: 100%;
+}
+.acc-setting > h3 {
+	float: left;
+	width: 100%;
+	color: #000000;
+	font-weight: 600;
+	font-size: 18px;
+	text-transform: capitalize;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 17px 20px;
+}
+.notbar {
+	float: left;
+	width: 100%;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 20px;
+	position: relative;
+}
+.notbar h4 {
+	color: #000000;
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+.notbar p {
+	color: #686868;
+	font-size: 14px;
+	line-height: 24px;
+	width: 75%;
+}
+.toggle-btn {
+	position: absolute;
+	top: 35px;
+	right: 20px	;
+}
+.save-stngs {
+	float: left;
+	width: 100%;
+	padding: 30px 20px 50px 20px;
+}
+.save-stngs.pd2 {
+	padding: 25px 20px 42px 20px;
+}
+.save-stngs.pd3 {
+	padding: 25px 20px 25px 20px;
+}
+.save-stngs ul li {
+	display: inline-block;
+	margin-right: 17px;
+}
+.save-stngs ul li button {
+	display: inline-block;
+	color: #000000;
+	font-size: 16px;
+	border: 1px solid #e5e5e5;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 22px;
+	font-weight: 600;
+	background: none;
+	cursor: pointer;
+}
+.save-stngs ul li button:hover {
+	background-color: #53D690;
+	color: #fff;
+	border-color: transparent;
+}
+
+/* =============== Password Update ============ */
+
+.cp-field {
+	float: left;
+	width: 100%;
+	margin-top: 29.4px;
+	padding: 0 20px;
+}
+.cp-field h5 {
+	color: #000000;
+	font-size: 16px;
+	font-weight: 600;
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+.cp-field h5 a {
+	color: #000;
+}
+.cpp-fiel {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+.cp-field input {
+	height: 40px;
+	padding: 0 40px;
+}
+.cp-field input,
+.cp-field textarea {
+	width: 100%;
+	border: 1px solid #e5e5e5;
+}
+.cp-field textarea {
+	padding: 20px;
+	height: 115px;	
+}
+.cpp-fiel i {
+	position: absolute;
+	top: 12px;
+	left: 15px;
+	color: #b2b2b2;
+	font-size: 16px;
+}
+.cp-field > p {
+	float: left;
+	width: 100%;
+	color: #686868;
+	font-size: 14px;
+	line-height: 24px;
+	margin-top: 5px;
+}
+input.form-control {
+    padding-left: 20px;
+}
+
+#upload_label{
+	cursor: pointer;
+	position: absolute;
+	left: 15px;
+	top: 12px;
+	font-size: 14px;
+  }
+  #upload_label:hover, #upload_label:focus{
+	color: #222;
+  }
+  
+  .avatar{
+	width: 150px;
+	height: 150px;
+	border-radius: 100%;
+	border: 2px solid #fff;
+	margin: 10px auto;
+	position: relative;
+	overflow: hidden;
+	z-index: 2;
+	transform: translateZ(0);
+	transition: border-color 200ms;
+  }
+  .avatar--upload-error{
+	border-color: #F73C3C;
+	animation: shakeNo 300ms 1 forwards;
+  }
+  @keyframes shakeNo{
+	20%, 60%{
+	  transform: translateX(6px);
+	}
+	40%, 80%{
+	  transform: translate(-6px);
+	}
+  }
+  .avatar:hover .avatar_upload, .avatar--hover .avatar_upload{
+	opacity: 1;
+  }
+  .avatar:hover .upload_label, .avatar--hover .upload_label{
+	display: block;
+  }
+  #preview::after{
+	content: 'Loading...';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	z-index: -1;
+	line-height: 150px;
+	color: #999;
+  }
+  .avatar_img--loading{
+	opacity: 0;
+  }
+  .avatar_img{
+	width: 100%;
+	height: auto;
+	animation: inPop 250ms 150ms 1 forwards cubic-bezier(0.175, 0.885, 0.32, 1.175);
+	transform: scale(0);
+	opacity: 0;
+  }
+  @keyframes inPop {
+	100%{
+	  transform: scale(1);
+	  opacity: 1;
+	}
+  }
+  .avatar_img--rotate90{
+	transform: rotate(90deg);
+  }
+  .avatar_upload{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	height: 100%;
+	background: #25cfe3;
+	background: rgba(44,205, 251, 0.6);
+	display: flex;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 500ms;
+  }
+  .upload_label{
+	color: #111;
+	text-transform: uppercase;
+	font-size: 14px;
+	cursor: pointer;
+	white-space: nowrap;
+	padding: 4px;
+	border-radius: 3px;
+	min-width: 60px;
+	width: 100%;
+	max-width: 80px;
+	margin: auto;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	background: #fff;
+	animation: popDown 300ms 1 forwards;
+	transform: translateY(-10px);
+	opacity: 0;
+	display: none;
+	transition: background 200ms, color 200ms;
+  }
+  @keyframes popDown{
+	100%{
+	  transform: translateY(0);
+	  opacity: 1;
+	}
+  }
+  .upload_label:hover{
+	color: #fff;
+	background: #222;
+  }
+  #upload{
+	width: 100%;
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+	display: block;
+	padding: 0;
+	text-align: center;
+  }

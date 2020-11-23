@@ -10,8 +10,10 @@ const cookie = require ('cookie');
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./swagger.json');
 require('dotenv').config();
+
 const {userJoin, getCurrentUser,userLeave,getRoomUsers,formatMessage} = require("./controller/Room");
-const data_event = require('./controller/Event');
+
+const event = require('./controller/Event');
 //connect database
 dataDB.connect();
 
@@ -27,38 +29,28 @@ var home = require('./routes/loadNewfeeds');
 var search = require('./routes/search');
 var register = require('./routes/register');
 var room = require('./routes/room');
+var setting = require('./routes/setting');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //Socket 
 const botname = "ShareLove Bot";
-io.on("connection", function( socket )
+io.on("connection", function(socket)
 {
     
      console.log( "A user is connected: " + socket.id);
     //news feed
      socket.on('new_post', async function (formData) {
        console.log("formData đã nhận")
-     
-       var cookies = cookie.parse(socket.request.headers.cookie); 
-          const emit_data ={
-                  purpose: formData.purpose,
-                  name_user: cookies.fullname,
-                  address: formData.address,
-                  address_1: formData.address_1,
-                  address_2:formData.address_2,
-                  time: formData.time,
-                  date: formData.date,
-                  description: formData.description,
-                  image: formData.image.toString('base64'),
-          }
-        
-          io.sockets.emit('SV_new_post', emit_data)
-          console.log(emit_data.image)
           
-
-      });  
+       console.log(event.event) 
+        
+            io.sockets.emit('SV_new_post', )
+         
+        
+         });  
         //Create room 
         socket.on("joinRoom", async function (room)  {
           var cookies = cookie.parse(socket.request.headers.cookie); 
@@ -111,7 +103,10 @@ app.use(cookieParser({
 app.use(express.static(path.join(__dirname, 'public')));
  //Upload Image
 app.use(fileUpload({
-  useTempFiles:true
+  useTempFiles:true,
+  limits: { 
+    fileSize: 5 * 1024 * 1024 * 1024 //5MB max file(s) size
+},
 }));
 // use router
 
@@ -123,6 +118,7 @@ app.use(createEvent);
 app.use(home);
 app.use(deletee);
 app.use(room);
+app.use(setting);
 
 
 
