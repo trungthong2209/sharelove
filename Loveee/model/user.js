@@ -3,23 +3,28 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt') 
 
 const User = new Schema({
-    fullname : {type: String,
-      lowercase: true,},
+    fullname : {
+         type: String,
+         required:true},
     login_name : {
-      type: String,lowercase: true,
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      index: true},
-    password: {type: String},
-    email: {type: String, 
+         type: String,
       lowercase: true,
       match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      index: true},
-    Numberphone: {type: String},
+      index: true,
+      required:true},
+    password: {type: String, required:true},
+    email: {type: String, 
+      lowercase: true,
+      index: true
+    },
+    sex:{Type: String},
+    Dob: {type: Date},
+    Numberphone: {type: Number},
     reset_link: {type: String},
     accesstoken:{type: String},
-    image:{type: String}
-    
-});
+    imageUser:{type: String},
+    tieusu:{type: String},
+  });
 User.pre('save', function (next) { 
     const user = this 
     bcrypt.hash(user.password, 10, (error, hash) => { 

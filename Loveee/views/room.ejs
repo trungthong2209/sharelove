@@ -25,11 +25,17 @@
         <ul id="users">
           </ul>
       </div>
+      <% chats.forEach(function(chat){ %>
+        <p class="meta"><%= chat.timeSend%> <span><%= chat.author_name%></span></p>
+        <p class="text">
+          <%= chat.message%>
+        </p>
+        <% })%>
       <div class="chat-messages"></div>
     </main>
-    
+   
     <div class="chat-form-container" >
-      <form id="chat-form" name = chat-form action="/room/<%=room%>/store" method="POST">
+      <form id="chat-form" name = chat-form action="/room/<%=room%>" method="POST">
         <input
           id="msg"
           name = "msg"
@@ -38,15 +44,14 @@
           required
           autocomplete="off"
         />
-      <button type="button" onClick= "getMess()" >OK</button>
+      <button type="button" onClick= "getMess()" > Gửi </button>
       </form>
-      
-   
+     
     </div>
   </div>
 </body>
 
-  <script>
+<script>
     
 const chatForm= document.getElementById('chat-form');
 const chatMessage= document.querySelector(".chat-messages");
@@ -58,7 +63,7 @@ if(room!==null && room!=="" && room!==undefined){
   var socket = io("http://localhost:3000");
 if(socket!==undefined){
   console.log("Connected to server");
-  
+
   socket.emit("joinRoom", room);
 
 socket.on('CheckID', function(destination) {
@@ -79,10 +84,9 @@ function getMess(){
   const msg = document.getElementById('msg').value;
   var frm = document.getElementsByName('chat-form')[0];
   frm.submit();
-  frm.reset();
   socket.emit("chatMessage", msg);
-
-}
+  frm.reset();
+  }
 
 function outputMessage(message){
     const div = document.createElement("div");

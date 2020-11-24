@@ -13,9 +13,9 @@ const infEvent = new Schema({
         multiple_image: { type: String},
         image_url:{type: String},
     }],
-    user_joinEvent:[{type: mongoose.Schema.ObjectId, ref: 'User'}],
-    TimePost: {type: Date, default: Date.now}, 
-    email_posted: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    user_joinEvent:[{type: mongoose.Schema.ObjectId, ref: 'Users'}],
+    time_post: {type: String},
+    email_posted: {type: mongoose.Schema.ObjectId, ref: 'Users'},
 });
 
 infEvent.index({'$**': 'text'});

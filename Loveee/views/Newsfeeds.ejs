@@ -12,14 +12,14 @@
                       <div class="username-dt">
                         <div class="usr-pic">
                           <img
-                            src="http://via.placeholder.com/100x100"
+                            src="<%=user.imageUser %>"
                             alt=""
                           />
                         </div>
                       </div>
                       <!--username-dt end-->
                       <div class="user-specs">
-                        <h3>Tên</h3>
+                        <h3><%= user.fullname %></h3>
                         
                       </div>
                     </div>
@@ -75,26 +75,20 @@
                     </div>
                     <!--post-st end-->
                   </div>
-                  
-
-
-
-                  <!--post-topbar end-->
-
-
+                       <!--post-topbar end-->
                   <div class="posts-section" id = "infevents">
                     <% infevents.forEach(function(infevent){ %>
                     <div class="post-bar">
                       <div class="post_topbar">
                         <div class="usy-dt">
-                          <img
-                            src="http://via.placeholder.com/50x50"
+                          <img width="50" height="50"
+                            src="<%= infevent.imageUser %>"
                             alt=""
                           />
                           <div class="usy-name">
                             <h3><%= infevent.user_name %></h3>
                             <span
-                              ><img src="images/clock.png" alt="" /><%= infevent.execution_date %></span
+                              ><img src="images/clock.png" alt="" /><%= infevent.time_post %></span
                             >
                           </div>
                         </div>
@@ -114,7 +108,7 @@
       
                           <li>
                             <img src="images/icon9.png" alt="" /><span
-                              ><%= infevent.address %></span
+                              ><%= infevent.address_Ward %> <%= infevent.address_District %> <%= infevent.address_City %></span
                             >
                           </li>
                         </ul>
@@ -123,15 +117,15 @@
                       <div class="event_descp">
                         <h3><%= infevent.purpose %></h3>
                         <ul class="event-dt">
-                          <li><a href="#" title="">Thời gian bắt đầu</a></li>
-                          <li><a href="#" title="">Số người tham gia/ chỉ tiêu</a></li>
+                          <li><a href="#" title=""> <%= infevent.time %> <%= infevent.date %> </a></li>
+                          <li><a href="#" title="">Số người tham gia:    <%= infevent.Joined_er%> </a></li>
                           
                         </ul>
                         <p>
-                          <%= infevent.description %>
+                          <%= infevent.description%>
                           <a href="#" title="">view more</a>
                         </p>
-                        <img class= "img-fluid rounded" width="180" height="180" src="<%= infevent.Image_URL %>" alt="">
+                        <img class= "img-fluid rounded" width="300" height="300" src="<%= infevent.Image_URL %>" alt="">
                   
                       </div>
                       <div class="event-status-bar">
@@ -166,8 +160,7 @@
                 <!--main-ws-sec end-->
               </div>
               <div class="col-lg-3 pd-right-none no-pd">
-                
-              
+                           
                   <div class="widget suggestions full-width">
                     <div class="sd-title">
                       <h3>Top sự kiện nổi bật</h3>
@@ -241,6 +234,9 @@
                         </div>
                         <span><i class="la la-plus"></i></span>
                       </div>
+                      
+                      
+                      
                       <div class="view-more">
                         <a href="#" title="">Xem thêm</a>
                       </div>
@@ -269,90 +265,23 @@
               </div>
               <div class="col-lg-12">
                 <div class="inp-field">
-                  <select
-                    tabindex="1"
-                    class="select_300"
-                    id="city"
-                    name="city"
-                    style="font-size: 13px"
-                  >
-                    <option value=""selected="-1">--Tỉnh/Thành phố--</option>
-                    <option value="An Giang">An Giang</option>
-                    <option value="Bà Rịa Vũng Tàu">Bà Rịa Vũng Tàu</option>
-                    <option value="Bình Dương">Bình Dương</option>
-                    <option value="Bình Phước">Bình Phước</option>
-                    <option value="Bình Thuận">Bình Thuận</option>
-                    <option value="Bình Định">Bình Định</option>
-                    <option value="Bạc Liêu">Bạc Liêu</option>
-                    <option value="Bắc Cạn">Bắc Cạn</option>
-                    <option value="Bắc Giang">Bắc Giang</option>
-                    <option value="Bắc Ninh">Bắc Ninh</option>
-                    <option value="Bến Tre">Bến Tre</option>
-                    <option value="Cao Bằng">Cao Bằng</option>
-                    <option value="Cà Mau">Cà Mau</option>
-                    <option value="Cần Thơ">Cần Thơ</option>
-                    <option value="Đà Nẵng">Đà Nẵng</option>
-                    <option value="Đăk Lăk">Đăk Lăk</option>
-                    <option value="Điện Biên">Điện Biên</option>
-                    <option value="Đồng Nai">Đồng Nai</option>
-                    <option value="Đồng Tháp">Đồng Tháp</option>
-                    <option value="Gia Lai">Gia Lai</option>
-                    <option value="Hà Giang">Hà Giang</option>
-                    <option value="Hà Nam">Hà Nam</option>
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hà Tây">Hà Tây</option>
-                    <option value="Hà Tĩnh">Hà Tĩnh</option>
-                    <option value="Hà Đông">Hà Đông</option>
-                    <option value="Hòa Bình">Hòa Bình</option>
-                    <option value="Hưng Yên">Hưng Yên</option>
-                    <option value="Hạ Long">Hạ Long</option>
-                    <option value="Hải Dương">Hải Dương</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Khánh Hòa">Khánh Hòa</option>
-                    <option value="Kiên Giang">Kiên Giang</option>
-                    <option value="KonTum">KonTum</option>
-                    <option value="Lai Châu">Lai Châu</option>
-                    <option value="Long An">Long An</option>
-                    <option value="Lào Cai">Lào Cai</option>
-                    <option value="Lâm Đồng">Lâm Đồng</option>
-                    <option value="Lạng Sơn">Lạng Sơn</option>
-                    <option value="Nam Định">Nam Định</option>
-                    <option value="Nghệ An">Nghệ An</option>
-                    <option value="Ninh Bình">Ninh Bình</option>
-                    <option value="Ninh Thuận">Ninh Thuận</option>
-                    <option value="Phú Thọ">Phú Thọ</option>
-                    <option value="Phú Yên">Phú Yên</option>
-                    <option value="Quảng Bình">Quảng Bình</option>
-                    <option value="Quảng Nam">Quảng Nam</option>
-                    <option value="Quảng Ngãi">Quảng Ngãi</option>
-                    <option value="Quảng Ninh">Quảng Ninh</option>
-                    <option value="Quảng Trị">Quảng Trị</option>
-                    <option value="Sóc Trăng">Sóc Trăng</option>
-                    <option value="Sơn La">Sơn La</option>
-                    <option value="Thanh Hóa">Thanh Hóa</option>
-                    <option value="Thái Bình">Thái Bình</option>
-                    <option value="Thái Nguyên">Thái Nguyên</option>
-                    <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
-                    <option value="Tiền Giang">Tiền Giang</option>
-                    <option value="Trà Vinh">Trà Vinh</option>
-                    <option value="Tuyên Quang">Tuyên Quang</option>
-                    <option value="Tây Ninh">Tây Ninh</option>
-                    <option value="Vĩnh Long">Vĩnh Long</option>
-                    <option value="Vĩnh Phúc">Vĩnh Phúc</option>
-                    <option value="Yên Bái">Yên Bái</option>
-                    
+                  <select id="city" name="city">
+                    <option value="000">-Chọn thành phố-</option>
                   </select>
                 </div>
       </div>
       <div class="col-lg-12">
         <div class="price-sec">
           <div class="price-br">
-          <input type="text" name="quan" id="quan" placeholder="Quận" />
+            <select id="district" name="district">
+              <option value="000">-Chọn huyện-</option>
+            </select>
           </div>
           <span> </span>
           <div class="price-br">
-          <input type="text" name="phuong" id="phuong" placeholder="Phường" />
+            <select id="wards" name="wards">
+              <option value="000">-Chọn phường/xã-</option>
+            </select>
           </div>
         </div>
         </div>
@@ -384,14 +313,40 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="form-input">
-            <label for="image">Hình ảnh 1</label>
-            <input type="file" id="image" name ="image">
+
+            <label for="file-ip-1">Hình ảnh 1</label>
+            <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
             <div class="preview">
               <img id="file-ip-1-preview">
             </div>
           </div>
           </div>
-   </div>
+
+          <div class="col-lg-4">
+            <div class="form-input">
+              <label for="file-ip-2"></i>Hình ảnh 2</label>
+              <input type="file" id="file-ip-2" accept="image/*" onchange="showPreview2(event);">
+              <div class="preview2">
+                <img id="file-ip-2-preview2">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="form-input">
+              <label for="file-ip-3"></i>Hình ảnh 3</label>
+              <input type="file" id="file-ip-3" accept="image/*" onchange="showPreview3(event);">
+              <div class="preview3">
+                <img id="file-ip-3-preview3">
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          
+                
+        </div>
         </div>
               <div class="col-lg-12">
                 <ul>
@@ -413,37 +368,14 @@
     </div>
     <!--post- event-popup end-->
     
-    
-
-    
-
-
-
-         <!-- Footer -->
+    <!-- Footer -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/address.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>    
-      <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
-  <script>
-    var socket = io.connect("http://localhost:3000")
-      function getName(){
-        var fileImage = document.getElementById('image').value;
-        var nameSplit = fileImage.substring(fileImage.lastIndexOf('\\')+1);
-        var formData = {
-        title: document.getElementById('title').value,
-        address: document.getElementById('city').value,
-        address_1: document.getElementById('quan').value,
-        address_2: document.getElementById('phuong').value,
-        time:document.getElementById('picker').value,
-        date:document.getElementById('date').value,
-        description: document.getElementById('description').value,
-        image: nameSplit
-        }
-         console.log(formData);
-         socket.emit("new_post", formData);
-       
-}
-  </script>
+ 
 
-
+  
 
     <%include footer %>

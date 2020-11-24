@@ -115,8 +115,8 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
-              <% if(loggedIn) { %>
-                  <form action="/logout" method="GET">
+              <% if(loggedIn != null && loggedIn.trim() != '') { %>
+                <form action="/logout" method="GET">
                   <div class="user-account">
                     <div class="user-info">
                       <img src="http://via.placeholder.com/30x30" alt="">
@@ -134,7 +134,7 @@
               <% } %>
             </form>
            
-          </div> 
+          </div>
         </nav>
       </header>
       <!--header end-->
