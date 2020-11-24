@@ -14,13 +14,14 @@ require('dotenv').config();
 const {userJoin, getCurrentUser,userLeave,getRoomUsers,formatMessage} = require("./controller/Room");
 
 const event = require('./controller/Event');
-//connect database
+
 dataDB.connect();
 
 var app = express();
 io = socket_io();
 app.io = io;
-//router
+
+
  var login = require('./routes/login');
 var forget = require('./routes/forget_password');
 var createEvent = require('./routes/create_Event');
@@ -31,7 +32,7 @@ var register = require('./routes/register');
 var room = require('./routes/room');
 var setting = require('./routes/setting');
 
-// view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -101,14 +102,14 @@ app.use(cookieParser({
 );
 
 app.use(express.static(path.join(__dirname, 'public')));
- //Upload Image
+
 app.use(fileUpload({
   useTempFiles:true,
   limits: { 
-    fileSize: 5 * 1024 * 1024 * 1024 //5MB max file(s) size
+    fileSize: 5 * 1024 * 1024 * 1024 
 },
 }));
-// use router
+
 
 app.use(login);
 app.use(register);
@@ -129,19 +130,14 @@ app.use("*", (req, res, next) => {
     
     next()
 });
-//swagger test
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-// error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

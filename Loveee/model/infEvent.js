@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const geocoder = require('../controller/map')
 const Schema = mongoose.Schema;
 
 const infEvent = new Schema({
@@ -6,6 +7,17 @@ const infEvent = new Schema({
     address_City : {type: String},
     address_District : {type: String},
     address_Ward : {type: String},
+    location:{
+type:{
+    type: String,
+    enum: ["Point"],
+    },
+    coordinates:{
+        type: [Number],
+        index: '2dsphere'
+    },
+    formattedAddress: String
+    },
     time:{type: String},
     date: {type: String},
     description: {type: String},
@@ -17,6 +29,9 @@ const infEvent = new Schema({
     time_post: {type: String},
     email_posted: {type: mongoose.Schema.ObjectId, ref: 'Users'},
 });
-
+infEvent.pre('save', async function (next) { 
+    const loca = await  geocoder.geocode(this.address_City)
+     console.log("location"+ loca)
+ })
 infEvent.index({'$**': 'text'});
 module.exports = mongoose.model('infEvent', infEvent)

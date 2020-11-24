@@ -22,6 +22,7 @@ if(!req.files || Object.keys(req.files).length === 0) {
     const token = req.cookies.token;
     const userID =  jwt.verify(token, accessTokenSecret);
     var image  = req.files.image;
+    console.log("image" + image);
     const extension = path.extname(image.name);
     const allowedExt = /png|jpeg|jpg|gif/;
     if(!allowedExt.test(extension)) throw "Tiện ích mở rộng không được hỗ trợ";
