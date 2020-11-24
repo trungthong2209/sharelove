@@ -25,7 +25,9 @@ body{
 	height: 50px;
 	
 }
-
+.la.la-times-circle-o{
+	color: #000;
+}
 .card-text{
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 1rem;
@@ -703,7 +705,7 @@ nav > ul > li > a:hover {
 .sign_in_sec form select {
 	width: 100%;
 	padding: 0 15px 0 40px;
-	color: #b2b2b2;
+	color: #000000;
 	font-size: 14px;
 	border:1px solid #e5e5e5;
 }
@@ -1716,7 +1718,7 @@ main {
 	height: 110px;
 	margin: 0 auto;
 	margin-bottom: -48px;
-} 
+}
 .usr-pic > img {
 	float: none;
 	border: 5px solid #fff;
@@ -1889,6 +1891,17 @@ main {
 .main-ws-sec {
 	float: left;
 	width: 100%;
+}
+.cancelbtn{
+	color: #ffffff;
+    font-size: 16px;
+    padding: 12px 27px;
+    border: 0;
+    font-weight: 500;
+	margin-top: 0px;
+	margin-left: 22%;
+    cursor: pointer;
+
 }
 
 /* ============ post-topbar =========== */
@@ -2396,7 +2409,7 @@ main {
 .post-event-fields form textarea,
 .post-event-fields form select {
 	width: 100%;
-	color: #b2b2b2;
+	color: #000000;
 	font-size: 14px;
 	border: 1px solid #e5e5e5;
 	margin-bottom: 20px;

@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 const loadNewFeeds = require('../controller/NewsFeeds.js');
 const verify = require('../middleware/verifyToken');
+const {getMap, getAddress} = require('../controller/map')
 
 router.get('/', function(req, res, next) {
     res.render('index');
@@ -10,9 +11,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/home', verify, loadNewFeeds.newsFeed)
 
-router.get('/map', function(req, res, next) {
-    res.render('map');
- });
+router.get('/map', getMap)
+router.get('/address/store', getAddress)
 
  router.get('/List_event',function(req, res, next) {
     res.render('List_event');

@@ -2,13 +2,16 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map</title>
+    <title class="tit">Map</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div id='map' style='width: 1000; height: 1000px;border-radius: 5px;'></div>
+    
+  <div id='map' style='width: 1000; height: 1000px;border-radius: 5px;'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoidHJ1bmd0aG9uZzIyMDkiLCJhIjoiY2todmh0Z3V6MW1xYzJ4a3plcnFwczNrZSJ9.56LESCjX0r2JxW5KhcXxlA';
 var map = new mapboxgl.Map({
@@ -17,8 +20,14 @@ style: 'mapbox://styles/mapbox/streets-v11',
 zoom: 5,
 center:[108.53097049543746, 13.54671315869928]
 });
+
+
 async function getStores() {
-const stores = address.map(address_1 => {
+ var res = await fetch('/address/store')
+const data = await res.json();
+  console.log(data)
+ const stores = data.data.map(address_1 => {
+   
     return {
       type: 'Feature',
       geometry: {
@@ -29,8 +38,8 @@ const stores = address.map(address_1 => {
         ]
       },
       properties: {
-        storeId: store.storeId,
-        icon: 'shop'
+        purpose: address_1.purpose,
+        icon: 'garden'
       }
     };
   });
@@ -38,6 +47,7 @@ const stores = address.map(address_1 => {
 }
 function loadMap(stores) {
   map.on('load', function() {
+    
     map.addLayer({
       id: 'points',
       type: 'symbol',
@@ -51,7 +61,7 @@ function loadMap(stores) {
       layout: {
         'icon-image': '{icon}-15',
         'icon-size': 1.5,
-        'text-field': '{storeId}',
+        'text-field': '{purpose}',
         'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
         'text-offset': [0, 0.9],
         'text-anchor': 'top'
@@ -61,6 +71,8 @@ function loadMap(stores) {
 }
 
 getStores();
+ 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>

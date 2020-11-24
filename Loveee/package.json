@@ -25,6 +25,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "mailgun-js": "^0.22.0",
+    "maki": "^2.1.0",
     "moment": "^2.29.1",
     "mongoose": "^5.10.7",
     "morgan": "~1.9.1",

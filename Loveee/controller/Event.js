@@ -30,8 +30,8 @@ if(!req.files || Object.keys(req.files).length === 0) {
     const InfEvent = new infEvent({
         purpose:req.body.title,
         address_City : req.body.city,
-        address_District : req.body.quan,
-        address_Ward : req.body.phuong,
+        address_District : req.body.district,
+        address_Ward : req.body.wards,
         time: req.body.picker,
         date: req.body.date,
         description:req.body.description,

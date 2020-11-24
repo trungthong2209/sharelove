@@ -119,7 +119,7 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
-              <% if(loggedIn) { %>
+              <% if(loggedIn != null && loggedIn.trim() != '') { %>
                 <form action="/logout" method="GET">
                   <div class="user-account">
                     <div class="user-info">
