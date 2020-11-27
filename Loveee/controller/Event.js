@@ -46,7 +46,7 @@ if(!req.files || Object.keys(req.files).length === 0) {
     await InfEvent.save()
      .then(()=>{
         console.log("lưu thành công");
-         res.redirect('/home')
+        res.redirect('/home')
        })
       .catch(error =>{
           console.log(error);

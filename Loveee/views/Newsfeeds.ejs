@@ -204,36 +204,25 @@
 
 
                   <div class="widget suggestions full-width">
+                   
                     <div class="sd-title">
                       <h3>Top Người ủng hộ</h3>
                       <i class="la la-ellipsis-v"></i>
                     </div>
                     <!--sd-title end-->
                     <div class="suggestions-list">
+                      <% topdonates.forEach(function(topdonate){ %>
                       <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <img src="<%= topdonate.url_author %>" width="35" height="35" alt="" />
                         <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>$ Số tiền</span>
+                          <h4><%= topdonate.author_name %></h4>
+                          <span><%= topdonate.total %></span>
                         </div>
                         <span><i class="la la-plus"></i></span>
+                        <% }) %>
                       </div>
-                      <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
-                        <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>$ Số tiền</span>
-                        </div>
-                        <span><i class="la la-plus"></i></span>
-                      </div>
-                      <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
-                        <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>$ Số tiền</span>
-                        </div>
-                        <span><i class="la la-plus"></i></span>
-                      </div>
+                   
+                     
                       
                       
                       
@@ -325,7 +314,7 @@
           <div class="col-lg-4">
             <div class="form-input">
               <label for="file-ip-2"></i>Hình ảnh 2</label>
-              <input type="file" id="file-ip-2" accept="image/*" onchange="showPreview2(event);">
+              <input type="file" id="file-ip-2" name='image2' accept="image/*" onchange="showPreview2(event);">
               <div class="preview2">
                 <img id="file-ip-2-preview2">
               </div>
@@ -335,7 +324,7 @@
           <div class="col-lg-4">
             <div class="form-input">
               <label for="file-ip-3"></i>Hình ảnh 3</label>
-              <input type="file" id="file-ip-3" accept="image/*" onchange="showPreview3(event);">
+              <input type="file" id="file-ip-3" name='image3' accept="image/*" onchange="showPreview3(event);">
               <div class="preview3">
                 <img id="file-ip-3-preview3">
               </div>

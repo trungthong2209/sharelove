@@ -1,12 +1,5 @@
-// const NodeGeocoder = require('node-geocoder');
- const infEvent = require('../model/infEvent'); 
-// const options = {
-//   provider: process.env.Map_Provider,
-//    apiKey: process.env.Map_key, 
-//     formatter: null
-// };
-// const geocoder = NodeGeocoder(options);
 
+ const infEvent = require('../model/infEvent'); 
 
 async function getMap(req, res, next) {
 

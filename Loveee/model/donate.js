@@ -2,9 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const donate = new Schema({
-    user_donate:[{type: mongoose.Schema.ObjectId, ref: 'Users'}],
-    balance : {type: Number},
-    your_money : {type: Number},
+    userID:{type: mongoose.Schema.ObjectId, ref: 'Users'},
+    money :  {type: String},
+     
+     timeDonate: {type: Date, default: Date.now()}
+    
+    
 });
 
 module.exports = mongoose.model('donate', donate)
