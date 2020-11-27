@@ -21,10 +21,18 @@ const infEvent = new Schema({
     time: { type: String },
     date: { type: String },
     description: { type: String },
-    ID_image: [{
+    ID_image: {
         multiple_image: { type: String },
         image_url: { type: String },
-    }],
+    },
+    ID_image2: {
+        multiple_image: { type: String },
+        image_url: { type: String },
+    },
+    ID_image3: {
+        multiple_image: { type: String },
+        image_url: { type: String },
+    },
     user_joinEvent: [{ type: mongoose.Schema.ObjectId, ref: 'Users' }],
     time_post: { type: String },
     email_posted: { type: mongoose.Schema.ObjectId, ref: 'Users' },

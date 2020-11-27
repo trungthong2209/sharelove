@@ -7,13 +7,9 @@ var socket_io = require("socket.io")
 const dataDB = require('./model/db');
 const fileUpload = require('express-fileupload')
 const cookie = require('cookie');
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('./swagger.json');
 require('dotenv').config();
-
 const { userJoin, getCurrentUser, userLeave, getRoomUsers, formatMessage } = require("./controller/Room");
 
-const event = require('./controller/Event');
 //connect database
 dataDB.connect();
 
@@ -43,9 +39,7 @@ io.on("connection", function (socket) {
     //news feed
     socket.on('new_post', async function (formData) {
         console.log("formData đã nhận")
-
-        console.log(event.event)
-
+        
         io.sockets.emit('SV_new_post',)
 
 
@@ -130,7 +124,6 @@ app.use("*", (req, res, next) => {
     next()
 });
 //swagger test
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

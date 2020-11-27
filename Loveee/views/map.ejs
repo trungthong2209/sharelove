@@ -20,8 +20,6 @@ style: 'mapbox://styles/mapbox/streets-v11',
 zoom: 6,
 center:[108.53097049543746, 13.54671315869928]
 });
-
-
 async function getStores() {
  var res = await fetch('/address/store')
 const data = await res.json();
