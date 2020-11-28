@@ -7,8 +7,8 @@ let DeletePost = async function (req, res, next) {
 
   infEvent.findByIdAndDelete(id, async function (err, event) {
     if (event) {
-      console.log(event.ID_image[0].multiple_image)
-      await cloudinary.uploader.destroy(event.ID_image[0].multiple_image, async function (err, event) {
+      
+      await cloudinary.uploader.destroy(event.ID_image.multiple_image, async function (err, event) {
         if (err) {
           console.log(err);
           res.json({
@@ -17,10 +17,7 @@ let DeletePost = async function (req, res, next) {
           })
         }
         else {
-          res.json({
-            status: "success",
-            message: "Đã xóa sự kiện"
-          })
+          res.redirect('/home')
         }
       }
       );

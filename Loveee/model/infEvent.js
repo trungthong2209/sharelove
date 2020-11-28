@@ -33,9 +33,9 @@ const infEvent = new Schema({
         multiple_image: { type: String },
         image_url: { type: String },
     },
-    user_joinEvent: [{ type: mongoose.Schema.ObjectId, ref: 'Users' }],
+    user_joinEvent: [{ type: mongoose.Schema.ObjectId, ref: 'users' }],
     time_post: { type: String },
-    email_posted: { type: mongoose.Schema.ObjectId, ref: 'Users' },
+    email_posted: { type: mongoose.Schema.ObjectId, ref: 'users' },
 });
 infEvent.pre('save', async function (next) {
     const loc = await geocoder.geocode(this.address_City)

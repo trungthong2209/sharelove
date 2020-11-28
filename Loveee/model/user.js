@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt') 
+const Schema = mongoose.Schema;
 
 const User = new Schema({
     fullname : {
@@ -15,8 +15,7 @@ const User = new Schema({
     password: {type: String, required:true},
     email: {type: String, 
       lowercase: true,
-      index: true
-    },
+      index: true},
     sex:{Type: String},
     Dob: {type: Date},
     Numberphone: {type: Number},
@@ -32,22 +31,6 @@ User.pre('save', function (next) {
         next()
     })
  })
- User.statics.getUserByIds = async function (ids) {
-    try {
-      const users = await this.find({ _id: { $in: ids } });
-      return users;
-    } catch (error) {
-      throw error;
-    }
-  } 
-  User.methods.toAuthJSON = function(){
-    return {
-      username: this.username,
-      email: this.email,
-      token: this.generateJWT(),
-           image: this.image
-    };
-  };
   
 User.index({'$**': 'text'});
 module.exports = mongoose.model('user', User)

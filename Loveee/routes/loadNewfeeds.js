@@ -5,20 +5,22 @@ const loadNewFeeds = require('../controller/NewsFeeds.js');
 const verify = require('../middleware/verifyToken');
 const {getMap, getAddress} = require('../controller/map')
 
-router.get('/', function(req, res, next) {
+router
+.get('/', function(req, res, next) {
     res.render('index');
  })
 
-router.get('/home', verify, loadNewFeeds.newsFeed)
+.get('/home', loadNewFeeds.newsFeed)
 
-router.get('/map', getMap)
-router.get('/address/store', getAddress)
+.get('/map', getMap)
+.get('/address/store',verify, getAddress)
 
- router.get('/List_event',function(req, res, next) {
+.get('/List_event',function(req, res, next) {
     res.render('List_event');
- });
- router.get('/Top-donate',function(req, res, next) {
+ })
+
+.get('/Top-donate',function(req, res, next) {
     res.render('topUser');
- });
+ })
 
 module.exports = router;

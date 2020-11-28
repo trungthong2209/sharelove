@@ -4,7 +4,10 @@ var router = express.Router();
 
 const donate = require('../controller/donate.js');
 
-router.post('/donate', donate.Donate)
-router.get('/success', donate.Success)
-
+router
+.post('/donate', donate.Donate)
+.get('/success', donate.Success)
+.get('/cancel',function(req, res, next) {
+    res.render('List_event');
+ });
 module.exports = router;

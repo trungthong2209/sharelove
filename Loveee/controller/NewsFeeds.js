@@ -10,11 +10,17 @@ const accessTokenSecret = process.env.accessTokenSecret;
 class loadNewFeeds {
 
     async newsFeed(req, res, next) {
-        const token = req.cookies.token;
+       const token = req.cookies.token;
+      
         function getImageUser() {
+            if(token!=undefined){
             const userID = jwt.verify(token, accessTokenSecret);
             return User.findById(userID.id)
                 .then(user => user);
+            }
+            else {
+                return "user";
+            }
         }
         const user_url = await getImageUser();
         await infEvent.aggregate([
@@ -99,6 +105,6 @@ class loadNewFeeds {
             }
         })
     }
-
+    
 }
 module.exports = new loadNewFeeds();

@@ -118,17 +118,15 @@ app.use(donate);
 
 global.loggedIn = null;
 app.use("*", (req, res, next) => {
-
-    loggedIn = req.cookies.token;
-
-    next()
+     loggedIn = req.cookies.token;
+     next()
 });
-//swagger test
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
 });
+
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
@@ -138,8 +136,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-
 
 
 module.exports = app;

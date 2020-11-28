@@ -6,7 +6,6 @@ const cloudinary = require('../middleware/cloudinary');
 const path = require("path");
 const accessTokenSecret = process.env.accessTokenSecret;
 class Setting {
-
         async GetPage(req, res, next) {
 
                 let token = req.cookies.token
@@ -48,7 +47,6 @@ class Setting {
                                 if (data) {
                                         data.updateOne(user)
                                                 .then(() => {
-
                                                         console.log("Cập nhật thành công")
                                                         console.log("Cập nhật avatar thành công")
                                                         res.redirect('/setting');

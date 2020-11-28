@@ -24,7 +24,7 @@ async function Donate(req, res, next) {
         },
         "redirect_urls": {
             "return_url": "http://localhost:3000/success",
-            "cancel_url": "http://localhost:3000/home"
+            "cancel_url": "http://localhost:3000/cancel"
         },
         "transactions": [{
             "item_list": {
@@ -70,8 +70,7 @@ function Success(req, res, next) {
             }
         }]
     };
-
-    paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
         if (error) {
             console.log(error.response);
             throw error;
@@ -90,8 +89,7 @@ function Success(req, res, next) {
                     })
             }
             money.length = 0;
-            console.log(money);
-            res.send('Quyên góp thành công');
+            res.redirect('/home');
         }
     });
 }
