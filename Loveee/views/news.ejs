@@ -1,71 +1,505 @@
-<%include header%>
+<%include header%>  
 <main>
-    <header class="masthead" style="background-image: url('image/post-bg.jpg')">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-              <div class="post-heading">
-                <h1>Tiêu đề</h1>
-                <h2 class="subheading">Mô tả ngắn</h2>
-                <span class="meta">Đăng bởi
-                  <a href="#">Tên người đăng</a>
-                  tại "Thời điểm đăng"</span>
-              </div>
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/news.css" />
+            <!-- Top News Start-->
+            <div class="top-news">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 tn-left">
+                            <div class="row tn-slider">
+                                <div class="col-md-6">
+                                    <div class="tn-img">
+                                        <img src="images/news/anhminhoa.jpg" />
+                                        <div class="tn-title">
+                                            <a href="">Đoàn thanh thiếu niên làm từ thiện</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="tn-img">
+                                        <img src="images/news/nhungchuyendi.jpg" />
+                                        <div class="tn-title">
+                                            <a  href="">Những chuyến đi đáng nhớ</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 tn-right">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="tn-img">
+                                        <img src="images/news/hoahaukyduyen.jpg" />
+                                        <div class="tn-title">
+                                            <a href="">Hoa hậu Kỳ Duyên tích cực đi làm từ thiện</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="tn-img">
+                                        <img src="images/news/phunucantho.jpg" />
+                                        <div class="tn-title">
+                                            <a href="">Phụ nữ Cần thơ gói 2000 chiếc bánh tét tặng đồng bào miền trung</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="tn-img">
+                                        <img src="images/news/thuytientaitro.jpg" />
+                                        <div class="tn-title">
+                                            <a href="">Thủy Tiên tài trợ cho 2 em học sinh đến hết đại học</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="tn-img">
+                                        <img src="images/news/nhungtamlongvang.jpg" />
+                                        <div class="tn-title">
+                                            <a href="">Những tấm lòng vàng: Hỗ trợ đồng bào lũ lụt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </header>
-
-  <!-- Main Content -->
-  <article>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <p>Nội dung</p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ipsa sed eveniet ex tenetur aspernatur reprehenderit illo est minus delectus temporibus, perferendis rerum rem. Labore eos blanditiis quam explicabo quae.
-        </div>
-      </div>
-    </div>
-  </article>
-
+            <!-- Top News End-->
+    
+            <!-- Category News Start-->
+            <div class="cat-news">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Tin nổi bật</h2>
+                            <div class="row cn-slider">
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/NSNDlethuy.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">NSND Lệ Thủy đích thân ra miền Trung cứu trợ</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/thuytienquyettruc.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Thủy Tiên quyết trực tiếp trao tiền từ thiện</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/nhungtamlongvang2.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Những tấm lòng vàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Tin trong ngày</h2>
+                            <div class="row cn-slider">
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/quanghaithamgia.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Quang Hải tham gia đá bóng gây quỹ từ thiện</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/vantoandochet.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Văn Toàn dốc hết tiền bán áo gửi Thủy Tiên</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/vunglunoibao.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Người dân vùng lũ khổ cực</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Category News End-->
+    
+            <!-- Category News Start-->
+            <div class="cat-news">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Chuyện tử tế</h2>
+                            <div class="row cn-slider">
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/chuhecattoc.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Chú hề cắt tóc cho người vô gia cư</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/tanggaotannha.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Tặng gạo tận nhà cho người nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/ongdaohongtien.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Ông Đào Hồng Tiến đóng góp 500kg gạo cho người nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Tấm lòng vàng</h2>
+                            <div class="row cn-slider">
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/chukhachsan.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Ông chủ khách sạn chuyên "Hồi sinh" xe cũ</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/chuhesido.jpg" />
+                                        <div class="cn-title">
+                                            
+                                            <a href="">Chú Hề sido của bệnh nhi ung thư</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="images/news/cong3tangao.jpg" />
+                                        <div class="cn-title">
+                                            <a href="">Cõng 3 tấn gạo trợ giúp bà con vùng cao</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Category News End-->
+            
+            <!-- Tab News Start-->
+            <div class="tab-news">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="nav nav-pills nav-justified">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="pill" href="#featured">Tin hay</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#popular">Tin tức mới</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#latest">Tin cũ hơn</a>
+                                </li>
+                            </ul>
+    
+                            <div class="tab-content">
+                                <div id="featured" class="container tab-pane active">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/hanhtrinh.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Hành trình mang xuất ăn miễn phí đến người nghèo</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/suatan.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">suất ăn ấm tính người</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/nhieunguoi.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Nhiều người tiếp sức cho cây 'ATM' gạo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="popular" class="container tab-pane fade">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/ongthanta.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Ông 'Thần tài' bán vé số</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/tuthientucthoi.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Từ thiện tức thời</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/mytamtang.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Mỹ tâm tặng quà người nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="latest" class="container tab-pane fade">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/nhunghoctro.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Những học trò và những ước mơ dang dở</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/giaigolf.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Nam Long trao tặng 300 triệu cho quỹ khuyến học</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/mobifone.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Mobifone chung tay ủng hộ người nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <ul class="nav nav-pills nav-justified">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="pill" href="#m-viewed">Xem nhiều</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#m-read">Mới nhất</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#m-recent">Gần đây</a>
+                                </li>
+                            </ul>
+    
+                            <div class="tab-content">
+                                <div id="m-viewed" class="container tab-pane active">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/ongthanta.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Ông 'Thần tài' bán vé số</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/tuthientucthoi.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Từ thiện tức thời</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/mytamtang.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Mỹ tâm tặng quà người nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="m-read" class="container tab-pane fade">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/nhunghoctro.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Những học trò và những ước mơ dang dở</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/giaigolf.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Nam Long trao tặng 300 triệu cho quỹ khuyến học</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/mobifone.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Mobifone chung tay ủng hộ người nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="m-recent" class="container tab-pane fade">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/hanhtrinh.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Hành trình mang xuất ăn miễn phí đến người nghèo</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/suatan.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">suất ăn ấm tính người</a>
+                                        </div>
+                                    </div>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="images/news/nhieunguoi.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Nhiều người tiếp sức cho cây 'ATM' gạo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tab News Start-->
+    
+            <!-- Main News Start-->
+            <div class="main-news">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/nguoidulua.jpg" />
+                                        <div class="mn-title">
+                                            <a href="">Người giữ lửa bếp anh tình thương</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/chaube.jpg" />
+                                        <div class="mn-title">
+                                            <a href="">Cháu bé 5 tuổi ung thư máu cần giúp đỡ</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/comtuthien.jpg" />
+                                        <div class="mn-title">
+                                            <a href="">Cơm từ thiện ấm lòng lao động nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/hoahoahuynhvy.jpeg" />
+                                        <div class="mn-title">
+                                            <a href="">Hoa hậu Huỳnh Vy ủng hộ xây cầu</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/traonha.jpg" />
+                                        <div class="mn-title">
+                                            <a href="">Trao nhà cho bệnh nhân nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/chayxe.jpg" />
+                                        <div class="mn-title">
+                                            <a href="">Chuyện tử tế, chạy xe ôm làm từ thiện</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/truyennghe.jpg" />
+                                        <div class="mn-title">
+                                            <a href="">Chuyện tử tế: Truyền nghề cho người khuyết tật </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/troatien.jpg" />
+                                        <div class="mn-title">
+                                            <a href="">Trao tiền bạn đọc hỗ trợ người nghèo</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mn-img">
+                                        <img src="images/news/trienlam.jpg" />
+                                        <div class="mn-title">
+                                            <a href="">Triển lãm tranh gây quỹ từ thiện</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-lg-3">
+                            <div class="mn-list">
+                                <h2>Xem thêm</h2>
+                                <ul>
+                                    <li><a href="">Cụ bà 70 tuổi gánh bánh tự tay làm cho học sinh nghèo</a></li>
+                                    <li><a href="">Mang phở Hà Nội lên Cao bằng nấu cho học sinh nghèo</a></li>
+                                    <li><a href="">Khuyên góp áo quần cũ tại Gia Lai</a></li>
+                                    <li><a href="">Đi bộ 20km để từ thiện cho người nghèo</a></li>
+                                    <li><a href="">Cậu bé vàng của làng từ thiện</a></li>
+                                    <li><a href="">Trao tặng 20 cặp bò cho người nghèo</a></li>
+                                    <li><a href="">Thủy Tiên kêu gọi khuyên góp cho miền Trung</a></li>
+                                    <li><a href="">Gói 2000 bánh tét hỗ trợ miền trung</a></li>
+                                    <li><a href="">Bữa cơm ấm tình người</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main News End-->
 </main>
-<style>
-    h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Lora, 'Times New Roman', serif;
-    font-weight: 900;
-   
-}
-h2 {
-    color: #212529;
-    transition: all .2s
-}
-
-h2:focus,
-h2:hover {
-    color: #02f573
-}
-
-.btn-primary {
-  font-family: Lora, 'Times New Roman', serif;
-    background-color: #53D690;
-    border-color: #53D690;
-    color: white;
-}
-.btn-primary:active,
-.btn-primary:focus,
-.btn-primary:hover {
-  font-family: Lora, 'Times New Roman', serif;
-    color: #fff;
-    background-color: #00ff77 !important;
-    border-color:  #00ff77 !important
-}
-
-
-</style>
-<%include footer%>
+<%include footer %>
