@@ -15,6 +15,8 @@ const accessTokenSecret = process.env.accessTokenSecret;
             return User.findById(userID.id)
                 .then(user => user);
         }
+
+        const AAA = NULL;
         const user = await getUser();
         await infEvent.aggregate([
             {
