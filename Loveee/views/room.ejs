@@ -60,7 +60,7 @@ const userList = document.getElementById("users");
 const room  = window.location.pathname.split('/')[2];
 
 if(room!==null && room!=="" && room!==undefined){
-  var socket = io("http://localhost:3000");
+  var socket = io("https://spreadlovee.herokuapp.com/");
 if(socket!==undefined){
   console.log("Connected to server");
 
