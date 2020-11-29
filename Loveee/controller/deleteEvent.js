@@ -6,8 +6,7 @@ let DeletePost = async function (req, res, next) {
   var id = req.params.id;
   infEvent.findByIdAndDelete(id, async function (err, event) {
     if (event) {
-      
-      await cloudinary.uploader.destroy(event.ID_image.multiple_image, async function (err, event) {
+     await cloudinary.uploader.destroy(event.ID_image.multiple_image, async function (err, event) {
         if (err) {
           console.log(err);
           res.json({
