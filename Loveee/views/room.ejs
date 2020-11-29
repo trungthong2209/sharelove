@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+  
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="/socket.io/socket.io.js"></script>
  
@@ -25,9 +25,15 @@
         <ul id="users">
           </ul>
       </div>
+      <% chats.forEach(function(chat){ %>
+        <p class="meta"><%= chat.timeSend%> <span><%= chat.author_name%></span></p>
+        <p class="text">
+          <%= chat.message%>
+        </p>
+        <% })%>
       <div class="chat-messages"></div>
     </main>
-    
+   
     <div class="chat-form-container" >
       <form id="chat-form" name = chat-form action="/room/<%=room%>" method="POST">
         <input
@@ -38,28 +44,32 @@
           required
           autocomplete="off"
         />
-        <button type="button" onClick= "getMess()" >OK</button>
-        
-      
-    </form>
+      <button type="button" onClick= "getMess()" > Gửi </button>
+      </form>
+     
     </div>
   </div>
 </body>
 
-  <script>
+<script>
+    
 const chatForm= document.getElementById('chat-form');
 const chatMessage= document.querySelector(".chat-messages");
 const roomName = document.getElementById("room-name");
 const userList = document.getElementById("users");
 const room  = window.location.pathname.split('/')[2];
-console.log(room);
+
 if(room!==null && room!=="" && room!==undefined){
   var socket = io("http://localhost:3000");
 if(socket!==undefined){
   console.log("Connected to server");
-  //function
+
   socket.emit("joinRoom", room);
-  socket.on("roomUsers", ({users,room}) =>{
+
+socket.on('CheckID', function(destination) {
+      window.location.href = destination;
+});
+socket.on("roomUsers", ({users,room}) =>{
     outputRoomName(room);
     outputUsers(users);
 });
@@ -72,11 +82,12 @@ chatMessage.scrollTop=chatMessage.scrollHeight;
 }
 function getMess(){
   const msg = document.getElementById('msg').value;
-  socket.emit("chatMessage", msg);
   var frm = document.getElementsByName('chat-form')[0];
   frm.submit();
+  socket.emit("chatMessage", msg);
   frm.reset();
-}
+  }
+
 function outputMessage(message){
     const div = document.createElement("div");
     div.classList.add("message");
@@ -95,15 +106,3 @@ function outputUsers(users){
 }
 </script>
 </html>
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About

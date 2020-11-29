@@ -1,17 +1,29 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt') 
+const Schema = mongoose.Schema;
 
 const User = new Schema({
-    fullname : {type: String},
-    login_name : {type: String},
-    password: {type: String},
-    email: {type: String},
-    Numberphone: {type: String},
+    fullname : {
+         type: String,
+         required:true},
+    login_name : {
+         type: String,
+      lowercase: true,
+      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+      index: true,
+      required:true},
+    password: {type: String, required:true},
+    email: {type: String, 
+      lowercase: true,
+      index: true},
+    sex:{Type: String},
+    Dob: {type: Date},
+    Numberphone: {type: Number},
     reset_link: {type: String},
-    accesstoken:{type: String}
-    
-});
+    accesstoken:{type: String},
+    imageUser:{type: String},
+    tieusu:{type: String},
+  });
 User.pre('save', function (next) { 
     const user = this 
     bcrypt.hash(user.password, 10, (error, hash) => { 
@@ -19,13 +31,6 @@ User.pre('save', function (next) {
         next()
     })
  })
- User.statics.getUserByIds = async function (ids) {
-    try {
-      const users = await this.find({ _id: { $in: ids } });
-      return users;
-    } catch (error) {
-      throw error;
-    }
-  } 
- User.index({'$**': 'text'});
+  
+User.index({'$**': 'text'});
 module.exports = mongoose.model('user', User)

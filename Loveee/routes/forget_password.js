@@ -8,7 +8,7 @@ router
 .get('/foget', FogetPass.FogetPassword)
 .post('/foget/store', FogetPass.fogetPass)
 .get('/forgetpassword/:token', FogetPass.GetresetPassword)
-.post('/forgetpassword/:token', FogetPass.PostresetPassword)
+.post('/forgetpassword/:token/store', FogetPass.PostresetPassword)
 
 
 module.exports = router;

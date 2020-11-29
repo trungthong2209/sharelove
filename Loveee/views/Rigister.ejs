@@ -9,16 +9,20 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/css/animate.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/line-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/line-awesome-font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="stylesheets/css/font-awesome.min.css" />
+    
     <link
       rel="stylesheet"
       type="text/css"
       href="stylesheets/css/jquery.mCustomScrollbar.min.css"
     />
-    
+    <link rel="stylesheet" type="text/css" href="lib/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/css/style.css" />
     
   </head>
@@ -33,7 +37,6 @@
 							<!-- Hiển thị giới thiệu về trang web-->
 							<div class="cmp-info">
 								<div class="cm-logo">
-                  <img src=""  alt="">
                   LOGO
 									
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus hic incidunt ipsum vitae doloribus, alias atque repellendus possimus maiores quae, a in delectus nihil aperiam magni distinctio inventore fuga asperiores.</p>
@@ -43,7 +46,11 @@
 						</div>
 						<div class="col-lg-6">
               
-                <div class="login-sec">      
+                <div class="login-sec"> 
+                  <ul class="sign-control">
+                    <li data-tab="tab-1" class="current"><a href="#" title="">Đăng Ký</a></li>				
+									<li data-tab="tab-2"><a href="#" title="">Đăng nhập</a></li>			
+                  </ul>
                     <div class="sign_in_sec current" id="tab-1">
                       <h3>Đăng Ký</h3>
                       <form action="/regis/store" method="POST">
@@ -72,28 +79,82 @@
                               <i class="la la-phone"></i>
                             </div>
                           </div>
-                          
                           <div class="col-lg-12 no-pdd">
                             <div class="sn-field">
-                              <input type="password" name="psw" id="psw"  placeholder="Mật khẩu">
-                              <i class="la la-lock"></i>
+                              <i class="la la-group"></i>
+                              <select name="sex" id="sex">
+                                <option value="Giới tính" selected="-1">Chọn giới tính</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                              </select>
+                            </div>
+                          </div> 
+                          <div class="col-lg-12 no-pdd">
+                            <div class="sn-field">
+                              <input name="psw" id="new-password" placeholder="Nhập mật khẩu " type="password"
+													   
+													    oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự, có ít nhất một chữ hoa, và có ít nhất một chữ thường')"
+													    onkeyup='check();'>
+													    <i class="la la-lock"></i>
+													
                             </div>
                           </div>
                           <div class="col-lg-12 no-pdd">
                             <div class="sn-field">
-                              <input type="password" name="psw2" id="psw-repeat" placeholder="Nhập lại mật khẩu">
-                              <i class="la la-lock"></i>
+                              <input name="re-password" id="re-password" placeholder="Nhập lại mật khẩu" type="password"
+													   
+													    oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự, có ít nhất một chữ hoa, và có ít nhất một chữ thường')"
+													    onkeyup='check();'>
+													    <i class="la la-lock"></i>
+													    <b class="msge" id='message'></b>
                             </div>
                           </div>
                           
                           <div class="col-lg-12 no-pdd">
-                            <button type="submit" class="registerbtn">Register</button>
+                            <button type="submit" id="submit-pass" class="registerbtn">Đăng Ký</button>
+                            <a href="/" class="btn btn-secondary active cancelbtn" >Quay lại</a>
                           </div>
-                        </div></form>
-                        
-                    
-    
+                        </div>
+                      </form>
                     </div><!--sign_in_sec end-->
+                    <div class="sign_in_sec" id="tab-2">
+                      
+                        <form  action="/login" method="POST">
+                          <div class="row">
+                            <div class="col-lg-12 no-pdd">
+                              <div class="sn-field">
+                                <input type="text" name="uname" placeholder="Tên đăng nhập">
+                                <i class="la la-user"></i>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 no-pdd">
+                              <div class="sn-field">
+                                <input type="password" name="psw" placeholder="Mật khẩu">
+                                <i class="la la-lock"></i>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 no-pdd">
+                              <div class="checky-sec">
+                                <div class="fgt-sec">
+                                 
+                                  <a  href="foget" title="">Quên mật khẩu?</a>
+                                </div><!--fgt-sec end-->
+                                <a  href="register" title="">Chưa có tài khoản?</a>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 no-pdd ">
+                              <button class="btnlog" type="submit" id="sendUser" value="submit">Đăng nhập</button>
+                            </div>
+                          </div>
+                        
+                          
+                        <div class="login-resources">
+                        
+                          
+                        </div><!--login-resources end-->
+                      </form>
+                      
+                    </div>
                     
                   
                     
@@ -109,8 +170,71 @@
       </div>
     </div>
   </div>
+  <div class="container">
+  </div>
 
+  <div id="exampleModal" class="modal fade" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" action="/login" method="POST">
+      
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title h5modal" id="exampleModalLabel">Đăng nhập</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="sign_in_sec current" id="tab-1">
+            <form  action="/login" method="POST">
+              <div class="row">
+                <div class="col-lg-12 no-pdd">
+                  <div class="sn-field">
+                    <input type="text" name="uname" placeholder="Tên đăng nhập">
+                    <i class="la la-user"></i>
+                  </div>
+                </div>
+                <div class="col-lg-12 no-pdd">
+                  <div class="sn-field">
+                    <input type="password" name="psw" placeholder="Mật khẩu">
+                    <i class="la la-lock"></i>
+                  </div>
+                </div>
+                <div class="col-lg-12 no-pdd">
+                  <div class="checky-sec">
+                    <div class="fgt-sec">
+                     
+                      <a  href="foget" title="">Quên mật khẩu?</a>
+                    </div><!--fgt-sec end-->
+                    <a  href="register" title="">Chưa có tài khoản?</a>
+                  </div>
+                </div>
+                <div class="col-lg-12 no-pdd ">
+                  <button class="btnlog" type="submit" id="sendUser" value="submit">Đăng nhập</button>
+                </div>
+              </div>
+            
+              
+            <div class="login-resources">
+            
+              
+            </div><!--login-resources end-->
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
-
+    
+      
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/popper.js"></script>
+  <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="javascripts/jquery.mCustomScrollbar.js"></script>
+  <script type="text/javascript" src="lib/slick/slick.min.js"></script>
+  <script type="text/javascript" src="javascripts/scrollbar.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+  
 </body>
 </html>

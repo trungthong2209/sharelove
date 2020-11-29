@@ -9,9 +9,8 @@ const mg = mailgun({apiKey : MAILGUN_KEY , domain: DOMAIN});
 const forgotPassword_Token = process.env.forgotPassword_Token;
 
 class Fogetpass{  
-FogetPassword(req, res, next){
+async FogetPassword(req, res, next){
     res.render('foget')
-    console.log();
 }
 async fogetPass(req, res, next){
         

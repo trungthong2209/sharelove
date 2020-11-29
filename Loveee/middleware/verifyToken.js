@@ -15,9 +15,8 @@ function auth (req, res, next){
             res.send(err)
 }
   } else{
-    res.json({
-      status: "error",
-      message: "Bạn chưa đăng nhập"
+    res.status(200).json({
+            message: "Bạn chưa đăng nhập"
   });     
   }
 }

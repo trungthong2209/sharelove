@@ -11,15 +11,14 @@
     <div id = "infevents" >
     <% infevents.forEach(function(infevent){ %>
     <div class="container" >
-
     <hr>
     <label for="nameu"><b> <%= infevent.purpose %> </b></label>
 
     <label for="user"><b> <%= infevent.user_name %> </b></label>
 
-    <label for="adress"><b><%= infevent.address %></b></label>
+    <label for="adress"><b><%= infevent.address_city %></b></label>
     
-    <label for="constUser"><b><%= infevent.execution_date %></b></label>
+    <label for="constUser"><b><%= infevent.date %></b></label>
         
     <label for="description"><b><%= infevent.description %></b></label>
      
@@ -30,22 +29,28 @@
 </div>
 
 <script>
-  var socket = io("http://localhost:3000");
+     var socket = io("http://localhost:3000");
       socket.on('SV_new_post', function(emit_data)
       {
+  
          var html = "";
         html +='<div class="container" >';
         html +='<<hr>';
         html +='<<label for="nameu"><b> '+emit_data.purpose +'</b></label>';
         html +='<<label for="user"><b> '+emit_data.name_user +'</b></label>';
         html +='<<label for="adress"><b> '+emit_data.address +' </b></label>';
-        html +='< <label for="constUser"><b>'+emit_data.execution_date +'</b></label>';
+        html +='<<label for="adress"><b> '+emit_data.address_1 +' </b></label>';
+        html +='<<label for="adress"><b> '+emit_data.address_2 +' </b></label>';
+        html +='< <label for="constUser"><b>'+emit_data.time +'</b></label>';
+        html +='< <label for="constUser"><b>'+emit_data.date +'</b></label>';
+        html +='< <label for="constUser"><b>'+emit_data.description +'</b></label>';
         html +='< <label for="description"><b>'+emit_data.description +'</b></label>';
-        html +='<<img class= "img-fluid rounded" width="180" height="180" src="/upload/' + emit_data.image +'"alt="">';
+        html +='<<img class= "img-fluid rounded" width="180" height="180" src="' + emit_data.image +'"alt="">';
         html +='<<hr>';
         html +='<</div>';
        $("#infevents").prepend(html);
        
   });
+  
   </script>
 </html>
