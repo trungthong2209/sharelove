@@ -7,10 +7,16 @@ function auth (req, res, next){
   if(token){
   try{
       jwt.verify(token, accessTokenSecret, function (err, verified) {
+        if(verified)  {
           req.userId = verified.id;
           next();
 
-        })
+        }
+        else {
+          console.log(err)
+        }
+     })
+     
   }catch(err){
             res.send(err)
 }

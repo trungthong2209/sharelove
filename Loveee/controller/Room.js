@@ -5,8 +5,6 @@ const events = require('../model/infEvent');
 const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
 const date = require('date-and-time');
-
-
 var ObjectId = require('mongodb').ObjectID;
 const users = [];
 

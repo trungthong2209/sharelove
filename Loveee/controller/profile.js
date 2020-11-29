@@ -2,28 +2,24 @@
 const infEvent = require('../model/infEvent');
 const User = require('../model/user');
 const donate = require('../model/donate');
-
+var ObjectId = require('mongodb').ObjectID;
 const jwt = require("jsonwebtoken");
 
 const accessTokenSecret = process.env.accessTokenSecret;
 
-class loadNewFeeds {
+    async function newProfile(req, res, next) {
+        const token = req.cookies.token;
 
-    async newsFeed(req, res, next) {
-       const token = req.cookies.token;
-      
-        function getImageUser() {
-            if(token!=undefined){
+        function getUser() {
             const userID = jwt.verify(token, accessTokenSecret);
             return User.findById(userID.id)
                 .then(user => user);
-            }
-            else {
-                return "user";
-            }
         }
-        const user_url = await getImageUser();
+        const user = await getUser();
         await infEvent.aggregate([
+            {
+                $match: { 'email_posted': ObjectId(user._id) }
+            },
             {
                 $lookup: {
                     from: 'users',
@@ -60,42 +56,47 @@ class loadNewFeeds {
             else {
                 donate.aggregate([
                     {
-                        $lookup: {
-                            from: 'users',
-                            localField: 'userID',
-                            foreignField: '_id',
-                            as: 'User'
-                        }
+                        $match: { 'userID': ObjectId(user._id) }
                     },
 
-                    {
-                        $unwind: '$User',
 
-                    },
                     {
-                        $group: {
+                        $project: {
                             _id: "$userID",
-                            author_name: { $first: "$User.fullname" },
-                            url_author: { $first: "$User.imageUser" },
-                            total: {
-                                $sum: {
-                                    $toDouble: "$money"
-                                }
-                            },
+                            money: 1.,
+                            timeDonate: 1,
                         }
 
                     },
                     {
                         $sort: { total: -1 }
                     },
-                    {
-                        $limit: 3
-                    }
 
-                ]).exec((err, donate) => {
+
+                ]).exec((err, alldonate) => {
                     if (err) return console.log(err)
                     else {
-                        res.render('Newsfeeds', { infevents: infevents, user: user_url, topdonates: donate })
+                        donate.aggregate([
+                            {
+                                $match: { 'userID': ObjectId(user._id) }
+                            },
+                            {
+                                $group: {
+                                    _id: "$userID",
+                                    total: {
+                                        $sum: {
+                                            $toDouble: "$money"
+                                        }
+                                    },
+                                }
+
+                            }
+                        ]).exec((err, total) => {
+                            if (err) return console.log(err)
+                            else {
+                                res.json({ infevents, user, alldonate, total })
+                            }
+                        })
                     }
                 })
 
@@ -104,6 +105,6 @@ class loadNewFeeds {
             }
         })
     }
-    
-}
-module.exports = new loadNewFeeds();
+
+
+module.exports = newProfile ;

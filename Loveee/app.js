@@ -27,7 +27,10 @@ var register = require('./routes/register');
 var room = require('./routes/room');
 var setting = require('./routes/setting');
 var donate = require('./routes/donate');
+var profile = require('./routes/profile');
+
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -39,10 +42,7 @@ io.on("connection", function (socket) {
     //news feed
     socket.on('new_post', async function (formData) {
         console.log("formData đã nhận")
-        
-        io.sockets.emit('SV_new_post',)
-
-
+ 
     });
     //Create room 
     socket.on("joinRoom", async function (room) {
@@ -96,12 +96,16 @@ app.use(cookieParser({
 
 app.use(express.static(path.join(__dirname, 'public')));
 //Upload Image
+
 app.use(fileUpload({
     useTempFiles: true,
     limits: {
         fileSize: 5 * 1024 * 1024 * 1024 //5MB max file(s) size
     },
 }));
+
+
+
 // use router
 
 app.use(login);
@@ -114,7 +118,7 @@ app.use(deletee);
 app.use(room);
 app.use(setting);
 app.use(donate);
-
+app.use(profile);
 
 global.loggedIn = null;
 app.use("*", (req, res, next) => {
