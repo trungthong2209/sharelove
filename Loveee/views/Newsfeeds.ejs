@@ -1,6 +1,6 @@
 <%include header %>
     <main>
-      <div class="px"></div>
+      
       <div class="main-section">
         <div class="container">
           <div class="main-section-data">
@@ -57,7 +57,7 @@
                 <div class="main-ws-sec">
                   <div class="post-topbar">
                     <div class="user-avatar">
-                      <img src="http://via.placeholder.com/100x100" alt="" />
+                      
                     </div>
                     <div class="post-st">
                       <ul>
@@ -129,20 +129,27 @@
                   
                       </div>
                       <div class="event-status-bar">
-                        <ul class="like-com">
-                          <li>
-                            <a href="#"><i class="la la-heart"></i> số lượt thích</a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-comment"></i></i> số bình luận</a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-plus-circle"></i></i> Tham gia</a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-usd"></i></i> Ủng hộ</a>
-                          </li>
-                        </ul>
+                        <% if(loggedIn != null && loggedIn.trim() != '') { %>
+                          <ul class="like-com">
+                            <li>
+                              <button class=" btn " href="#"><i class="fa fa-plus-circle"></i></i> Tham gia</button>
+                            </li>
+                            <li>
+                              <button class="btn 7" href="#"><i class="fa fa-usd"></i></i> Ủng hộ</button>
+                            </li>
+                          </ul>
+                        <% } else{ %>
+                          <ul class="like-com">
+                            <li>
+                              <button data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" class=" btn " href="#"><i class="fa fa-plus-circle"></i></i> Tham gia</button>
+                            </li>
+                            <li>
+                              <button data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" class="btn 7" href="#"><i class="fa fa-usd"></i></i> Ủng hộ</button>
+                            </li>
+                          </ul>
+                          
+                        <% } %>
+                        
                        
                       </div>
                     </div>
@@ -315,7 +322,7 @@
             <div class="form-input">
 
             <label for="file-ip-1">Hình ảnh 1</label>
-            <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+            <input type="file" id="file-ip-1" name="image" accept="image/*" onchange="showPreview(event);">
             <div class="preview">
               <img id="file-ip-1-preview">
             </div>

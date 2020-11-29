@@ -1,0 +1,134 @@
+<%include header %>
+<main>
+    <section class="mt-5">
+        <div class="container rounded bg-white p-5">
+        <form action="" method="post" style="width: 100%; " enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h1>TẠO BÀI VIẾT MỚI</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              
+                <div class="form-group col-lg-8 col-md-8">
+                  <label for="title" class="text-left font-weight-bold">Tiêu đề</label>
+                  <input type="text" name="title" id="title" class="form-control"
+                      placeholder="Title">
+              </div>
+              <div class="form-group col-lg-4 col-md-4">
+                  <label for="catalog" class="text-left font-weight-bold">Danh mục bài viết</label>
+                  <select class="form-control" name="catalog" id="catalog">
+                      <option>Nhật ký hành trình</option>
+                      <option>Tình nguyện viên</option>
+                      <option>Chia sẻ câu chuyện</option>
+                  </select>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group col-3">
+                  <div class="font-weight-bold label">Hình ảnh nền</div>
+                  <div class="row">
+                      <div id="preview"></div>
+                      <label class="btn" id="hide-input">
+                          <img src="images/newImage.png" style="width: 80px;"
+                              alt="Add new image">
+                          <input id="file-input" name="file-input" type="file" hidden>
+                      </label>
+                  </div>
+                  <script type="text/javascript">
+                      var evImage = document.getElementById('file-input');
+                      evImage.onchange = function () {
+                          var preview = document.querySelector('#preview');
+    
+                          if (this.files) {
+                              [].forEach.call(this.files, readAndPreview);
+                          }
+    
+                          function readAndPreview(file) {
+    
+                              // Make sure `file.name` matches our extensions criteria
+                              if (!/\.(jpe?g|png|gif|jpg)$/i.test(file.name)) {
+                                  return alert(file.name + " is not an image");
+                              } // else...
+    
+                              var reader = new FileReader();
+    
+                              reader.addEventListener("load", function () {
+                                  var image = new Image();
+                                  image.height = 100;
+                                  image.title = file.name;
+                                  image.src = this.result;
+                                  image.classList.add('p-3');
+                                  preview.appendChild(image);
+                              });
+    
+                              reader.readAsDataURL(file);
+    
+                              document.getElementById('hide-input').style.display = "none";
+                          }
+                      }
+                  </script>
+              </div>
+              <div class="form-group col-9">
+                  <label for="subtitle" class="text-left font-weight-bold">Mô tả ngắn</label>
+                  <textarea rows="4" class="form-control form-control-line" id="subtitle" name="subtitle" ></textarea>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group col-12">
+                  <label for="content" class="font-weight-bold">Nội dung bài viết</label>
+        <textarea name="content" id="content" rows="10" cols="80">
+                Viết bài viết của bạn tại đây.
+                </textarea>	
+                  <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+                  <script>
+                      CKEDITOR.replace('content');
+                  </script>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-6 text-right">
+                  <button name="create" id="create" type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              <div class="col-6 text-left">
+                  <button type="button" class="btn btn-cancel">Cancel</button>
+              </div>
+          </div>
+              </form>
+                
+        </div>
+    </section>
+</main>
+<style> 
+    .btn-primary {
+  font-family: Lora, 'Times New Roman', serif;
+    background-color: #53D690;
+    border-color: #53D690;
+    color: white;
+}
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:hover {
+  font-family: Lora, 'Times New Roman', serif;
+    color: #fff;
+    background-color: #00ff77 !important;
+    border-color:  #00ff77 !important
+}
+.btn-cancel {
+  font-family: Lora, 'Times New Roman', serif;
+    background-color: #df7436;
+    border-color: #df7436;
+    color: white;
+}
+.btn-cancel:active,
+.btn-cancel:focus,
+.btn-cancel:hover {
+  font-family: Lora, 'Times New Roman', serif;
+    color: #fff;
+    background-color:#df7436 !important;
+    border-color:  #df7436 !important
+}
+</style>
+<%include footer %>

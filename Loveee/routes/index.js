@@ -6,4 +6,5 @@ router.get('/setting',function(req, res, next) {
    res.render('setting');
 });
 
+
 module.exports = router;
