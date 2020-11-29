@@ -7,17 +7,17 @@ const accessTokenSecret = process.env.accessTokenSecret;
 class LoginCL {
 
     async checkLogin(req, res, next) {
-        var login_namee = req.body.uname;
-        var login_name = login_namee;
-        var password = req.body.psw;
+        let login_name = req.body.uname;
+        let password = req.body.psw;
+       
         await User.findOne({ login_name: login_name }, (error, user) => {
             if (user) {
                 bcrypt.compare(password, user.password, (error, same) => {
                     if (same) {
                         const token = jwt.sign({ id: user._id }, accessTokenSecret);
                         res.cookie("token", token, { httpOnly: true });
+                        res.redirect("/home");
                         
-                        res.redirect('/')
                     } else {
                         console.log(error);
                         res.status(400).json({
