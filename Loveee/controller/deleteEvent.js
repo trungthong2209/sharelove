@@ -4,7 +4,6 @@ const cloudinary = require('../middleware/cloudinary');
 
 let DeletePost = async function (req, res, next) {
   var id = req.params.id;
-
   infEvent.findByIdAndDelete(id, async function (err, event) {
     if (event) {
       
