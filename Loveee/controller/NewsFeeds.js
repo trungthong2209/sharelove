@@ -36,6 +36,7 @@ class loadNewFeeds {
                 $unwind: '$user_post'
             }, {
                 $project: {
+                    _id:1,
                     purpose: 1,
                     address_City: 1,
                     address_District: 1,

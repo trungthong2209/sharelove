@@ -2,7 +2,7 @@
 <main>
     <section class="mt-5">
         <div class="container rounded bg-white p-5">
-        <form action="" method="post" style="width: 100%; " enctype="multipart/form-data">
+        <form action="/create/blog" method="POST" style="width: 100%; " enctype="multipart/form-data">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
@@ -34,7 +34,7 @@
                       <label class="btn" id="hide-input">
                           <img src="images/newImage.png" style="width: 80px;"
                               alt="Add new image">
-                          <input id="file-input" name="file-input" type="file" hidden>
+                          <input id="file-input" name="image" type="file" hidden>
                       </label>
                   </div>
                   <script type="text/javascript">
@@ -80,7 +80,7 @@
               <div class="form-group col-12">
                   <label for="content" class="font-weight-bold">Nội dung bài viết</label>
         <textarea name="content" id="content" rows="10" cols="80">
-                Viết bài viết của bạn tại đây.
+                
                 </textarea>	
                   <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
                   <script>

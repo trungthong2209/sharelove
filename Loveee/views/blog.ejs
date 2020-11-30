@@ -14,26 +14,28 @@
   </header>
 
   <!-- Main Content -->
+  <% blogs.forEach(function(blog){ %>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
           <a href="#">
             <h2 class="post-title">
-              Tiêu đề
+              <%= blog.title%>
             </h2>
             <h3 class="post-subtitle">
-              Mô tả ngắn
+              <%= blog.short_description%>
             </h3>
             <h4 class="post-subtitle">
-              #Danh mục: "Danh mục"
+              #Danh mục: <%= blog.catalog%>
             </h4>
           </a>
           <p class="post-meta">Đăng bởi
-            <a href="#">Full name</a>
-            tại "Thời gian đăng"</p>
+            <a href="#"><%= blog.author%></a>
+            tại <%= blog.timeCreate%></p>
         </div>
         <hr>
+        <% }) %>
         <!-- Pager -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Bài viết cũ &rarr;</a>
