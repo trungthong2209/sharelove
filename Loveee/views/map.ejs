@@ -1,14 +1,75 @@
-<%include header%>
-<main>
-    <div class="container">
-        
-        <div class="map">
-            <div class="title-map">
-                <h2>Sự kiện gần bạn</h2>
-            </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.978686097733!2d108.21187044950165!3d16.06659578882793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142184a810229eb%3A0x155a6ca1b747012!2zQmlnIEMgxJDDoCBO4bq1bmc!5e0!3m2!1svi!2s!4v1606637927868!5m2!1svi!2s" width=100% height=100% frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        </div>
-    </div>
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="tit">Map</title>
     
-</main>
-<%include footer%>
+</head>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <div id='map' style='width: 1000; height: 1000px;border-radius: 5px; margin: 0px auto;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoidHJ1bmd0aG9uZzIyMDkiLCJhIjoiY2todmh0Z3V6MW1xYzJ4a3plcnFwczNrZSJ9.56LESCjX0r2JxW5KhcXxlA';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11',
+zoom: 6,
+center:[108.53097049543746, 14.54671315869928]
+});
+async function getStores() {
+ var res = await fetch('/address/store')
+const data = await res.json();
+  console.log(data)
+ const stores = data.data.map(address_1 => {
+   
+    return {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [
+        address_1.location.coordinates[0],
+        address_1.location.coordinates[1]
+        ]
+      },
+      properties: {
+        purpose: address_1.purpose,
+        icon: 'garden'
+      }
+    };
+  });
+  loadMap(stores);
+}
+function loadMap(stores) {
+  map.on('load', function() {
+    
+    map.addLayer({
+      id: 'points',
+      type: 'symbol',
+      source: {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: stores
+        }
+      },
+      layout: {
+        'icon-image': '{icon}-11',
+        'icon-size': 1.1,
+        'text-field': '{purpose}',
+        'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+        'text-offset': [0, 0.9],
+        'text-anchor': 'top'
+      }
+    });
+  });
+}
+getStores();
+ 
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>
