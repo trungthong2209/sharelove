@@ -49,11 +49,13 @@ async function userJoin(id, token, room) {
     }
     return user;
 }
-function formatMessage(username, text) {
+function formatMessage(username, text, image) {
+
     return {
         username,
         text,
-        time: moment().format("h:mm a")
+        time: moment().format("h:mm a"),
+        image
     };
 }
 function getCurrentUser(id) {

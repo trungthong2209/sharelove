@@ -171,7 +171,7 @@
                     
                     <div class="d-flex justify-content-start mb-4">
                             <div class="img_cont_msg">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/440px-User_icon_2.svg.png" class="rounded-circle user_img_msg">
+                                <img src="<%= chat.author_url%>" class="rounded-circle user_img_msg">
                             </div>
                             <div class="msg_cotainer">
                               <span class="msg_name"><%= chat.author_name%></span>
@@ -184,7 +184,7 @@
        <div class="chat-messages"></div>
               </div>
               
-              <form id="chat-form" name = chat-form action="/room/5fbcdae0861930074cc44d2c" method="POST">
+              <form id="chat-form" action="/room/<%= room %>" method="POST">
                 <div class="card-footer">
                     <div class="input-group">
                         
@@ -365,7 +365,8 @@ const userList = document.getElementById("users");
 const room  = window.location.pathname.split('/')[2];
 
 if(room!==null && room!=="" && room!==undefined){
-  var socket = io("https://spreadlovee.herokuapp.com/");
+  //var socket = io("https://spreadlovee.herokuapp.com/" );
+  var socket = io("http://localhost:3000")
 if(socket!==undefined){
   console.log("Connected to server");
 
@@ -379,8 +380,8 @@ socket.on("roomUsers", ({users,room}) =>{
     outputUsers(users);
 });
 socket.on("message", message =>{
-console.log(message);
-outputMessage(message);
+console.log(message.image)
+   outputMessage(message);
 chatMessage.scrollTop=chatMessage.scrollHeight;
 });
 }
@@ -388,17 +389,16 @@ chatMessage.scrollTop=chatMessage.scrollHeight;
 function getMess(){
   const msg = document.getElementById('msg').value;
   var frm = document.getElementsByName('chat-form')[0];
-  frm.submit();
   socket.emit("chatMessage", msg);
+  frm.submit();
   frm.reset();
   }
-
 function outputMessage(message){
     const div = document.createElement("div");
     div.classList.add("message");
     div.innerHTML = `<div class="d-flex justify-content-start mb-4">
                         <div class="img_cont_msg">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/440px-User_icon_2.svg.png" class="rounded-circle user_img_msg">
+                            <img src="${message.image}" class="rounded-circle user_img_msg">
                         </div>
                         <div class="msg_cotainer">
                           <span class="msg_name">${message.username}</span>

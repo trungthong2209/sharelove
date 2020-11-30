@@ -1,11 +1,12 @@
 const User = require('../model/user');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
+global.loggedIn = null;
+
 
 const accessTokenSecret = process.env.accessTokenSecret;
 
 class LoginCL {
-
     async checkLogin(req, res, next) {
         var login_namee = req.body.uname;
         var login_name = login_namee;
@@ -16,7 +17,7 @@ class LoginCL {
                     if (same) {
                         const token = jwt.sign({ id: user._id }, accessTokenSecret);
                         res.cookie("token", token, { httpOnly: true });
-                        
+                        if(image===null){image = user.imageUser}
                         res.redirect('/home')
                     } else {
                         console.log(error);
@@ -37,6 +38,7 @@ class LoginCL {
 
     Logout(req, res, next) {
         res.clearCookie('token');
+        loggedIn = null;
         res.redirect('/');
     }
 

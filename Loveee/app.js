@@ -8,7 +8,7 @@ const dataDB = require('./model/db');
 const fileUpload = require('express-fileupload')
 const cookie = require('cookie');
 require('dotenv').config();
-const { userJoin, getCurrentUser, userLeave, getRoomUsers, formatMessage } = require("./controller/Room");
+const { userJoin, getCurrentUser, userLeave, getRoomUsers, formatMessage, getImage } = require("./controller/Room");
 
 //connect database
 dataDB.connect();
@@ -37,14 +37,7 @@ const botname = "ShareLove Bot";
 io.on("connection", function (socket) {
 
     console.log("A user is connected: " + socket.id);
-    //news feed
-    socket.on('new_post', async function (formData) {
-        console.log("formData đã nhận")
-        
-        io.sockets.emit('SV_new_post',)
 
-
-    });
     //Create room 
     socket.on("joinRoom", async function (room) {
         var cookies = cookie.parse(socket.request.headers.cookie);
@@ -57,8 +50,9 @@ io.on("connection", function (socket) {
         }
         else {
             socket.join(user.room);
-            socket.emit("message", formatMessage(botname, `${user.username} đã vào phòng`));
-            socket.broadcast.to(user.room).emit("message", formatMessage(botname, `${user.username} đã vào phòng`));
+        
+            socket.emit("message", formatMessage(botname,  `${user.username} đã vào phòng`, user.image));
+            socket.broadcast.to(user.room).emit("message", formatMessage(botname, `${user.username} đã vào phòng`,user.image));
             io.to(user.room).emit("roomUsers", {
                 room: user.room,
                 users: getRoomUsers(user.room)
@@ -68,12 +62,12 @@ io.on("connection", function (socket) {
 
     socket.on("chatMessage", msg => {
         const user = getCurrentUser(socket.id);
-        io.to(user.room).emit("message", formatMessage(user.username, msg));
+        io.to(user.room).emit("message", formatMessage(user.username,   msg, user.image));
     });
     socket.on("disconnect", () => {
         const user = userLeave(socket.id);
         if (user) {
-            io.to(user.room).emit("message", formatMessage(botname, `${user.username} đã rời phòng`));
+            io.to(user.room).emit("message", formatMessage(botname, `${user.username} đã rời phòng`, user.image));
             io.to(user.room).emit("roomUsers", {
                 room: user.room,
                 users: getRoomUsers(user.room)
@@ -105,6 +99,14 @@ app.use(fileUpload({
 }));
 // use router
 
+global.image= null;
+app.use("*", async function (req, res, next)  {
+    global.loggedIn = req.cookies.token;
+      if(loggedIn!=undefined && loggedIn!=null && image==null){
+        image = await getImage(loggedIn);
+    }
+     next()
+});
 app.use(login);
 app.use(register);
 app.use(forget);
@@ -117,12 +119,6 @@ app.use(setting);
 app.use(donate);
 app.use(profile);
 
-
-global.loggedIn = null;
-app.use("*", (req, res, next) => {
-     loggedIn = req.cookies.token;
-     next()
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
