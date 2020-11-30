@@ -57,13 +57,16 @@ function loadMap(stores) {
         }
       },
       layout: {
-        'icon-image': '{icon}-11',
-        'icon-size': 1.1,
+        'icon-image': '{icon}-15',
+        'icon-size': 1.5,
         'text-field': '{purpose}',
-        'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+        'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
         'text-offset': [0, 0.9],
         'text-anchor': 'top'
-      }
+      },
+      paint: {
+      "text-color": "#FF3346"
+     }
     });
   });
 }

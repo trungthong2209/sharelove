@@ -27,6 +27,7 @@ var register = require('./routes/register');
 var room = require('./routes/room');
 var setting = require('./routes/setting');
 var donate = require('./routes/donate');
+var profile = require('./routes/profile');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -114,6 +115,7 @@ app.use(deletee);
 app.use(room);
 app.use(setting);
 app.use(donate);
+app.use(profile);
 
 
 global.loggedIn = null;
