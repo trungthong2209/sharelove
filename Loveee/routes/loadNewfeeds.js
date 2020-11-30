@@ -29,5 +29,8 @@ router.get('/create_blog',function(req, res, next) {
 router.get('/map',function(req, res, next) {
    res.render('map');
 });
+router.get('/pro',function(req, res, next) {
+   res.render('profile');
+});
 
 module.exports = router;
