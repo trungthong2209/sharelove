@@ -8,7 +8,9 @@ const date = require('date-and-time');
 const accessTokenSecret = process.env.accessTokenSecret;
 
 class CreateBlog {
-
+ get_Blog(req, res) {
+        res.render('create_blog');
+    }
     async BLogPost(req, res) {
 
         if (!req.files || Object.keys(req.files).length === 0) {
@@ -55,7 +57,7 @@ class CreateBlog {
 
         }
     }
-    loadBlog(req, res) {
+loadBlog(req, res) {
 
         blogs.aggregate([
             {

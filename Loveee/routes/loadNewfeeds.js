@@ -22,11 +22,5 @@ router
 .get('/Top-donate',function(req, res, next) {
     res.render('topUser');
  });
-router.get('/create_blog',function(req, res, next) {
-   res.render('create_blog');
-});
-router.get('/map',function(req, res, next) {
-   res.render('map');
-});
 
 module.exports = router;

@@ -33,7 +33,7 @@ const data = await res.json();
         purpose: address_1.purpose,
         icon: 'garden'
       }
-    };
+    }; t
   });
   loadMap(stores);
 }
@@ -43,6 +43,7 @@ function loadMap(stores) {
     map.addLayer({
       id: 'points',
       type: 'symbol',
+      interactive: true,
       source: {
         type: 'geojson',
         data: {
