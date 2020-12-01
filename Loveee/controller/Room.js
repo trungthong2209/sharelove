@@ -5,8 +5,6 @@ const events = require('../model/infEvent');
 const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
 const date = require('date-and-time');
-
-
 var ObjectId = require('mongodb').ObjectID;
 const users = [];
 
@@ -30,6 +28,7 @@ async function userJoin(id, token, room) {
     let username = await getname(token);
     let ID_user = await getID(token);
     let image = await getImage(token);
+    
     const user = {id, username, room, ID_user, image};
     if (users.length == 0) {
         users.push(user);
@@ -64,7 +63,7 @@ function userLeave(id) {
         return users.splice(index, 1)[0];
     }
 }
-function Save_message(req, res, next) {
+async function Save_message(req, res, next) {
     var room = req.params.room;
     const token = req.cookies.token;
     const now = new Date();
@@ -77,7 +76,7 @@ function Save_message(req, res, next) {
         timeSend: time_post,
 
     })
-    message.save()
+  await message.save()
         .then(() => {
             console.log("Save schema chatMessage success" + message)
             return res.status(200);
@@ -87,26 +86,6 @@ function Save_message(req, res, next) {
             return res.status(500);
         })
 
-
-    //}
-    // else {
-    //     const messages_Update = {
-    //         authorUsername: userID.id,
-    //         message: req.body.msg,
-    //     }
-    //     mess.updateOne({ $push: { messages: messages_Update } }, function (err, results) {
-    //         if (results) {
-    //             console.log("Save message success:" + req.body.msg)
-    //             return res.status(200);
-    //         }
-    //         else {
-    //             console.log("ERROR Save message success: " + err)
-    //             return res.status(500);
-    //         }
-    //     })
-    // }
-
-    //})
 
 }
 function getRoomUsers(room) {
@@ -172,7 +151,7 @@ function Update_UserJoin(req, res, next) {
         }
 
     })
-
+    
 }
 module.exports = {
     userJoin,

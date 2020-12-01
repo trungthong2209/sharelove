@@ -20,16 +20,16 @@
 										<h3>Cài đặt tài khoản</h3>
 										<form action="/setting/profile" method="POST" enctype="multipart/form-data" >
 											<div class="profile-img">
-										<div class="avatar" id="avatar">
-											<div id="preview"><img src="<%= user.imageUser %>" id="avatar-image" class="avatar_img" id="">
+												<div class="avatar" id="avatar">
+													<div id="preview"><img src="<%= user.imageUser %>" id="avatar-image" class="avatar_img">
+													</div>
+													<div class="avatar_upload" >
+													<label class="upload_label">Thay đổi
+														<input type="file" id="upload" name ='image' >
+													</label>
+													</div>
+												</div>
 											</div>
-											<div class="avatar_upload" >
-											<label class="upload_label">Thay đổi
-												<input type="file" id="upload" name ='image'>
-											</label>
-											</div>
-										</div>
-									</div>
 											<div class="cp-field">
 												<h5>Tên</h5>
 												<div class="cpp-fiel">
@@ -68,7 +68,7 @@
 											<div class="save-stngs pd2">
 												<ul>
 													<li><button type="submit">Thay đổi</button></li>
-													<li><button type="button">Thoát</button></li>
+													<li><a href="javascript:history.back()"><button  type="button" href="home" onclick="return confirm('Bạn chắc chắn muốn thoát' )">Thoát</button></a></li>
 												</ul>
 											</div><!--save-stngs end-->
 										</form>

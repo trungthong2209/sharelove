@@ -1,6 +1,6 @@
 <%include header %>
     <main>
-      
+      <div class="px"></div>
       <div class="main-section">
         <div class="container">
           <div class="main-section-data">
@@ -27,7 +27,7 @@
                     <ul class="user-fw-status">
                       
                       <li>
-                        <a href="profile.html" title="">Trang cá nhân</a>
+                        <a href="profile" title="">Trang cá nhân</a>
                       </li>
                     </ul>
                   </div>
@@ -57,18 +57,18 @@
                 <div class="main-ws-sec">
                   <div class="post-topbar">
                     <div class="user-avatar">
-                      
+                     
                     </div>
                     <div class="post-st">
                       <ul>
                         <li>
                           <a class="post_event" href="#" title=""
-                            >Thêm tin mới</a
+                            >Thêm sự kiện mới</a
                           >
                         </li>
                         <li>
-                          <a class="post-jb active" href="#" title=""
-                            >Đăng tin</a
+                          <a class="post-jb active" href="create_blog" title=""
+                            >Thêm bài viết mới</a
                           >
                         </li>
                       </ul>
@@ -97,8 +97,8 @@
                             ><i class="la la-ellipsis-v"></i
                           ></a>
                           <ul class="ed-options">
-                            <li><a href="#" title="">Lưu trữ</a></li>
-                            <li><a href="#" title="">Ẩn sự kiện</a></li>
+                            <li><a href="#" title="">Chỉnh sửa</a></li>
+                            <li><a href="#" title="">Xóa</a></li>
                            
                           </ul>
                         </div>
@@ -125,8 +125,10 @@
                           <%= infevent.description%>
                           <a href="#" title="">view more</a>
                         </p>
-                        <img class= "img-fluid rounded" width="300" height="300" src="<%= infevent.Image_URL %>" alt="">
-                  
+                        <img class= "img-fluid rounded"  src="<%= infevent.Image_URL %>" alt="">
+                        <img class= "img-fluid rounded"  src="<%= infevent.Image_URL2 %>" alt="">
+                        <img class= "img-fluid rounded"  src="<%= infevent.Image_URL3 %>" alt="">
+
                       </div>
                       <div class="event-status-bar">
                         <% if(loggedIn != null && loggedIn.trim() != '') { %>
@@ -211,36 +213,25 @@
 
 
                   <div class="widget suggestions full-width">
+                   
                     <div class="sd-title">
                       <h3>Top Người ủng hộ</h3>
                       <i class="la la-ellipsis-v"></i>
                     </div>
                     <!--sd-title end-->
                     <div class="suggestions-list">
+                      <% topdonates.forEach(function(topdonate){ %>
                       <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <img src="<%= topdonate.url_author %>" width="35" height="35" alt="" />
                         <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>$ Số tiền</span>
+                          <h4><%= topdonate.author_name %></h4>
+                          <span><%= topdonate.total %></span>
                         </div>
                         <span><i class="la la-plus"></i></span>
+                        <% }) %>
                       </div>
-                      <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
-                        <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>$ Số tiền</span>
-                        </div>
-                        <span><i class="la la-plus"></i></span>
-                      </div>
-                      <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
-                        <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>$ Số tiền</span>
-                        </div>
-                        <span><i class="la la-plus"></i></span>
-                      </div>
+                   
+                     
                       
                       
                       
@@ -296,12 +287,12 @@
         <div class="price-sec">
           <div class="price-br">
             <div class="md-form md-outline">
-              <input type="time" id="picker" class="form-control" placeholder="Chọn giờ">
+              <input type="time" id="picker" name ="picker" class="form-control" placeholder="Chọn giờ">
             </div>
           </div>
           <span> </span>
           <div class="price-br">
-            <input placeholder="Chọn ngày" type="date" id="date"  class="form-control">
+            <input placeholder="Chọn ngày" type="date" id="date" name="date"   class="form-control">
           </div>
           <span> </span>
                   </div>
@@ -322,7 +313,7 @@
             <div class="form-input">
 
             <label for="file-ip-1">Hình ảnh 1</label>
-            <input type="file" id="file-ip-1" name="image" accept="image/*" onchange="showPreview(event);">
+            <input type="file" id="file-ip-1" name='image' accept="image/*" onchange="showPreview(event);">
             <div class="preview">
               <img id="file-ip-1-preview">
             </div>
@@ -332,7 +323,7 @@
           <div class="col-lg-4">
             <div class="form-input">
               <label for="file-ip-2"></i>Hình ảnh 2</label>
-              <input type="file" id="file-ip-2" accept="image/*" onchange="showPreview2(event);">
+              <input type="file" id="file-ip-2" name='image2' accept="image/*" onchange="showPreview2(event);">
               <div class="preview2">
                 <img id="file-ip-2-preview2">
               </div>
@@ -342,7 +333,7 @@
           <div class="col-lg-4">
             <div class="form-input">
               <label for="file-ip-3"></i>Hình ảnh 3</label>
-              <input type="file" id="file-ip-3" accept="image/*" onchange="showPreview3(event);">
+              <input type="file" id="file-ip-3" name='image3' accept="image/*" onchange="showPreview3(event);">
               <div class="preview3">
                 <img id="file-ip-3-preview3">
               </div>
@@ -362,7 +353,9 @@
                       Đăng bài
                     </button>
                   </li>
-                  <li><a href="#" title="" class= "cancel">Cancel</a></li>
+                  <li><a href="javascript:history.back()" title="" class= "cancel" onclick="return confirm('Bạn chắc chắn muốn hủy bài đăng')">
+                    Cancel 
+                  </a></li>
                 </ul>
               </div>
             </div>
@@ -382,7 +375,6 @@
     <script src="/socket.io/socket.io.js"></script>
 
  
-
   
 
     <%include footer %>

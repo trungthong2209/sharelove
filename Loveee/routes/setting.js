@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var setting = require('../controller/setting')
-router
+const verify = require('../middleware/verifyToken');
 
-.get('/setting', setting.GetPage)
+router
+.get('/setting', verify, setting.GetPage)
 .post('/setting/profile', setting.Store)
 .post('/setting/password', setting.ChangePassword)
 module.exports = router;

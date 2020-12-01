@@ -74,7 +74,7 @@
     <div class="wrapper2 ">
       <header class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="home">LOGO</a>
+          <a class="navbar-brand" href="http://localhost:3000/home">LOGO</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -89,16 +89,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="home">Trang chủ <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="http://localhost:3000/home">Trang chủ <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="List_event">Chương trình từ thiện</a>
+                <a class="nav-link" href="http://localhost:3000/List_event">Chương trình từ thiện</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="news">Tin tức</a>
+                <a class="nav-link" href="http://localhost:3000/news">Tin tức</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Top-donate">Tấm lòng vàng</a>
+                <a class="nav-link" href="http://localhost:3000/Top-donate">Tấm lòng vàng</a>
               </li>
             
             </ul>
@@ -113,8 +113,8 @@
                       <i class="la la-sort-down"></i>
                     </div>
                     <div class="user-account-settingss">
-                      <h3 class="tc"><a href="setting" title="">Cài đặt</a></h3>
-                      <h3 class="tc"><button class="btn" type="submit" title="">Đăng xuất</button></h3>
+                      <h3 class="tc"><a href="http://localhost:3000/setting" title="">Cài đặt</a></h3>
+                      <h3 class="tc"><button class="btn" type="http://localhost:3000/submit" title="">Đăng xuất</button></h3>
                     </div><!--user-account-settingss end-->
                   </div>
                 </form>
@@ -167,8 +167,6 @@
                 <div class="card-body msg_card_body">
                   
                   <% chats.forEach(function(chat){ %>
-                  
-                    
                     <div class="d-flex justify-content-start mb-4">
                             <div class="img_cont_msg">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/440px-User_icon_2.svg.png" class="rounded-circle user_img_msg">
@@ -184,7 +182,7 @@
        <div class="chat-messages"></div>
               </div>
               
-              <form id="chat-form" name = chat-form action="/room/5fbcdae0861930074cc44d2c" method="POST">
+              <form id="chat-form" name = chat-form action="/room/<%=room%>" method="POST">
                 <div class="card-footer">
                     <div class="input-group">
                         
