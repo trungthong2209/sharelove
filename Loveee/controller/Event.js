@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const cloudinary = require('../middleware/cloudinary');
 const path = require("path");
 const date = require('date-and-time');
-const array_Image = [];
 
 class CreateEvent {
 
