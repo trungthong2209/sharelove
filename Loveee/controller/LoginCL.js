@@ -40,6 +40,7 @@ class LoginCL {
     Logout(req, res, next) {
         res.clearCookie('token');
         loggedIn = null;
+        image = null;
         res.redirect('/');
     }
 
