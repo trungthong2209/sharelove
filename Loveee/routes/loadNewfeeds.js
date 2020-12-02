@@ -13,7 +13,7 @@ router
 .get('/home', loadNewFeeds.newsFeed)
 
 .get('/map', getMap)
-.get('/address/store',verify, getAddress)
+.get('/address/store', getAddress)
 
 .get('/List_event',function(req, res, next) {
     res.render('List_event');
