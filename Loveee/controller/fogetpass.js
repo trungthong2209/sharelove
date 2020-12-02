@@ -46,7 +46,7 @@ async fogetPass(req, res, next){
                             }
                             else{
                                    return res.json({
-                                   message: `Check mail ${user.email}  and click link `
+                                   message: `Check mail ${user.email} and click link `
                                 })
                             }
                         });

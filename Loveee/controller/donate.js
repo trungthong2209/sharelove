@@ -8,7 +8,6 @@ const money = [];
 async function Donate(req, res, next) {
     const total = req.body.money;
     const token = req.cookies.token;
-
     if (total < 0 || total == undefined) throw "Không ủng hộ được thì thôi";
     money.push(total);
     if (token != undefined || token != null) {
