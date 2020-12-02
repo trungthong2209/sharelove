@@ -19,8 +19,6 @@ router
     res.render('List_event');
  })
 
-.get('/Top-donate',function(req, res, next) {
-    res.render('topUser');
- });
+
 
 module.exports = router;

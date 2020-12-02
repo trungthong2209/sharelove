@@ -18,6 +18,7 @@ class LoginCL {
                         const token = jwt.sign({ id: user._id }, accessTokenSecret);
                         res.cookie("token", token, { httpOnly: true });
                         if(image===null){image = user.imageUser}
+                        console.log(req.originalurl);
                         res.redirect('/home')
                     } else {
                         console.log(error);

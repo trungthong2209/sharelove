@@ -6,7 +6,7 @@
               <h1 class="gold">TẤM LÒNG VÀNG</h1>
               <hr class="hr_gold">
               <div class="row">
-                  
+                <% topdonates.forEach(function(topdonate){ %>
                 <div class="col-md-4">
                   <a href="#">
                     <div class="one">
@@ -15,15 +15,15 @@
                       </div>
                       <div class="d-flex justify-content-center">
                         <img
-                          src="https://i.imgur.com/hczKIze.jpg"
+                          src="<%= topdonate.url_author %>"
                           width="50"
                           class="rounded-circle"
                         />
                       </div>
-                      <div class="text-center"><span class="name">Tên</span></div>
+                      <div class="text-center"><span class="name"><%= topdonate.author_name %></span></div>
                       <div class="text-center">
                         <span class="total d-block pt-2">Tổng số tiền ủng hộ</span>
-                        <span class="money">100.000.000 VNĐ</span>
+                        <span class="money"><%= topdonate.total %></span>
                       </div>
                       <div
                         class="text-center align-items-center d-flex justify-content-center pt-2 pb-2"
@@ -34,6 +34,9 @@
                     </div>
                   </a>
                 </div>
+                
+                <% }) %>
+
                 <div class="col-md-4">
                   <a href="#">
                     <div class="one">
