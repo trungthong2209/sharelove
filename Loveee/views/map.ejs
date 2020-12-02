@@ -65,28 +65,34 @@
                   trackUserLocation: true
                 })
               );
-              navigator.geolocation.getCurrentPosition(position => {
-                const userCoordinates = [position.coords.longitude, position.coords.latitude];
-                map.addSource("user-coordinates", {
-                  type: "geojson",
-                  data: {
-                    type: "Feature",
-                    geometry: {
-                      type: "Point",
-                      coordinates: userCoordinates
-                    }
+            navigator.geolocation.getCurrentPosition(position => {
+              const userCoordinates = [position.coords.longitude, position.coords.latitude];
+              map.addSource("user-coordinates", {
+                type: "geojson",
+                data: {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: userCoordinates
                   }
-                });
-                map.addLayer({
-                  id: "user-coordinates",
-                  source: "user-coordinates",
-                  type: "circle"
-                });
-                map.flyTo({
-                  center: userCoordinates,
-                  zoom: 12
-                });
+                }
               });
+              map.addLayer({
+                id: "user-coordinates",
+                source: "user-coordinates",
+                type: "circle",
+                paint: {
+                  'circle-radius': 5,
+                  'circle-stroke-color': 'blue',
+                  'circle-stroke-width': 5,
+                  'circle-opacity': 0.1
+                }
+              });
+              map.flyTo({
+                center: userCoordinates,
+                zoom: 12
+              });
+            });
             map.addLayer({
               id: 'points',
               type: 'symbol',
