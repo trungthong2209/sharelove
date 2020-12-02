@@ -184,7 +184,7 @@ body{
     background-color: #ffffff;
     border-radius: 30px;
 	padding: 0px;
-	width: 150%;
+	width: 400px;
     }
 
     .search_input{
@@ -1712,7 +1712,6 @@ main {
 .username-dt {
 	float: left;
 	width: 100%;
-	background-color: #53D690;
 	padding-top: 40px;
 }
 .user-data {
@@ -2063,13 +2062,7 @@ main {
 	margin-top: 2px;
 	margin-right: 6px;
 }
-.post_topbar i {
-/*	position: absolute;
-	top: 20px;
-	right: 5px;
-	color: #b2b2b2;
-	font-size: 30px;
-*/}
+
 .epi-sec {
 	float: left;
 	width: 100%;
@@ -2364,7 +2357,6 @@ main {
 	opacity: 1;
 	visibility: visible;
 	z-index: 999;
-	-webkit-transform: scale(1) translateX(-50%) translateY(-50%);
 }
 .post-event > a {
 	position: absolute;
@@ -3221,8 +3213,7 @@ select {
 }
 /* ============= account-tabs-setting ============ */
 
-.profile-account-setting {
-}
+
 .account-tabs-setting {
 	float: left;
 	width: 100%;
@@ -3632,7 +3623,7 @@ header.masthead .site-heading {
 header.masthead .page-heading,
 header.masthead .site-heading {
 	text-align: center;
-	ont-size: 10rem;
+	
     text-align: center;
 	color: rgb(48, 46, 46);
 	padding-top: 5rem;

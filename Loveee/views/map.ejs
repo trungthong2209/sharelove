@@ -1,74 +1,92 @@
-
-
 <%include header%>
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <div id='map' style='width: 1000; height: 1000px;border-radius: 5px; margin: 0px auto;'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoidHJ1bmd0aG9uZzIyMDkiLCJhIjoiY2todmh0Z3V6MW1xYzJ4a3plcnFwczNrZSJ9.56LESCjX0r2JxW5KhcXxlA';
-var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/mapbox/streets-v11',
-zoom: 6,
-center:[108.53097049543746, 14.54671315869928]
-});
-async function getStores() {
- var res = await fetch('/address/store')
-const data = await res.json();
-  console.log(data)
- const stores = data.data.map(address_1 => {
-   
-    return {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [
-        address_1.location.coordinates[0],
-        address_1.location.coordinates[1]
-        ]
-      },
-      properties: {
-        purpose: address_1.purpose,
-        icon: 'garden'
-      }
-    }; 
-  });
-  loadMap(stores);
-}
-function loadMap(stores) {
-  map.on('load', function() {
-    
-    map.addLayer({
-      id: 'points',
-      type: 'symbol',
-      interactive: true,
-      source: {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: stores
-        }
-      },
-      layout: {
-        'icon-image': '{icon}-11',
-        'icon-size': 1.5,
-        'text-field': '{purpose}',
-        'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-        'text-offset': [0, 0.9],
-        'text-anchor': 'top'
-      },
-      paint: {
-       "text-color": "#942628"
-  }  
-
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoidHJ1bmd0aG9uZzIyMDkiLCJhIjoiY2todmh0Z3V6MW1xYzJ4a3plcnFwczNrZSJ9.56LESCjX0r2JxW5KhcXxlA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      zoom: 6,
+      center: [108.53097049543746, 14.54671315869928]
     });
-  });
-}
+    async function getStores() {
+      var res = await fetch('/address/store')
+      const data = await res.json();
+      const stores = data.data.map(address_1 => {
+
+        return {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [
+              address_1.location.coordinates[0],
+              address_1.location.coordinates[1]
+            ]
+          },
+          properties: {
+            purpose: address_1.purpose,
+            icon: 'love'
+          }
+        };
+      });
+      loadMap(stores);
+    }
+    function loadMap(stores) {
+      map.on('load', function () {
+        map.loadImage(
+          "https://res.cloudinary.com/share-love/image/upload/v1606900436/avatar/Love_Logo_bftnhz.png",
+          function (error, image) {
+            if (error) throw error;
+            map.addImage('love', image);
+            map.addSource('point', {
+              'type': 'geojson',
+              'data': {
+                'type': 'FeatureCollection',
+                'features': [
+                  {
+                    'type': 'Feature',
+                    'geometry': {
+                      'type': 'Point',
+                      'coordinates': [0, 0]
+                    }
+                  }
+                ]
+              }
+            }),
+          
+            map.addLayer({
+              id: 'points',
+              type: 'symbol',
+
+              source: {
+                type: 'geojson',
+                data: {
+                  type: 'FeatureCollection',
+                  features: stores
+                }
+              },
+              layout: {
+                'icon-image': 'love',
+                'icon-size': 0.7,
+                'text-field': '{purpose}',
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                'text-offset': [0, 0.9],
+                'text-anchor': 'top'
+              },
+              paint: {
+                "text-color": "green"
+              }
+
+            });
+          });
+        })
+    }
 getStores();
- 
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
-<%include footer %>

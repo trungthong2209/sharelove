@@ -38,7 +38,7 @@ const infEvent = new Schema({
     email_posted: { type: mongoose.Schema.ObjectId, ref: 'users' },
 });
 infEvent.pre('save', async function (next) {
-    const loc = await geocoder.geocode(this.address_City)
+    const loc = await geocoder.geocode(this.address_District)
     console.log(loc[0].longitude,loc[0].latitude)
     this.location = {
         type: 'Point',
