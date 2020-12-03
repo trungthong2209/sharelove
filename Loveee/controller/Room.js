@@ -5,8 +5,6 @@ const events = require('../model/infEvent');
 const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
 const date = require('date-and-time');
-
-
 var ObjectId = require('mongodb').ObjectID;
 const users = [];
 
@@ -137,7 +135,7 @@ function Update_UserJoin(req, res, next) {
                     ]).exec((err, chats) => {
                         if (err) return console.log(err)
                         else {
-                            res.render('room', { room: room, chats: chats });
+                            res.render('room', { room: room, chats: chats, title: event.purpose });
                         }
                     })
 

@@ -5,7 +5,7 @@
 body{
 	user-select: none;
 	background-color: white;
-	font-family: Lora, 'Times New Roman', serif
+	
 }
 .white-col{
 	color: white;
@@ -379,7 +379,7 @@ nav > ul > li > a:hover {
 	color: #000;
 }
 .user-info img {
-	margin-right: 10px;
+	margin-left: 30px;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
@@ -3810,7 +3810,7 @@ header.masthead .post-heading .meta a {
 form .form-group:first-child .floating-label-form-group {
     border-top: 1px solid #dee2e6
 }
-.btn {
+.btn-blog {
     font-size: 14px;
     font-weight: 800;
     padding: 15px 25px;

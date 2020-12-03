@@ -18,7 +18,15 @@ router
 .get('/List_event',function(req, res, next) {
     res.render('List_event');
  })
-
+ .get('/info_event',function(req, res, next) {
+   res.render('info_event');
+})
+.get('/info_blog',function(req, res, next) {
+   res.render('info_blog');
+})
+ .get('/news',function(req, res, next) {
+   res.render('news');
+})
 
 
 module.exports = router;

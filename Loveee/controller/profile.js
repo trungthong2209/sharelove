@@ -3,6 +3,7 @@ const User = require('../model/user');
 const donate = require('../model/donate');
 var ObjectId = require('mongodb').ObjectID;
 const jwt = require("jsonwebtoken");
+const moment = require("moment");
 
 const accessTokenSecret = process.env.accessTokenSecret;
 
@@ -95,7 +96,10 @@ const accessTokenSecret = process.env.accessTokenSecret;
                         ]).exec((err, total) => {
                             if (err) return console.log(err)
                             else {
-                                res.json({ infevents, user, alldonate, total })
+                                console.log(total[0].total)
+                                var newDate = moment(user.Dob).utc().format("DD/MM/YYYY")
+
+                                res.render('profile',{ infevents, user, alldonate, total, newDate })
                             }
                         })
                     }

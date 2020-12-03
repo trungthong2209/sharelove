@@ -31,6 +31,7 @@ var profile = require('./routes/profile');
 var blog = require('./routes/blog');
 var topUser = require('./routes/topUser');
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -39,7 +40,6 @@ const botname = "ShareLove Bot";
 io.on("connection", function (socket) {
 
     console.log("A user is connected: " + socket.id);
-
     //Create room 
     socket.on("joinRoom", async function (room) {
         var cookies = cookie.parse(socket.request.headers.cookie);
@@ -99,6 +99,9 @@ app.use(fileUpload({
         fileSize: 5 * 1024 * 1024 * 1024 //5MB max file(s) size
     },
 }));
+
+
+
 // use router
 
 global.image= null;

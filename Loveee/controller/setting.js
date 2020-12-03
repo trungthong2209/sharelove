@@ -13,7 +13,7 @@ class Setting {
 
                 User.findById(ID.id)
                         .then((user) => {
-                                var newDate = moment(user.Dob).utc().format("DD/MM/YYYY")
+                                var newDate = moment(user.Dob).utc().format("YYYY-MM-DD")
 
                                 res.render('setting', { user: user, Dob: newDate })
                         })

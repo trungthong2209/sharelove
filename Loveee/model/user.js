@@ -18,7 +18,7 @@ const User = new Schema({
       index: true},
     sex:{Type: String},
     Dob: {type: Date},
-    Numberphone: {type: Number},
+    Numberphone: {type: String},
     reset_link: {type: String},
     accesstoken:{type: String},
     imageUser:{type: String},

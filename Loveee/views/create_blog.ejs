@@ -30,46 +30,19 @@
               <div class="form-group col-3">
                   <div class="font-weight-bold label">Hình ảnh nền</div>
                   <div class="row">
-                      <div id="preview"></div>
-                      <label class="btn" id="hide-input">
-                          <img src="images/newImage.png" style="width: 80px;"
-                              alt="Add new image">
-                          <input id="file-input" name="image" type="file" hidden>
-                      </label>
+                    <div class="profile-img">
+                        <div class="upimg" id="avatar">
+                            <div id="preview"><img src="images/newImage.png" id="avatar-image" class="avatar_img" id="">
+                            </div>
+                            <div class="avatar_upload" >
+                            <label class="upload_label">Thay đổi
+                                <input type="file" id="upload" name ='image'>
+                            </label>
+                            </div>
+                        </div>
+                    </div>
                   </div>
-                  <script type="text/javascript">
-                      var evImage = document.getElementById('file-input');
-                      evImage.onchange = function () {
-                          var preview = document.querySelector('#preview');
-    
-                          if (this.files) {
-                              [].forEach.call(this.files, readAndPreview);
-                          }
-    
-                          function readAndPreview(file) {
-    
-                              // Make sure `file.name` matches our extensions criteria
-                              if (!/\.(jpe?g|png|gif|jpg)$/i.test(file.name)) {
-                                  return alert(file.name + " is not an image");
-                              } // else...
-    
-                              var reader = new FileReader();
-    
-                              reader.addEventListener("load", function () {
-                                  var image = new Image();
-                                  image.height = 100;
-                                  image.title = file.name;
-                                  image.src = this.result;
-                                  image.classList.add('p-3');
-                                  preview.appendChild(image);
-                              });
-    
-                              reader.readAsDataURL(file);
-    
-                              document.getElementById('hide-input').style.display = "none";
-                          }
-                      }
-                  </script>
+                
               </div>
               <div class="form-group col-9">
                   <label for="subtitle" class="text-left font-weight-bold">Mô tả ngắn</label>
@@ -90,10 +63,10 @@
           </div>
           <div class="row">
               <div class="col-6 text-right">
-                  <button name="create" id="create" type="submit" class="btn btn-primary">Submit</button>
+                  <button name="create" id="create" type="submit" class="btn-blog btn-primary">Đăng bài</button>
               </div>
               <div class="col-6 text-left">
-                  <button type="button" class="btn btn-cancel">Cancel</button>
+                  <a type="button" href="javascript:history.back()" class="btn-blog btn-cancel" onclick="return confirm('Bạn chắc chắn muốn hủy bài đăng')" >Hủy</a>
               </div>
           </div>
               </form>
@@ -130,5 +103,134 @@
     background-color:#df7436 !important;
     border-color:  #df7436 !important
 }
+
+#upload_label{
+	cursor: pointer;
+	position: absolute;
+	left: 15px;
+	top: 12px;
+	font-size: 14px;
+  }
+  #upload_label:hover, #upload_label:focus{
+	color: #222;
+  }
+  
+  .upimg{
+	width: 150px;
+	height: 150px;
+	
+	border: 2px solid #fff;
+	margin: 10px auto;
+	position: relative;
+	overflow: hidden;
+	z-index: 2;
+	transform: translateZ(0);
+	transition: border-color 200ms;
+  }
+  .avatar--upload-error{
+	border-color: #F73C3C;
+	animation: shakeNo 300ms 1 forwards;
+  }
+  @keyframes shakeNo{
+	20%, 60%{
+	  transform: translateX(6px);
+	}
+	40%, 80%{
+	  transform: translate(-6px);
+	}
+  }
+  .upimg:hover .avatar_upload, .avatar--hover .avatar_upload{
+	opacity: 1;
+  }
+  .upimg:hover .upload_label, .avatar--hover .upload_label{
+	display: block;
+  }
+  #preview::after{
+	content: 'Loading...';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	z-index: -1;
+	line-height: 150px;
+	color: #999;
+  }
+  .avatar_img--loading{
+	opacity: 0;
+  }
+  .avatar_img{
+	width: 100%;
+	height: auto;
+	animation: inPop 250ms 150ms 1 forwards cubic-bezier(0.175, 0.885, 0.32, 1.175);
+	transform: scale(0);
+	opacity: 0;
+  }
+  @keyframes inPop {
+	100%{
+	  transform: scale(1);
+	  opacity: 1;
+	}
+  }
+  .avatar_img--rotate90{
+	transform: rotate(90deg);
+  }
+  .avatar_upload{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	height: 100%;
+	background: #25cfe3;
+	background: rgba(44,205, 251, 0.6);
+	display: flex;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 500ms;
+  }
+  .upload_label{
+	color: #111;
+	text-transform: uppercase;
+	font-size: 14px;
+	cursor: pointer;
+	white-space: nowrap;
+	padding: 4px;
+	border-radius: 3px;
+	min-width: 60px;
+	width: 100%;
+	max-width: 80px;
+	margin: auto;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	background: #fff;
+	animation: popDown 300ms 1 forwards;
+	transform: translateY(-10px);
+	opacity: 0;
+	display: none;
+	transition: background 200ms, color 200ms;
+  }
+  @keyframes popDown{
+	100%{
+	  transform: translateY(0);
+	  opacity: 1;
+	}
+  }
+  .upload_label:hover{
+	color: #fff;
+	background: #222;
+  }
+  #upload{
+	width: 100%;
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+	display: block;
+	padding: 0;
+	text-align: center;
+  }
 </style>
+
 <%include footer %>

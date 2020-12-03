@@ -48,7 +48,6 @@ class loadNewFeeds {
                     Image_URL: '$ID_image.image_url',
                     Image_URL2: '$ID_image2.image_url',
                     Image_URL3: '$ID_image3.image_url',
-
                     user_name: "$user_post.fullname",
                     imageUser: "$user_post.imageUser",
                     Joined_er: { $cond: { if: { $isArray: "$user_joinEvent" }, then: { $size: "$user_joinEvent" }, else: 0 } }

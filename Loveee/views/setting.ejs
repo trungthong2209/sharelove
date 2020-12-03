@@ -20,16 +20,16 @@
 										<h3>Cài đặt tài khoản</h3>
 										<form action="/setting/profile" method="POST" enctype="multipart/form-data" >
 											<div class="profile-img">
-										<div class="avatar" id="avatar">
-											<div id="preview"><img src="<%= user.imageUser %>" id="avatar-image" class="avatar_img" id="">
+												<div class="avatar" id="avatar">
+													<div id="preview"><img src="<%= user.imageUser %>" id="avatar-image" class="avatar_img">
+													</div>
+													<div class="avatar_upload" >
+													<label class="upload_label">Thay đổi
+														<input type="file" id="upload" name ='image' >
+													</label>
+													</div>
+												</div>
 											</div>
-											<div class="avatar_upload" >
-											<label class="upload_label">Thay đổi
-												<input type="file" id="upload" name ='image'>
-											</label>
-											</div>
-										</div>
-									</div>
 											<div class="cp-field">
 												<h5>Tên</h5>
 												<div class="cpp-fiel">
@@ -40,7 +40,7 @@
 											<div class="cp-field">
 												<h5>Ngày sinh</h5>
 												<div class="cpp-fiel">
-													<input name="dob" type="date" id = "Date" value="<%=Dob%>" fm >
+													<input name="dob" type="date" id = "Date" placeholder="<%=Dob%>" value="<%=Dob%>" fm >
 													<i class="fa fa-birthday-cake"></i>
 												</div>
 											</div>
@@ -54,7 +54,7 @@
 											<div class="cp-field">
 												<h5>Số điện thoại</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="sdt" placeholder="sđt" value="<%= user.Numberphone %>">
+													<input type="tel" name="sdt" placeholder="Nhập số điện thoại" value="<%= user.Numberphone %>">
 													<i class="fa fa-phone"></i>
 												</div>
 											</div>
@@ -68,7 +68,7 @@
 											<div class="save-stngs pd2">
 												<ul>
 													<li><button type="submit">Thay đổi</button></li>
-													<li><button type="button">Thoát</button></li>
+													<li><a href="javascript:history.back()"><button  type="button" href="home" onclick="return confirm('Bạn chắc chắn muốn thoát' )">Thoát</button></a></li>
 												</ul>
 											</div><!--save-stngs end-->
 										</form>
@@ -117,7 +117,7 @@
 											<div class="save-stngs pd2">
 												<ul>
 													<li><button type="submit" id="submit-pass">Lưu thay đổi</button></li>
-													<li><button type="submit">Thoát</button></li>
+													<li><a href="javascript:history.back()"><button  type="button" href="home" onclick="return confirm('Bạn chắc chắn muốn thoát' )">Thoát</button></a></li>
 												</ul>
 											</div><!--save-stngs end-->
 										</form>

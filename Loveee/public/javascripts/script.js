@@ -274,7 +274,7 @@ function showPreview(event){
 }
 
 //change avt
-var upload = document.getElementById("image");
+var upload = document.getElementById("upload");
 var preview = document.getElementById("preview");
 var avatar = document.getElementById("avatar");
 /** Handle uploading of files */
@@ -322,6 +322,32 @@ window.changeAvatar = function(dir){
     avatars.showLast();
   }
 };
+
+$(document).ready(function() {
+	
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+   
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+    
+    $(".upload-button").on('click', function() {
+       $(".file-upload").click();
+    });
+});
+
+
+
 window.handleAriaUpload = function(e, obj) {
   if(e.keyCode == 13) {
     obj.click();

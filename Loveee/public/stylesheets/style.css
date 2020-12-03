@@ -6,9 +6,12 @@ body{
 	user-select: none;
 	background-color: white;
 }
+<<<<<<< HEAD
 a:focus, a:active { outline: none }
 
 
+=======
+>>>>>>> e00a3a27f18835c782dcc841ae34e32397ee9a5e
 .white-col{
 	color: white;
 }
@@ -282,6 +285,7 @@ nav > ul > li > a:hover {
 	right: 0;
 	width: 240px;
 	background-color: #fff;
+<<<<<<< HEAD
 	border: 1px solid #e5e5e5;
 	
 	-webkit-border-radius: 5px 5px 5px 5px;
@@ -289,6 +293,16 @@ nav > ul > li > a:hover {
 	-ms-border-radius: 5px 5px 5px 5px;
 	-o-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
+=======
+	border-left: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	border-right: 1px solid #e5e5e5;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	-ms-border-radius: 0 0 5px 5px;
+	-o-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+>>>>>>> e00a3a27f18835c782dcc841ae34e32397ee9a5e
 	-webkit-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
 	-moz-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
 	-ms-box-shadow: 1px 1px 6px -2px rgba(0,0,0,0.24);
@@ -325,9 +339,14 @@ nav > ul > li > a:hover {
 .show{
 	background-color: #53D690;
 }
+<<<<<<< HEAD
 .btnout{
 	border:none;
 }
+=======
+
+
+>>>>>>> e00a3a27f18835c782dcc841ae34e32397ee9a5e
 /* ============ us-links ============= */
 
 .us-links {
@@ -1016,6 +1035,7 @@ img {
     display: inline-block;
     font: inherit;
     background: none;
+<<<<<<< HEAD
     
     color: inherit;
     padding: 0;
@@ -1031,6 +1051,16 @@ img {
 .btn:active{
 	border:none !important; 
     outline:none !important;
+=======
+    border: none;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: 0.5rem auto #4d90fe;
+>>>>>>> e00a3a27f18835c782dcc841ae34e32397ee9a5e
 }
 
 .visually-hidden {
@@ -1479,6 +1509,10 @@ main {
 .username-dt {
 	float: left;
 	width: 100%;
+<<<<<<< HEAD
+=======
+	background-color: #53D690;
+>>>>>>> e00a3a27f18835c782dcc841ae34e32397ee9a5e
 	padding-top: 40px;
 }
 .user-data {
@@ -1818,7 +1852,17 @@ main {
 	margin-top: 2px;
 	margin-right: 6px;
 }
+<<<<<<< HEAD
 
+=======
+.post_topbar i {
+/*	position: absolute;
+	top: 20px;
+	right: 5px;
+	color: #b2b2b2;
+	font-size: 30px;
+*/}
+>>>>>>> e00a3a27f18835c782dcc841ae34e32397ee9a5e
 .epi-sec {
 	float: left;
 	width: 100%;
@@ -2113,7 +2157,11 @@ main {
 	opacity: 1;
 	visibility: visible;
 	z-index: 999;
+<<<<<<< HEAD
 	
+=======
+	-webkit-transform: scale(1) translateX(-50%) translateY(-50%);
+>>>>>>> e00a3a27f18835c782dcc841ae34e32397ee9a5e
 }
 .post-event > a {
 	position: absolute;
