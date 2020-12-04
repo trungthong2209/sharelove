@@ -45,7 +45,7 @@ async fogetPass(req, res, next){
                                })
                             }
                             else{
-                                   return res.json({
+                                   return res.status(200).json({
                                    message: `Check mail ${user.email} and click link `
                                 })
                             }
@@ -54,10 +54,9 @@ async fogetPass(req, res, next){
                 })
                 }  
                  else { 
-                   res.json({
-                      status: "error",
-                        message: "Email does not exist"
-            });           
+                   res.status(404).json({
+                     message: "Email does not exist"
+                    });           
        }
       
      });   

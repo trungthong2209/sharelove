@@ -48,6 +48,7 @@ class Setting {
                                         data.updateOne(user)
                                                 .then(() => {
                                                         console.log("Cập nhật thành công")
+                                                         image = result.secure_url;
                                                         console.log("Cập nhật avatar thành công")
                                                         res.redirect('/setting');
                                                 })
