@@ -361,17 +361,18 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Ủng hộ</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <label for="firstName">Số tiền ủng hộ</label>
+        <input type="type" id="money" class="form-control" placeholder="số tiền ủng hộ" required="" autofocus="">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btnlog" data-dismiss="modal">Thoát</button>
+        <button type="button" class="btn btnlog">Đồng ý</button>
       </div>
     </div>
   </div>
@@ -391,6 +392,26 @@
         x[i].innerHTML = num; 
         x[i].classList.add("currSign"); 
       } 
+      //only number
+      (function($) {
+        $.fn.inputFilter = function(inputFilter) {
+          return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+            if (inputFilter(this.value)) {
+              this.oldValue = this.value;
+              this.oldSelectionStart = this.selectionStart;
+              this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+              this.value = this.oldValue;
+              this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+              this.value = "";
+            }
+          });
+        };
+      }(jQuery));
+      $("#money").inputFilter(function(value) {
+        return /^\d*$/.test(value); });
+
     </script> 
 
  
