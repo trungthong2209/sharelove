@@ -38,9 +38,9 @@ const infEvent = new Schema({
     email_posted: { type: mongoose.Schema.ObjectId, ref: 'users' },
 });
 infEvent.pre('save', async function (next) {
-    const loc = await geocoder.geocode(this.address_District)
-    console.log(loc[0].longitude,loc[0].latitude)
-    this.location = {
+    const address =this.address_City +", Việt Nam";
+    const loc = await geocoder.geocode(address)
+      this.location = {
         type: 'Point',
         coordinates: [loc[0].longitude, loc[0].latitude],
         formattedAddress: loc[0].formattedAddress
