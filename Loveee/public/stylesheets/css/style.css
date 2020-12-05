@@ -643,3 +643,15 @@ form .form-group:first-child .floating-label-form-group{border-top:1px solid #de
 .map{margin:3rem 0;height:45rem;width:90rem}
 .title-map{font-size:2rem;text-transform:uppercase;font-weight:600;margin-bottom:30px}
 .currSign:after {content: 'VND';} 
+.carousel-indicators li {
+    position: relative;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-indent: -999px;
+    background-color: rgba(255,255,255,.5);
+}

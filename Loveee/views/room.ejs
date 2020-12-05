@@ -194,11 +194,13 @@
                           placeholder="Nhập văn bản"
                           form-control type_msg
                           autocomplete="off"
+                          
                           onkeydown = "if (event.keyCode == 13)
                         document.getElementById('send_btn').click()" 
             />
                         <div class="input-group-append">
                           <button class="input-group-text send_btn" id="send_btn" type="submit" onClick= "getMess()" > Gửi </button>
+                          <button class="input-group-text send_btn" id="rs" type="reset" style="display: none;" > rs </button>
                         </div>
                         
                     </div>
@@ -392,7 +394,9 @@ function getMess(){
   // Prevent the default form submission
    event.preventDefault()
    form.reset()
+   
 })
+
 }
 function outputMessage(message){
     const div = document.createElement("div");
@@ -408,6 +412,7 @@ function outputMessage(message){
                         </div>
                     </div>`;
     document.querySelector('.chat-messages').appendChild(div);
+    document.getElementById('rs').click();
 }
 function outputRoomName(room){
     roomName.innerText = room;

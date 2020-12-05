@@ -24,7 +24,7 @@
                       <div class="text-center"><span class="name"><%= topdonate.author_name %></span></div>
                       <div class="text-center">
                         <span class="total d-block pt-2">Tổng số tiền ủng hộ</span>
-                        <span class="money"><%= topdonate.total %></span>
+                        <span class="money vnd"><%= topdonate.total %></span>
                       </div>
                       <div
                         class="text-center align-items-center d-flex justify-content-center pt-2 pb-2"
@@ -44,5 +44,35 @@
           </div>
     </main>
     <link rel="stylesheet" type="text/css" href="stylesheets/css/topdoante.css" />
+    <script> 
+      // formart vnd
+      let x = document.querySelectorAll(".vnd"); 
+      for (let i = 0, len = x.length; i < len; i++) { 
+        let num = Number(x[i].innerHTML) 
+            .toLocaleString('en'); 
+        x[i].innerHTML = num; 
+        x[i].classList.add("currSign"); 
+      } 
+      //only number
+      (function($) {
+        $.fn.inputFilter = function(inputFilter) {
+          return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+            if (inputFilter(this.value)) {
+              this.oldValue = this.value;
+              this.oldSelectionStart = this.selectionStart;
+              this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+              this.value = this.oldValue;
+              this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+              this.value = "";
+            }
+          });
+        };
+      }(jQuery));
+      $("#money").inputFilter(function(value) {
+        return /^\d*$/.test(value); });
+
+    </script> 
 
 <%include footer%>
