@@ -120,7 +120,7 @@
                         <% if(loggedIn != null && loggedIn.trim() != '') { %>
                           <ul class="like-com">
                             <li>
-                              <button class=" btn " type="button"  href="room/<%=infevent._id%>"><i class="fa fa-plus-circle"></i></i> Tham gia</button>
+                              <a class=" btn " type="button"  href="room/<%=infevent._id%>"><i class="fa fa-plus-circle"></i></i> Tham gia</button>
                             </li>
                             <li>
                               <button class="btn 7" href="#"><i class="fa fa-usd"></i></i> Ủng hộ</button>
@@ -162,32 +162,19 @@
                       <i class="la la-ellipsis-v"></i>
                     </div>
                     <!--sd-title end-->
+                    <% top_event.forEach(function(event){ %>
+                    
                     <div class="suggestions-list">
                       <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
+                        <img src="<%= event.imageUser%>" width="35px" height="" alt="" />
                         <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>Người tổ chức</span>
+                          <h4><%= event.purpose%></h4>
+                          <span><%= event.user_name%></span>
                         </div>
                         <span><i class="la la-plus"></i></span>
                       </div>
-                      <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
-                        <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>Người tổ chức</span>
-                        </div>
-                        <span><i class="la la-plus"></i></span>
-                      </div>
-                      <div class="suggestion-item">
-                        <img src="http://via.placeholder.com/35x35" alt="" />
-                        <div class="sgt-text">
-                          <h4>Tên</h4>
-                          <span>Người tổ chức</span>
-                        </div>
-                        <span><i class="la la-plus"></i></span>
-                      </div>
-                      
+                      <% }) %>
+                     
                       
                       
                       <div class="view-more">
@@ -208,7 +195,7 @@
                     <div class="suggestions-list">
                       <% topdonates.forEach(function(topdonate){ %>
                       <div class="suggestion-item">
-                        <img src="<%= topdonate.url_author %>" width="35" height="35" alt="" />
+                        <img src="<%= topdonate.url_author %>" width="35" height="35px" alt="" />
                         <div class="sgt-text">
                           <h4><%= topdonate.author_name %></h4>
                           <span><%= topdonate.total %> VND</span>

@@ -96,7 +96,39 @@ class loadNewFeeds {
                 ]).exec((err, donate) => {
                     if (err) return console.log(err)
                     else {
-                        res.render('Newsfeeds', { infevents: infevents, user: user_url, topdonates: donate })
+                                             
+                    infEvent.aggregate([
+                            {
+                                $lookup: {
+                                    from: 'users',
+                                    localField: 'email_posted',
+                                    foreignField: '_id',
+                                    as: 'user_post'
+                                }
+                            },
+                            {
+                                $unwind: '$user_post'
+                            }, {
+                                $project: {
+                                    _id:1,
+                                    purpose: 1,
+                                    user_name: "$user_post.fullname",
+                                    imageUser: "$user_post.imageUser",
+                                    Joined_er: { $cond: { if: { $isArray: "$user_joinEvent" }, then: { $size: "$user_joinEvent" }, else: 0 } }
+                                }
+                            },
+                            {
+                                $sort: { Joined_er: -1 }
+                            },
+                            {
+                                $limit: 3
+                            }
+                    ]).exec((err, top_event) => {
+                        if (err) return console.log(err)
+                        else {
+                            res.render('Newsfeeds', { infevents: infevents, user: user_url, topdonates: donate, top_event: top_event})
+                        }
+                    })
                     }
                 })
 

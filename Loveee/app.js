@@ -99,12 +99,10 @@ app.use(fileUpload({
         fileSize: 5 * 1024 * 1024 * 1024 //5MB max file(s) size
     },
 }));
-
-
-
 // use router
-
 global.image= null;
+
+app.use(login);
 app.use("*", async function (req, res, next)  {
     global.loggedIn = req.cookies.token;
       if(loggedIn!=undefined && loggedIn!=null && image==null){
@@ -112,7 +110,6 @@ app.use("*", async function (req, res, next)  {
     }
      next()
 });
-app.use(login);
 app.use(register);
 app.use(forget);
 app.use(search);

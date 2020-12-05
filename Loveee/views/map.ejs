@@ -1,6 +1,6 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
-
+<title>Sự kiện gần bạn</title>
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <div id='map' style='width: 1000; height: 1000px;border-radius: 5px; margin: 0px auto;'></div>
@@ -17,7 +17,6 @@
       var res = await fetch('/address/store')
       const data = await res.json();
       const stores = data.data.map(address_1 => {
-
         return {
           type: 'Feature',
           geometry: {
@@ -57,14 +56,7 @@
                 ]
               }
             }),
-              map.addControl(
-                new mapboxgl.GeolocateControl({
-                  positionOptions: {
-                    enableHighAccuracy: true
-                  },
-                  trackUserLocation: true
-                })
-              );
+        
             navigator.geolocation.getCurrentPosition(position => {
               const userCoordinates = [position.coords.longitude, position.coords.latitude];
               map.addSource("user-coordinates", {
@@ -90,7 +82,7 @@
               });
               map.flyTo({
                 center: userCoordinates,
-                zoom: 12
+                zoom: 12.5
               });
             });
             map.addLayer({
