@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const date = require('date-and-time');
 
 const blog = new Schema({
     author: {type: mongoose.Schema.ObjectId, ref: 'users'},
@@ -14,5 +15,11 @@ const blog = new Schema({
     timeCreate: {type: Date, default: Date.now()}  
     
 });
+
+blog.pre('save', function (next) { 
+    const now = new Date();
+    this.timeCreate = date.format(now, 'HH:mm DD/MM/YYYY');
+    next()
+ })
 const blogs = mongoose.model("blog", blog);
 module.exports = blogs;

@@ -42,7 +42,6 @@ class CreateBlog {
                     image_url: result.secure_url,
                 },
                 content: req.body.content,
-                time_post: time_post,
             })
 
             await blog.save()

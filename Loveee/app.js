@@ -48,11 +48,10 @@ io.on("connection", function (socket) {
        
         if (user == 1) {
             var destination = '/home';
-            socket.emit("CheckID", destination)
+             socket.emit("CheckID", destination)
         }
         else {
             socket.join(user.room);
-        
             socket.emit("message", formatMessage(botname,  `${user.username} đã vào phòng`, user.image));
             socket.broadcast.to(user.room).emit("message", formatMessage(botname, `${user.username} đã vào phòng`,user.image));
             io.to(user.room).emit("roomUsers", {
@@ -62,9 +61,9 @@ io.on("connection", function (socket) {
         }
     });
 
-    socket.on("chatMessage", msg => {
+    socket.on("chatMessage", async (msg) => {
         const user = getCurrentUser(socket.id);
-        io.to(user.room).emit("message", formatMessage(user.username,   msg, user.image));
+         io.to(user.room).emit("message", formatMessage(user.username,   msg, user.image));
     });
     socket.on("disconnect", () => {
         const user = userLeave(socket.id);

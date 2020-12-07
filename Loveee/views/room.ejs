@@ -182,7 +182,7 @@
        <div class="chat-messages"></div>
               </div>
               
-              <form id="chat-form" name="chat-form" action="/room/<%= room %>" method="POST">
+              <form id="chat-form" name="chat-form" action="/room/<%= room %>/store" method="POST">
                 <div class="card-footer">
                     <div class="input-group">
                         
@@ -194,11 +194,17 @@
                           placeholder="Nhập văn bản"
                           form-control type_msg
                           autocomplete="off"
+                          
                           onkeydown = "if (event.keyCode == 13)
                         document.getElementById('send_btn').click()" 
             />
                         <div class="input-group-append">
+<<<<<<< HEAD
+                          <button class="input-group-text send_btn" id="send_btn" type="button" onClick= "getMess()" > Gửi </button>
+=======
                           <button class="input-group-text send_btn" id="send_btn" type="submit" onClick= "getMess()" > Gửi </button>
+                          <button class="input-group-text send_btn" id="rs" type="reset" style="display: none;" > rs </button>
+>>>>>>> 401d589bf8c632eff86806493bdd96c96c2f3215
                         </div>
                         
                     </div>
@@ -378,7 +384,6 @@ socket.on("roomUsers", ({users,room}) =>{
     outputUsers(users);
 });
 socket.on("message", message =>{
-console.log(message.image)
    outputMessage(message);
 chatMessage.scrollTop=chatMessage.scrollHeight;
 });
@@ -386,13 +391,21 @@ chatMessage.scrollTop=chatMessage.scrollHeight;
 }
 function getMess(){
   const msg = document.getElementById('msg').value;
-  var form= document.getElementsByName('chat-form');
+  var form= document.getElementById('chat-form');
+  var btnsub = document.getElementById('send_btn');
   socket.emit("chatMessage", msg);
-  form.addEventListener('submit', function submitForm (event) {
+  form.addEventListener('click', function submitForm (event) {
+    form.submit();
   // Prevent the default form submission
    event.preventDefault()
+<<<<<<< HEAD
+   msg.reset()
+=======
    form.reset()
+   
+>>>>>>> 401d589bf8c632eff86806493bdd96c96c2f3215
 })
+
 }
 function outputMessage(message){
     const div = document.createElement("div");
@@ -408,6 +421,7 @@ function outputMessage(message){
                         </div>
                     </div>`;
     document.querySelector('.chat-messages').appendChild(div);
+    document.getElementById('rs').click();
 }
 function outputRoomName(room){
     roomName.innerText = room;

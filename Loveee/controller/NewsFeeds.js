@@ -2,7 +2,6 @@
 const infEvent = require('../model/infEvent');
 const User = require('../model/user');
 const donate = require('../model/donate');
-
 const jwt = require("jsonwebtoken");
 
 const accessTokenSecret = process.env.accessTokenSecret;
@@ -19,7 +18,7 @@ class loadNewFeeds {
                 .then(user => user);
             }
             else {
-                return "user";
+                return 'user';
             }
         }
         const user_url = await getImageUser();
@@ -42,6 +41,7 @@ class loadNewFeeds {
                     address_District: 1,
                     address_Ward: 1,
                     time_post: 1,
+                    email_posted: 1,
                     time: 1,
                     date: 1,
                     description: 1,

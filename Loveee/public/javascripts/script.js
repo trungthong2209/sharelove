@@ -353,4 +353,35 @@ window.handleAriaUpload = function(e, obj) {
     obj.click();
   }
 };
+//stop slide
+$('.carousel').carousel({
+    interval: false,
+  });
 
+  // formart vnd
+  let x = document.querySelectorAll(".vnd"); 
+  for (let i = 0, len = x.length; i < len; i++) { 
+    let num = Number(x[i].innerHTML) 
+        .toLocaleString('en'); 
+    x[i].innerHTML = num; 
+    x[i].classList.add("currSign"); 
+  } 
+  //only number
+  (function($) {
+    $.fn.inputFilter = function(inputFilter) {
+      return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+        if (inputFilter(this.value)) {
+          this.oldValue = this.value;
+          this.oldSelectionStart = this.selectionStart;
+          this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) {
+          this.value = this.oldValue;
+          this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        } else {
+          this.value = "";
+        }
+      });
+    };
+  }(jQuery));
+  $("#money").inputFilter(function(value) {
+    return /^\d*$/.test(value); });

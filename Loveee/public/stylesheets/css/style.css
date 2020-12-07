@@ -61,7 +61,8 @@ nav > ul > li > a:hover{color:#fff}
 .user-account-settingss > h3{color:#000;font-size:16px;font-weight:600;float:left;width:100%;border-bottom:1px solid #e5e5e5;padding:15px 20px}
 .dndk p a{color:#fff}
 .dndk p a:hover{color:#000;cursor:pointer}
-.dropdown-item-nav{color:#000;padding:15px}
+.dropdown-menu{z-index: 999;}
+.dropdown-item-nav{color:#000;padding:15px;}
 .dropdown-item{color:#000;padding:15px}
 .us-links{float:left;width:100%;border-bottom:1px solid #e5e5e5;padding:20px}
 .us-links li{float:left;width:100%;margin-bottom:15px}
@@ -643,3 +644,15 @@ form .form-group:first-child .floating-label-form-group{border-top:1px solid #de
 .map{margin:3rem 0;height:45rem;width:90rem}
 .title-map{font-size:2rem;text-transform:uppercase;font-weight:600;margin-bottom:30px}
 .currSign:after {content: 'VND';} 
+.map{
+	margin: 3rem 0;
+	height: 45rem;
+	width: 90rem;
+	
+}
+.title-map{
+	font-size: 2rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-bottom: 30px;
+}

@@ -7,7 +7,5 @@ const donate = require('../controller/donate.js');
 router
 .post('/donate', donate.Donate)
 .get('/success', donate.Success)
-.get('/cancel',function(req, res, next) {
-    res.render('List_event');
- });
+.get('/cancel',donate.Success)
 module.exports = router;

@@ -59,9 +59,6 @@ class CreateEvent {
         }
         else {
 
-          //var longitude = response.body.features[0].center[0] 
-          //var latitude = response.body.features[0].center[1] 
-          //var locations = response.body.features[0].place_name 
           const InfEvent = new infEvent({
             purpose: req.body.title,
             address_City: req.body.city,

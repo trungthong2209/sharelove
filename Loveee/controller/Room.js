@@ -4,10 +4,8 @@ const User = require('../model/user');
 const events = require('../model/infEvent');
 const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
-const date = require('date-and-time');
 var ObjectId = require('mongodb').ObjectID;
 const users = [];
-
 async function getname(token) {
     const userID = jwt.verify(token, accessTokenSecret);
     return User.findById(userID.id)
@@ -28,8 +26,8 @@ async function userJoin(id, token, room) {
     let username = await getname(token);
     let ID_user = await getID(token);
     let image = await getImage(token);
-    
-    const user = {id, username, room, ID_user, image};
+
+    const user = { id, username, room, ID_user, image };
     if (users.length == 0) {
         users.push(user);
     }
@@ -65,50 +63,46 @@ function userLeave(id) {
         return users.splice(index, 1)[0];
     }
 }
-async function Save_message(req, res, next) {
+  function Save_message(req, res, next) {
     var room = req.params.room;
     const token = req.cookies.token;
-    const now = new Date();
     const userID = jwt.verify(token, accessTokenSecret);
-    const  time_post = date.format(now, 'HH:mm DD/MM/YYYY');
+
     var message = new chatMessage({
         post_id: room,
         authorUsername: userID.id,
         message: req.body.msg,
-        timeSend: time_post,
-
     })
-  await message.save()
-        .then(() => {
-            console.log("Save schema chatMessage success" + message)
-            return res.status(200);
+
+     message.save()
+        .then(value => {
+            console.log("Save schema chatMessage success" + value)
+            return res.status(200).json({ success: true, value });
         })
         .catch(error => {
             console.log("Save schema chatMessage fail " + error);
             return res.status(500);
         })
-
-
+    
 }
 function getRoomUsers(room) {
 
     return users.filter(user => user.room === room);
 }
 
-function Update_UserJoin(req, res, next) {
+ function Update_UserJoin(req, res, next) {
     var room = req.params.room;
     const token = req.cookies.token;
     const userID = jwt.verify(token, accessTokenSecret);
-    events.findById(room, function (err, event) {
-        if (event) {
-            event.updateOne({ $addToSet: { user_joinEvent: userID.id } }, function (err, results) {
-                if (results) {
-                    chatMessage.aggregate([
+     events.findById(room)
+    .then( (event) => {
+         event.updateOne({ $addToSet: { user_joinEvent: userID.id } })
+                .then(async () => {
+                       await chatMessage.aggregate([
                         {
-                            $match: {'post_id': ObjectId(room)}
+                            $match: { 'post_id': ObjectId(room) }
                         },
                         {
-                            
                             $lookup: {
                                 from: 'users',
                                 localField: 'authorUsername',
@@ -119,7 +113,6 @@ function Update_UserJoin(req, res, next) {
 
                         {
                             $unwind: '$messages',
-
                         },
                         {
                             $project: {
@@ -129,31 +122,28 @@ function Update_UserJoin(req, res, next) {
                                 author_url: "$messages.imageUser",
                                 timeSend: 1,
                                 message: 1
-                              }
+                            }
                         },
-
                     ]).exec((err, chats) => {
-                        if (err) return console.log(err)
+                        if (err)
+                            return console.log(err);
                         else {
                             res.render('room', { room: room, chats: chats, title: event.purpose });
                         }
-                    })
-
-                }
-                else {
-                    res.status(500);
-                }
+                    });
+                })
+                .catch((error) => {
+                    console.log((error));
+                    return res.status(500)
+                })
             })
-
-        }
-        else {
-            res.status(404).json({
+            .catch((error) => {
+                res.status(404).json({
                     message: "Không tìm thấy phòng"
+                });
             })
-        }
+                    
 
-    })
-    
 }
 module.exports = {
     userJoin,
