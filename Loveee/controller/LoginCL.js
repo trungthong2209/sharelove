@@ -2,10 +2,7 @@ const User = require('../model/user');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 global.loggedIn = null;
-
-
 const accessTokenSecret = process.env.accessTokenSecret;
-
 class LoginCL {
     async checkLogin(req, res, next) {
         let login_name = req.body.uname;

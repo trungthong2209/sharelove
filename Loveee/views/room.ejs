@@ -199,15 +199,10 @@
                         document.getElementById('send_btn').click()" 
             />
                         <div class="input-group-append">
-<<<<<<< HEAD
-                          <button class="input-group-text send_btn" id="send_btn" type="button" onClick= "getMess()" > Gửi </button>
-=======
                           <button class="input-group-text send_btn" id="send_btn" type="submit" onClick= "getMess()" > Gửi </button>
                           <button class="input-group-text send_btn" id="rs" type="reset" style="display: none;" > rs </button>
-<<<<<<< HEAD
->>>>>>> 401d589bf8c632eff86806493bdd96c96c2f3215
-=======
->>>>>>> 401d589bf8c632eff86806493bdd96c96c2f3215
+
+
                         </div>
                         
                     </div>
@@ -390,7 +385,7 @@ socket.on("message", message =>{
    outputMessage(message);
 chatMessage.scrollTop=chatMessage.scrollHeight;
 });
-}
+     }
 }
 function getMess(){
   const msg = document.getElementById('msg').value;
@@ -402,12 +397,8 @@ function getMess(){
   // Prevent the default form submission
    event.preventDefault()
 
-   msg.reset()
-
    form.reset()
-   
-
-})
+  })
 
 }
 function outputMessage(message){

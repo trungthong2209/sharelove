@@ -73,11 +73,10 @@ function userLeave(id) {
         authorUsername: userID.id,
         message: req.body.msg,
     })
-
      message.save()
         .then(value => {
             console.log("Save schema chatMessage success" + value)
-            return res.status(200).json({ success: true, value });
+            return res.status(200);
         })
         .catch(error => {
             console.log("Save schema chatMessage fail " + error);

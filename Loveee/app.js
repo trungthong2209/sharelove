@@ -30,6 +30,8 @@ var donate = require('./routes/donate');
 var profile = require('./routes/profile');
 var blog = require('./routes/blog');
 var topUser = require('./routes/topUser');
+var map = require('./routes/map');
+var event = require('./routes/event');
 // view engine setup
 
 app.set('views', path.join(__dirname, 'views'));
@@ -89,7 +91,6 @@ app.use(cookieParser({
     key: 'connect.sid'
 })
 );
-
 app.use(express.static(path.join(__dirname, 'public')));
 //Upload Image
 app.use(fileUpload({
@@ -100,8 +101,6 @@ app.use(fileUpload({
 }));
 // use router
 global.image= null;
-
-app.use(login);
 app.use("*", async function (req, res, next)  {
     global.loggedIn = req.cookies.token;
       if(loggedIn!=undefined && loggedIn!=null && image==null){
@@ -109,6 +108,7 @@ app.use("*", async function (req, res, next)  {
     }
      next()
 });
+app.use(login);
 app.use(register);
 app.use(forget);
 app.use(search);
@@ -121,6 +121,8 @@ app.use(donate);
 app.use(profile);
 app.use(blog);
 app.use(topUser);
+app.use(map);
+app.use(event);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const cloudinary = require('../middleware/cloudinary');
 const path = require("path");
 const date = require('date-and-time');
-
 const accessTokenSecret = process.env.accessTokenSecret;
 
 class CreateBlog {
