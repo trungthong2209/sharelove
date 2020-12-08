@@ -1,5 +1,5 @@
-var tabLinks = document.querySelectorAll(".tablinks");
-var tabContent =document.querySelectorAll(".tabcontent");
+let tabLinks = document.querySelectorAll(".tablinks");
+let tabContent =document.querySelectorAll(".tabcontent");
 
 tabLinks.forEach(function(el) {
    el.addEventListener("click", openTabs);
@@ -189,6 +189,7 @@ $(".cancel").on("click", function(){
 
 
 
+
    // Related News Slider
    $('.sn-slider').slick({
        autoplay: false,
@@ -353,18 +354,22 @@ window.handleAriaUpload = function(e, obj) {
     obj.click();
   }
 };
+
+
+
+
 //stop slide
 $('.carousel').carousel({
     interval: false,
   });
 
   // formart vnd
-  let x = document.querySelectorAll(".vnd"); 
-  for (let i = 0, len = x.length; i < len; i++) { 
-    let num = Number(x[i].innerHTML) 
+  var vnd = document.querySelectorAll(".vnd"); 
+  for (let i = 0, len = vnd.length; i < len; i++) { 
+    let num = Number(vnd[i].innerHTML) 
         .toLocaleString('en'); 
-    x[i].innerHTML = num; 
-    x[i].classList.add("currSign"); 
+    vnd[i].innerHTML = num; 
+    vnd[i].classList.add("currSign"); 
   } 
   //only number
   (function($) {
