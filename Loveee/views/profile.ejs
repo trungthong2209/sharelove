@@ -29,8 +29,10 @@
                             <li><span class="profile-stat-count">10</span> Sự kiên</li>
                             <li><span class="profile-stat-count">10</span> Tham gia sự kiện</li>
                             <li><span class="profile-stat-count">10</span> Blog</li>
+                            <%if(total[0]!= undefined) { %> 
                             <li><span class="profile-stat-count">Tổng tiền đã ủng hộ</span> <%=total[0].total%></li>
-                              
+                            <% }%>
+                           
                         </ul>
         
                     </div>

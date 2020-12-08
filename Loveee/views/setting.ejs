@@ -59,6 +59,16 @@
 												</div>
 											</div>
 											<div class="cp-field">
+												
+												<i class="la la-group"></i>
+													
+														<select name="sex" id="sex" class="cpp-fiel">
+															<option value="Nam" selected="-1">Chọn giới tính</option>
+															<option value="Nam">Nam</option>
+															<option value="Nữ">Nữ</option>
+												  </select>
+															</div>
+													<div class="cp-field">
 												<h5>Tiểu sử</h5>
 												<div class="cpp-fiel">
 													<textarea class="form-control" rows="5" name="story" ><%= user.tieusu %></textarea>
@@ -84,7 +94,7 @@
 											<div class="cp-field">
 												<h5>Mật khẩu hiện tại</h5>
 												<div class="cpp-fiel">
-													<input name="old_password" placeholder="Nhập mật khẩu hiện tại" type="password"
+													<input name="old_password" placeholder="Nhập mật khẩu hiện tại" type="password" autocomplete="off"
 													
 													>
 													<i class="fa fa-lock"></i>
@@ -93,8 +103,8 @@
 											<div class="cp-field">
 												<h5>Mật khẩu mới</h5>
 												<div class="cpp-fiel">
-													<input name="new_password" id="new-password" placeholder="Nhập mật khẩu mới" type="password"
-													pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}"
+													<input name="new_password" id="new-password" placeholder="Nhập mật khẩu mới" type="password" autocomplete="off"
+													pattern="(?=.{6,}"
 													oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự, có ít nhất một chữ hoa, và có ít nhất một chữ thường')"
 													onkeyup='check();'>
 													<i class="fa fa-lock"></i>
@@ -103,8 +113,8 @@
 											<div class="cp-field">
 												<h5>Nhập lại mật khẩu mới</h5>
 												<div class="cpp-fiel">
-													<input name="new1_password" id="re-password" placeholder="Nhập lại mật khẩu mới" type="password"
-													pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}" 
+													<input name="new1_password" id="re-password" placeholder="Nhập lại mật khẩu mới" type="password" autocomplete="off"
+													pattern="(?=.{6,}" 
 													oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự, có ít nhất một chữ hoa, và có ít nhất một chữ thường')"
 													onkeyup='check();'>
 													<i class="fa fa-lock"></i>

@@ -5,44 +5,46 @@ const cloudinary = require('../middleware/cloudinary');
 const path = require("path");
 const date = require('date-and-time');
 const accessTokenSecret = process.env.accessTokenSecret;
-
+const arr_image = [];
+const allowedExt = /png|jpeg|jpg|gif/;
 class CreateBlog {
  get_Blog(req, res) {
         res.render('create_blog');
     }
     async BLogPost(req, res) {
-
-        if (!req.files || Object.keys(req.files).length === 0) {
-            res.status(400).send(
-                'No file uploaded'
-            );
-        }
-        else {
-            const now = new Date();
-            const time_post = date.format(now, 'HH:mm DD/MM/YYYY');
+           const backgr = 'https://res.cloudinary.com/share-love/image/upload/c_scale,w_1349/v1607431222/blogs/bg_wfpasx.jpg';
+           const option_image = {
+            folder: 'blogs', 
+           transformation: [
+           {
+            width: 1349, crop: "scale"},
+           {quality: "100"}
+         ]
+      }
             const token = req.cookies.token;
             const userID = jwt.verify(token, accessTokenSecret);
-            var image = req.files.image;
-
-            const extension = path.extname(image.name);
-            const allowedExt = /png|jpeg|jpg|gif/;
-            if (!allowedExt.test(extension)) throw "Tiện ích mở rộng không được hỗ trợ";
-            const result = await cloudinary.uploader.upload(image.tempFilePath, { folder: 'image', use_filename: true })
-
+            if (req.files !== undefined && req.files !== null) {
+                var image = req.files.image;
+                if (!allowedExt.test(image.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
+                else {
+                  const result = await cloudinary.uploader.upload(image.tempFilePath, option_image)
+                  arr_image.push(result.secure_url);
+                }
+              }
+            else {
+                arr_image.push(backgr);
+            }                    
             const blog = new blogs({
                 author: userID.id,
                 catalog: req.body.catalog,
-
                 title: req.body.title,
                 short_description: req.body.subtitle,
-
                 ID_image: {
-                    multiple_image: result.public_id,
-                    image_url: result.secure_url,
+                    //multiple_image: result.public_id,
+                    image_url: arr_image[0],
                 },
                 content: req.body.content,
             })
-
             await blog.save()
                 .then(() => {
                     console.log("lưu thành công");
@@ -52,9 +54,8 @@ class CreateBlog {
                     console.log(error);
 
                 })
+}
 
-        }
-    }
 loadBlog(req, res) {
 
         blogs.aggregate([
@@ -89,10 +90,6 @@ loadBlog(req, res) {
                 res.render('blog', { blogs: blogs})
             }
         })
-
-
-
-
-    }
+   }
 }
 module.exports = new CreateBlog();

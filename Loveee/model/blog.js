@@ -12,7 +12,7 @@ const blog = new Schema({
     title: {type: String},
     short_description:{type: String},
     content: {type: String},
-    timeCreate: {type: Date, default: Date.now()}  
+    timeCreate: {type: String}  
     
 });
 

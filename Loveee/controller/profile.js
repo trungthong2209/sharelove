@@ -78,6 +78,7 @@ const accessTokenSecret = process.env.accessTokenSecret;
                 ]).exec((err, alldonate) => {
                     if (err) return console.log(err)
                     else {
+
                         donate.aggregate([
                             {
                                 $match: { 'userID': ObjectId(user._id) }
@@ -96,10 +97,12 @@ const accessTokenSecret = process.env.accessTokenSecret;
                         ]).exec((err, total) => {
                             if (err) return console.log(err)
                             else {
-                                console.log(total[0].total)
                                 var newDate = moment(user.Dob).utc().format("DD/MM/YYYY")
-
-                                res.render('profile',{ infevents, user, alldonate, total, newDate })
+                               
+                                    res.render('profile',{ infevents, user, alldonate, total, newDate })
+                                
+                              
+                               
                             }
                         })
                     }

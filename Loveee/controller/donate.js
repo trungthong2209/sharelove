@@ -91,5 +91,9 @@ paypal.payment.execute(paymentId, execute_payment_json, function (error, payment
             res.redirect('/home');
         }
     });
+    
 }
-module.exports = { Donate, Success }
+function cancel(req, res) {
+    res.json("Ủng hộ sắp thành công");
+}
+module.exports = { Donate, Success, cancel }
