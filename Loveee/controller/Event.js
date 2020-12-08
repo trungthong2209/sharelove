@@ -7,23 +7,22 @@ const date = require('date-and-time');
 const request = require('request');
 const arr_image = [];//array image URL
 const id_image = []; //array image ID
+const allowedExt = /png|jpeg|jpg|gif/;
+const now = new Date();
 class CreateEvent {
   async EventPost(req, res) {
     if (!req.files || Object.keys(req.files).length === 0) {
       res.status(400).send('No file uploaded');
     }
     else {
-      const now = new Date();
+     
       const time_post = date.format(now, 'HH:mm DD/MM/YYYY');
       const token = req.cookies.token;
       const userID = jwt.verify(token, accessTokenSecret);
-
       var image = req.files.image;
       var image2 = req.files.image2;
       var image3 = req.files.image3;
-
-      const allowedExt = /png|jpeg|jpg|gif/;
-      
+        
       if (image != undefined) {
         if (!allowedExt.test(image.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
         else {
@@ -41,12 +40,12 @@ class CreateEvent {
         }
       }
       if (image3 != undefined) {
-        if (!allowedExt.test(image3.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
-        else {
+        //if (!allowedExt.test(image3.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
+       // else {
           const result3 = await cloudinary.uploader.upload(image3.tempFilePath, { folder: 'image', use_filename: true })
           arr_image.push(result3.secure_url);
           id_image.push(result3.public_id)
-        }
+        //}
       }
       const address_1 = req.body.wards + " " + req.body.district + " " + req.body.city + " Việt Nam";
 

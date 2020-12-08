@@ -63,26 +63,36 @@ function userLeave(id) {
         return users.splice(index, 1)[0];
     }
 }
-  function Save_message(req, res, next) {
-    var room = req.params.room;
-    const token = req.cookies.token;
-    const userID = jwt.verify(token, accessTokenSecret);
+//   function Save_message(req, res, next) {
+//     var room = req.params.room;
+//     const token = req.cookies.token;
+//     const userID = jwt.verify(token, accessTokenSecret);
 
+//     var message = new chatMessage({
+//         post_id: room,
+//         authorUsername: userID.id,
+//         message: req.body.msg,
+//     })
+//      message.save()
+//         .then(value => {
+//             console.log("Save schema chatMessage success" + value)
+//             return res.status(200);
+//         })
+//         .catch(error => {
+//             console.log("Save schema chatMessage fail " + error);
+//             return res.status(500);
+//         })
+    
+// }
+async function Save_Mess(room, token, data) {
+ const userID = jwt.verify(token, accessTokenSecret);
     var message = new chatMessage({
         post_id: room,
         authorUsername: userID.id,
-        message: req.body.msg,
+        message: data,
     })
-     message.save()
-        .then(value => {
-            console.log("Save schema chatMessage success" + value)
-            return res.status(200);
-        })
-        .catch(error => {
-            console.log("Save schema chatMessage fail " + error);
-            return res.status(500);
-        })
-    
+   const results = await message.save()
+     return results;
 }
 function getRoomUsers(room) {
 
@@ -151,6 +161,7 @@ module.exports = {
     getRoomUsers,
     formatMessage,
     Update_UserJoin,
-    Save_message,
-    getImage
+    //Save_message,
+    getImage,
+    Save_Mess
 };

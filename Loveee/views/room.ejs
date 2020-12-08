@@ -182,7 +182,7 @@
        <div class="chat-messages"></div>
               </div>
               
-              <form id="chat-form" name="chat-form" action="/room/<%= room %>/store" method="POST">
+              <form id="chat-form" name="chat-form"  method="POST">
                 <div class="card-footer">
                     <div class="input-group">
                         
@@ -199,7 +199,7 @@
                         document.getElementById('send_btn').click()" 
             />
                         <div class="input-group-append">
-                          <button class="input-group-text send_btn" id="send_btn" type="submit" onClick= "getMess()" > Gửi </button>
+                          <button class="input-group-text send_btn" id="send_btn" type="button" onClick= "getMess()" > Gửi </button>
                           <button class="input-group-text send_btn" id="rs" type="reset" style="display: none;" > rs </button>
 
 
@@ -391,15 +391,13 @@ function getMess(){
   const msg = document.getElementById('msg').value;
   var form= document.getElementById('chat-form');
   var btnsub = document.getElementById('send_btn');
-  socket.emit("chatMessage", msg);
+  socket.emit("chatMessage", ({msg, room}));
   form.addEventListener('click', function submitForm (event) {
-    form.submit();
+    //form.submit();
   // Prevent the default form submission
    event.preventDefault()
-
    form.reset()
   })
-
 }
 function outputMessage(message){
     const div = document.createElement("div");

@@ -13,7 +13,8 @@ class load_event  {
                 },
                 {
                     $unwind: '$user_post'
-                }, {
+                }, 
+                {
                     $project: {
                         _id:1,
                         purpose: 1,

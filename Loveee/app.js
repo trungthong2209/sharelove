@@ -8,7 +8,7 @@ const dataDB = require('./model/db');
 const fileUpload = require('express-fileupload')
 const cookie = require('cookie');
 require('dotenv').config();
-const { userJoin, getCurrentUser, userLeave, getRoomUsers, formatMessage, getImage } = require("./controller/Room");
+const { Save_Mess ,userJoin, getCurrentUser, userLeave, getRoomUsers, formatMessage, getImage } = require("./controller/Room");
 
 //connect database
 dataDB.connect();
@@ -62,10 +62,19 @@ io.on("connection", function (socket) {
             });
         }
     });
-
-    socket.on("chatMessage", async (msg) => {
+//Save_Mess(room, token, data)
+    socket.on("chatMessage",  ({msg, room}) => {
+        var cookies = cookie.parse(socket.request.headers.cookie);
         const user = getCurrentUser(socket.id);
-         io.to(user.room).emit("message", formatMessage(user.username,   msg, user.image));
+        Save_Mess(room, cookies.token, msg)
+        .then((value)=>{
+            console.log(value);
+            io.to(user.room).emit("message", formatMessage(user.username,  msg, user.image));
+        })
+        .catch(error => {
+            console.log(error);
+         })
+         
     });
     socket.on("disconnect", () => {
         const user = userLeave(socket.id);
