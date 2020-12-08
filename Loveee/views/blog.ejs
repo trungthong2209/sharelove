@@ -18,7 +18,10 @@
   <div class="container">
     <div class="row">
       <% blogs.forEach(function(blog){ %>
-      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-md-2 mt-2">
+          <img src="https://photographer.com.vn/wp-content/uploads/2020/08/1596889696_Anh-avatar-dep-va-doc-dao-lam-hinh-dai-dien.jpg"  alt="Image" style="width: 100px; height: 100px; float: right;" />
+        </div>
+      <div class="col-lg-10 col-md-10 mx-auto">
         <div class="post-preview">
           <a href="#">
             <h2 class="post-title">
@@ -36,6 +39,7 @@
             tại <%= blog.timeCreate%></p>
         </div>
         <hr>
+        
         
         <!-- Pager -->
         

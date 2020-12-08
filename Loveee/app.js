@@ -112,7 +112,7 @@ app.use(fileUpload({
 global.image= null;
 app.use("*", async function (req, res, next)  {
     global.loggedIn = req.cookies.token;
-      if(loggedIn!=undefined && loggedIn!=null && image==null){
+      if(loggedIn!==undefined && loggedIn!==null && image===null){
         image = await getImage(loggedIn);
     }
      next()
