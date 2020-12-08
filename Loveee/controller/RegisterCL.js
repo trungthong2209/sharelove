@@ -25,7 +25,7 @@ class RegisCL {
                         login_name: req.body.login_name,
                         Numberphone: req.body.Numberphone,
                         password: req.body.psw,
-                        sex: sex,
+                        sex: req.body.sex,
                         imageUser: avatar[0],        
                 })
 

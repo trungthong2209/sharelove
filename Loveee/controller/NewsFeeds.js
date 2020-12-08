@@ -40,6 +40,7 @@ class loadNewFeeds {
                     address_City: 1,
                     address_District: 1,
                     address_Ward: 1,
+                    address_stress: 1,
                     time_post: 1,
                     email_posted: 1,
                     time: 1,

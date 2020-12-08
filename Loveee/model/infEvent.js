@@ -8,6 +8,7 @@ const infEvent = new Schema({
     address_City: { type: String },
     address_District: { type: String },
     address_Ward: { type: String },
+    address_stress:{ type: String },
     location: { 
         type: {
             type: String,

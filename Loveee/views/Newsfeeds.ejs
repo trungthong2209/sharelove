@@ -15,6 +15,7 @@
                           <img
                             src="<%=user.imageUser %>"
                             alt=""
+                    
                           />
                         </div>
                       </div>
@@ -106,7 +107,7 @@
       
                           <li>
                             <img src="images/icon9.png" alt="" /><span
-                              ><%= infevent.address_Ward %> <%= infevent.address_District %> <%= infevent.address_City %></span
+                              > <%= infevent.address_stress %>  <%= infevent.address_Ward %>  <%= infevent.address_District %> <%= infevent.address_City %></span
                             >
                           </li>
                         </ul>
@@ -123,7 +124,7 @@
                           <%= infevent.description%>
                          
                         </p>
-                        <div id="carouselId" class="carousel slide" data-interval="false" style="width:659px; height:437px;">
+                        <div id="carouselId" class="carousel slide" data-interval="false">
                           <ol class="carousel-indicators">
                             <li data-target="#carouselId" data-slide-to="0" class="active"></li>
                             <li data-target="#carouselId" data-slide-to="1"></li>
@@ -207,7 +208,6 @@
                     </div>
                     <!--sd-title end-->
                     <% top_event.forEach(function(event){ %>
-                    
                     <div class="suggestions-list">
                       <div class="suggestion-item">
                         <img src="<%= event.imageUser%>" width="35px" height="" alt="" />
@@ -218,47 +218,41 @@
                         <span><i class="la la-plus"></i></span>
                       </div>
                       <% }) %>
-                     
-                      
-                      
                       <div class="view-more">
                         <a href="List_event" title="">Xem thêm</a>
                       </div>
                     </div>
                     <!--suggestions-list end-->
-                  </div>
-
-
-                  <div class="widget suggestions full-width">
+                  </div>           
+                </div>
+                <div class="widget suggestions full-width">
                    
-                    <div class="sd-title">
-                      <h3>Top Người ủng hộ</h3>
-                      <i class="la la-ellipsis-v"></i>
-                    </div>
-                    <!--sd-title end-->
-                    <div class="suggestions-list">
-                      <% topdonates.forEach(function(topdonate){ %>
-                      <div class="suggestion-item">
-                        <img src="<%= topdonate.url_author %>" width="35" height="35px" alt="" />
-                        <div class="sgt-text">
-                          <h4><%= topdonate.author_name %></h4>
-                          <span class="vnd"><%= topdonate.total %></span>
-                        </div>
-                        <span><i class="la la-plus"></i></span>
-                        <% }) %>
-                      </div>
-                   
-                     
-                      
-                      
-                      
-                      <div class="view-more">
-                        <a href="Top-donate" title="">Xem thêm</a>
-                      </div>
-                    </div>
-                    <!--suggestions-list end-->
+                  <div class="sd-title">
+                    <h3>Top Người ủng hộ</h3>
+                    <i class="la la-ellipsis-v"></i>
                   </div>
-                  
+                  <!--sd-title end-->
+                  <div class="suggestions-list">
+                    <% topdonates.forEach(function(topdonate){ %>
+                    <div class="suggestion-item">
+                      <img src="<%= topdonate.url_author %>" width="35" height="35px" alt="" />
+                      <div class="sgt-text">
+                        <h4><%= topdonate.author_name %></h4>
+                        <span class="vnd"><%= topdonate.total %></span>
+                      </div>
+                      <span><i class="la la-plus"></i></span>
+                      <% }) %>
+                    </div>
+                 
+                   
+                    
+                    
+                    
+                    <div class="view-more">
+                      <a href="Top-donate" title="">Xem thêm</a>
+                    </div>
+                  </div>
+                  <!--suggestions-list end-->
                 </div>
                 
                 <!--right-sidebar end-->
@@ -281,7 +275,7 @@
               <div class="col-lg-12">
                 <div class="inp-field">
                   <select id="city" name="city">
-                    <option value="000">-Chọn thành phố-</option>
+                    <option value="Đà Nẵng">-Chọn thành phố-</option>
                   </select>
                 </div>
       </div>
@@ -289,13 +283,13 @@
         <div class="price-sec">
           <div class="price-br">
             <select id="district" name="district">
-              <option value="000">-Chọn huyện-</option>
+              <option value="Thanh Khê">-Chọn huyện-</option>
             </select>
           </div>
           <span> </span>
           <div class="price-br">
             <select id="wards" name="wards">
-              <option value="000">-Chọn phường/xã-</option>
+              <option value="Thạc Gián">-Chọn phường/xã-</option>
             </select>
           </div>
         </div>
@@ -315,7 +309,7 @@
                   </div>
         </div>
                       <div class="col-lg-12">
-                <input type="text" name="add" id="add" placeholder="Số nhà, tên đường" />
+                <input type="text" name="stress" id="add" placeholder="Số nhà, tên đường" />
               </div>
               <div class="col-lg-12">
                 <textarea
@@ -336,7 +330,6 @@
             </div>
           </div>
           </div>
-
           <div class="col-lg-4">
             <div class="form-input">
               <label for="file-ip-2"></i>Hình ảnh 2</label>
@@ -346,7 +339,6 @@
               </div>
             </div>
           </div>
-
           <div class="col-lg-4">
             <div class="form-input">
               <label for="file-ip-3"></i>Hình ảnh 3</label>
@@ -356,11 +348,6 @@
               </div>
             </div>
           </div>
-          
-          
-          
-          
-                
         </div>
         </div>
               <div class="col-lg-12">
@@ -384,8 +371,7 @@
       <!--post- event end-->
     </div>
     <!--post- event-popup end-->
-    
-    <!-- Modal -->
+   <!-- Modal -->
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
@@ -395,18 +381,19 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <label for="firstName">Số tiền ủng hộ</label>
-        <input type="type" id="money" class="form-control" placeholder="số tiền ủng hộ" required="" autofocus="">
-      </div>
-      <div class="modal-footer">
+      <form action="/donate" method="POST">
+        <div class="modal-body">
+          <label for="firstName">Số tiền ủng hộ</label>
+          <input type="type" name="money" id="money" class="form-control" placeholder="số tiền ủng hộ" required="" autofocus="">
+        </div>
+           <div class="modal-footer">
         <button type="button" class="btn btnlog" data-dismiss="modal">Thoát</button>
-        <button type="button" class="btn btnlog">Đồng ý</button>
+        <button type="submit" class="btn btnlog">Đồng ý</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
-
     <!-- Footer -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/address.js"></script>

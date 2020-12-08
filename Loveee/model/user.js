@@ -16,7 +16,7 @@ const User = new Schema({
     email: {type: String, 
       lowercase: true,
       index: true},
-    sex:{Type: String},
+    sex:{type: String},
     Dob: {type: Date},
     Numberphone: {type: String},
     reset_link: {type: String},

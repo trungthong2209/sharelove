@@ -78,7 +78,7 @@ async GetresetPassword(req, res, next){
 
 async PostresetPassword(req, res, next){
     var resetPasswordToken = req.params.token;
-    var new_password = req.body.newpassword;
+    var new_password = req.body.re_password;
    
     await User.findOne({reset_link: resetPasswordToken}, (error, user) => { 
        if (user) { 
@@ -89,20 +89,17 @@ async PostresetPassword(req, res, next){
                 return res.status(400).json({error:" Error save new password"});
             }
             else{
-                user.updateOne({reset_link: ""}, function(err, success){
+                user.updateOne({ $unset: { reset_link: ""}}, function(err, success){
                     if(err){
-                        return res.status(400).json({error:" Error save reset link password:"+err});
+                        return res.status(400).json({error:" Error save reset link password:"+err });
                     }
                     else{
                     res.redirect('/');
                  }
-              
-         })
-
+                })
         }
     });
 }) 
-
 }   else { 
              res.json({
                  "status": "error",
