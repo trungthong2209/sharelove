@@ -33,11 +33,7 @@ class SearchController {
                 }
             }).lean();
         } else {
-            res.status(400).json({
-            
-                message: "user is not correct."
-            });
-
+            res.status(400).json({ message: "user is not correct." });
         }
     }
 }
