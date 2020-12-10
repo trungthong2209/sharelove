@@ -18,10 +18,10 @@
   <div class="container">
     <div class="row">
       <% blogs.forEach(function(blog){ %>
-        <div class="col-md-2 mt-2">
-          <img src="https://photographer.com.vn/wp-content/uploads/2020/08/1596889696_Anh-avatar-dep-va-doc-dao-lam-hinh-dai-dien.jpg"  alt="Image" style="width: 100px; height: 100px; float: right;" />
+        <div class="col-md-3 mt-3">
+          <img src="<%= blog.Image_URL %>"  alt="Image" style="width: 200px; height: 200px; float: right; margin-bottom: 30px;" />
         </div>
-      <div class="col-lg-10 col-md-10 mx-auto">
+      <div class="col-lg-9 col-md-9 mx-auto" style="width: 200px; height: 200px; padding-top: 40px;">
         <div class="post-preview">
           <a href="#">
             <h2 class="post-title">
