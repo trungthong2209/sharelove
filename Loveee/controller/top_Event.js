@@ -1,4 +1,3 @@
-
 const event = require('../model/infEvent');
 class load_event  {
     async Top_event(req, res, next) {
@@ -37,7 +36,7 @@ class load_event  {
                     $sort: { Joined_er: -1 }
                 },
         ]).exec((err, events) => {
-            if (err) return console.log(err)
+            if (err) return  res.status(400).json({ error: err })
             else {
                res.render('List_event', {events});
             }

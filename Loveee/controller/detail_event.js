@@ -1,30 +1,22 @@
 const infEvent = require('../model/infEvent');
-var ObjectId = require('mongodb').ObjectID;
-
-function detail_event(req, res, next){
-    var id = req.params.id;
-
-    infEvent.aggregate([
+const ObjectId = require('mongodb').ObjectID;
+function detail_event(req, res, next) {
+      infEvent.aggregate([
         {
-            $match: {'_id': ObjectId(id)}
-        },
-        {
-            
+            $match: { '_id': ObjectId(req.userId) }
+        }, {
             $lookup: {
                 from: 'users',
                 localField: 'email_posted',
                 foreignField: '_id',
                 as: 'user_post'
             }
-        },
-    
-        {
+        }, {
             $unwind: '$user_post',
-    
-        },
-        {
+
+        }, {
             $project: {
-                _id:1,
+                _id: 1,
                 purpose: 1,
                 address_City: 1,
                 address_District: 1,
@@ -40,16 +32,13 @@ function detail_event(req, res, next){
                 imageUser: "$user_post.imageUser",
                 Joined_er: { $cond: { if: { $isArray: "$user_joinEvent" }, then: { $size: "$user_joinEvent" }, else: 0 } }
             }
-        },
-        {
+        },{
             $limit: 1
-        }
+        } 
     ]).exec((err, event) => {
-        if (err) return console.log(err)
-        else {
-            res.json(event);
-           // res.render('info_event', {event :event })
-            
+        if (err) return res.status(400).send('Error'+ err)
+        else { res.json(event);
+            // res.render('info_event', {event :event })
         }
     })
 }

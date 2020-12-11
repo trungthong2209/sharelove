@@ -1,10 +1,8 @@
 const paypal = require('../middleware/paypal')
 const donate = require('../model/donate');
-
 const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
 const money = [];
-
 async function Donate(req, res, next) {
     const total = req.body.money;
     const token = req.cookies.token;
@@ -14,9 +12,7 @@ async function Donate(req, res, next) {
         const userID = jwt.verify(token, accessTokenSecret);
         money.push(userID.id);
     }
-    console.log(money)
-
-    var create_payment_json = {
+   const create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
@@ -48,18 +44,15 @@ async function Donate(req, res, next) {
         } else {
             for (let i = 0; i < payment.links.length; i++) {
                 if (payment.links[i].rel === 'approval_url') {
-                    console.log(payment.links[i].href)
                     res.redirect(payment.links[i].href);
                 }
             }
         }
     });
- 
 }
 function Success(req, res, next) {
     const payerId = req.query.PayerID;
     const paymentId = req.query.paymentId;
-
     const execute_payment_json = {
         "payer_id": payerId,
         "transactions": [{
@@ -68,23 +61,22 @@ function Success(req, res, next) {
                 "total": money[0]
             }
         }]
-    };
+};
 paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
         if (error) {
-            console.log(error.response);
-            throw error;
+            res.status(400).send('Error'+ error)
+               throw error;
         } else {
             if (money[1] != undefined || money[1] != null) {
-                var done = new donate({
+                const done = new donate({
                     userID: money[1],
                     money: money[0],
                 })
                 done.save()
-                    .then(() => {
-                        console.log("Save schema donate success")
+                    .then(() => { console.log("Save schema donate success")
                     })
                     .catch(error => {
-                        console.log("save fail " + error);
+                        res.status(400).send('Error'+ error)
                     })
             }
             money.length = 0;

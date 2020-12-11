@@ -7,21 +7,19 @@ const jwt = require("jsonwebtoken");
 const accessTokenSecret = process.env.accessTokenSecret;
 
 class loadNewFeeds {
-
     async newsFeed(req, res, next) {
        const token = req.cookies.token;
-      
-        function getImageUser() {
+         function getImageUser() {
             if(token!=undefined){
             const userID = jwt.verify(token, accessTokenSecret);
             return User.findById(userID.id)
-                .then(user => user);
+                   .then(user => user);
             }
             else {
                 return 'user';
             }
-        }
-        const user_url = await getImageUser();
+     }
+         const user = await getImageUser();
         await infEvent.aggregate([
             {
                 $lookup: {
@@ -50,6 +48,7 @@ class loadNewFeeds {
                     Image_URL2: '$ID_image2.image_url',
                     Image_URL3: '$ID_image3.image_url',
                     user_name: "$user_post.fullname",
+                    role: "$user_post.Role",
                     imageUser: "$user_post.imageUser",
                     Joined_er: { $cond: { if: { $isArray: "$user_joinEvent" }, then: { $size: "$user_joinEvent" }, else: 0 } }
                 }
@@ -69,7 +68,6 @@ class loadNewFeeds {
                             as: 'User'
                         }
                     },
-
                     {
                         $unwind: '$User',
 
@@ -85,7 +83,6 @@ class loadNewFeeds {
                                 }
                             },
                         }
-
                     },
                     {
                         $sort: { total: -1 }
@@ -93,11 +90,9 @@ class loadNewFeeds {
                     {
                         $limit: 3
                     }
-
                 ]).exec((err, donate) => {
                     if (err) return console.log(err)
-                    else {
-                                             
+                    else {                                          
                     infEvent.aggregate([
                             {
                                 $lookup: {
@@ -127,17 +122,13 @@ class loadNewFeeds {
                     ]).exec((err, top_event) => {
                         if (err) return console.log(err)
                         else {
-                            res.render('Newsfeeds', { infevents: infevents, user: user_url, topdonates: donate, top_event: top_event})
+                            res.render('Newsfeeds', { infevents: infevents, user: user, topdonates: donate, top_event: top_event})
                         }
                     })
                     }
                 })
-
-
-
             }
         })
-    }
-    
+    } 
 }
 module.exports = new loadNewFeeds();

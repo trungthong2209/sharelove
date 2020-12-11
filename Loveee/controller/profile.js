@@ -2,25 +2,21 @@ const infEvent = require('../model/infEvent');
 const User = require('../model/user');
 const donate = require('../model/donate');
 var ObjectId = require('mongodb').ObjectID;
-const jwt = require("jsonwebtoken");
 const moment = require("moment");
+async function newProfile(req, res, next) {
 
-const accessTokenSecret = process.env.accessTokenSecret;
-
-    async function newProfile(req, res, next) {
-        const token = req.cookies.token;
+       if(req.userId===undefined) throw 'Chua dang nhap'
 
         function getUser() {
-            const userID = jwt.verify(token, accessTokenSecret);
-            return User.findById(userID.id)
+              return User.findById(req.userId)
                 .then(user => user);
-        }
+        }      
 
-        
         const user = await getUser();
+
         await infEvent.aggregate([
             {
-                $match: { 'email_posted': ObjectId(user._id) }
+                $match: { 'email_posted': ObjectId(req.userId) }
             },
             {
                 $lookup: {
@@ -54,34 +50,28 @@ const accessTokenSecret = process.env.accessTokenSecret;
                 $sort: { _id: -1 }
             },
         ]).exec((err, infevents) => {
-            if (err) return console.log(err)
+            if (err) return res.status(400).send(err)
             else {
                 donate.aggregate([
                     {
-                        $match: { 'userID': ObjectId(user._id) }
+                        $match: { 'userID': ObjectId(req.userId) }
                     },
-
-
                     {
                         $project: {
                             _id: "$userID",
                             money: 1.,
                             timeDonate: 1,
                         }
-
                     },
                     {
                         $sort: { total: -1 }
-                    },
-
-
+                   },
                 ]).exec((err, alldonate) => {
                     if (err) return console.log(err)
                     else {
-
-                        donate.aggregate([
+                       donate.aggregate([
                             {
-                                $match: { 'userID': ObjectId(user._id) }
+                                $match: { 'userID': ObjectId(req.userId) }
                             },
                             {
                                 $group: {
@@ -95,24 +85,15 @@ const accessTokenSecret = process.env.accessTokenSecret;
 
                             }
                         ]).exec((err, total) => {
-                            if (err) return console.log(err)
+                            if (err) return res.status(400).send(err)
                             else {
-                                var newDate = moment(user.Dob).utc().format("DD/MM/YYYY")
-                               
-                                    res.render('profile',{ infevents, user, alldonate, total, newDate })
-                                
-                              
-                               
+                                var newDate = moment(user.Dob).utc().format("DD/MM/YYYY")                             
+                                res.render('profile',{ infevents, user, alldonate, total, newDate })                                                  
                             }
                         })
                     }
                 })
-
-
-
             }
         })
     }
-
-
 module.exports = newProfile ;

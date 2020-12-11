@@ -53,6 +53,7 @@
                             >Thêm sự kiện mới</a
                           >
                         </li>
+                      
                         <li>
                           <a class="post-jb active" href="create_blog" title=""
                             >Thêm bài viết mới</a
@@ -94,8 +95,7 @@
                             <% } else { %>
                               <li><a href="#" title="">Tham gia</a></li>
                               <li><a href="delete/<%=infevent._id%>" title="">Ủng hộ</a></li>
-                            <% } %>
-                                                  
+                            <% } %>                                                 
                           <% } else { %> 
                             <li><a href="#" title="">Bạn cần phải đăng nhập</a></li>
                           <% } %>
@@ -107,7 +107,7 @@
       
                           <li>
                             <img src="images/icon9.png" alt="" /><span
-                              > <%= infevent.address_stress %>  <%= infevent.address_Ward %>  <%= infevent.address_District %> <%= infevent.address_City %></span
+                              > <%= infevent.address_stress %> - <%= infevent.address_Ward %> - <%= infevent.address_District %> - <%= infevent.address_City %></span
                             >
                           </li>
                         </ul>
@@ -156,26 +156,27 @@
 
                       </div>
                       <div class="event-status-bar">
-                        <% if(loggedIn != null && loggedIn.trim() != '') { %>
+                        <% if(loggedIn != null && loggedIn.trim() != '' && loggedIn!= undefined ) { %>
                           <ul class="like-com">
                             <li>
                               <a class=" btn " type="button"  href="room/<%=infevent._id%>"><i class="fa fa-plus-circle"></i></i> Tham gia</a>
                             </li>
+                            <% if(infevent.role === 'gold_User' || infevent.role === 'ADMIN')  { %>     
                             <li>
-                              <button class="btn 7" data-toggle="modal" data-target="#exampleModalScrollable"><i class="fa fa-usd"></i></i> Ủng hộ</button>
-                              
+                              <button class="btn 7" data-toggle="modal" data-target="#exampleModalScrollable"><i class="fa fa-usd"></i></i> Ủng hộ</button>                      
                             </li>
+                           <% } %>
                           </ul>
                         <% } else{ %>
                           <ul class="like-com">
                             <li>
                               <button data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" class=" btn " href="#"><i class="fa fa-plus-circle"></i></i> Tham gia</button>
                             </li>
+                            <% if(infevent.role === 'gold_User' || infevent.role === 'ADMIN')  { %>  
                             <li>
-                              <button data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" class="btn 7" href="#"><i class="fa fa-usd"></i></i> Ủng hộ</button>
-                            </li>
+                              <button class="btn 7" data-toggle="modal" data-target="#exampleModalScrollable"><i class="fa fa-usd"></i></i> Ủng hộ</button></li>
                           </ul>
-                          
+                              <% } %>
                         <% } %>
                         
                        

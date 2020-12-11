@@ -1,8 +1,6 @@
 
 const donate = require('../model/donate');
-
-
-class load_topUser  {
+class load_topUser {
     async topUser(req, res, next) {
         donate.aggregate([
             {
@@ -13,11 +11,7 @@ class load_topUser  {
                     as: 'User'
                 }
             },
-
-            {
-                $unwind: '$User',
-
-            },
+            { $unwind: '$User' },
             {
                 $group: {
                     _id: "$userID",
@@ -29,12 +23,10 @@ class load_topUser  {
                         }
                     },
                 }
-
             },
             {
                 $sort: { total: -1 }
             },
-           
         ]).exec((err, donate) => {
             if (err) return console.log(err)
             else {

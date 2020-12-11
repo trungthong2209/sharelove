@@ -4,8 +4,9 @@ const User = require('../model/user');
 const events = require('../model/infEvent');
 const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
-var ObjectId = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectID;
 const users = [];
+
 async function getname(token) {
     const userID = jwt.verify(token, accessTokenSecret);
     return User.findById(userID.id)
@@ -21,32 +22,26 @@ async function getID(token) {
     return User.findById(userID.id)
         .then(user => user.id);
 }
-
 async function userJoin(id, token, room) {
     let username = await getname(token);
     let ID_user = await getID(token);
     let image = await getImage(token);
-
     const user = { id, username, room, ID_user, image };
     if (users.length == 0) {
-        users.push(user);
+        users.push(user)
     }
     else {
-        var pos = users.map(function (e) {
-            return e.ID_user;
-        }).indexOf(ID_user);
-
+        const pos = users.map(function (e) { return e.ID_user }).indexOf(ID_user);
         if (pos == -1) {
             users.push(user);
         }
-        else {
-            return 1;
+        else { 
+            return 1 
         }
     }
     return user;
 }
 function formatMessage(username, text, image) {
-
     return {
         username,
         text,
@@ -63,30 +58,9 @@ function userLeave(id) {
         return users.splice(index, 1)[0];
     }
 }
-//   function Save_message(req, res, next) {
-//     var room = req.params.room;
-//     const token = req.cookies.token;
-//     const userID = jwt.verify(token, accessTokenSecret);
-
-//     var message = new chatMessage({
-//         post_id: room,
-//         authorUsername: userID.id,
-//         message: req.body.msg,
-//     })
-//      message.save()
-//         .then(value => {
-//             console.log("Save schema chatMessage success" + value)
-//             return res.status(200);
-//         })
-//         .catch(error => {
-//             console.log("Save schema chatMessage fail " + error);
-//             return res.status(500);
-//         })
-    
-// }
 async function Save_Mess(room, token, data) {
  const userID = jwt.verify(token, accessTokenSecret);
-    var message = new chatMessage({
+    const message = new chatMessage({
         post_id: room,
         authorUsername: userID.id,
         message: data,
@@ -95,12 +69,10 @@ async function Save_Mess(room, token, data) {
      return results;
 }
 function getRoomUsers(room) {
-
     return users.filter(user => user.room === room);
 }
-
  function Update_UserJoin(req, res, next) {
-    var room = req.params.room;
+    const room = req.params.room;
     const token = req.cookies.token;
     const userID = jwt.verify(token, accessTokenSecret);
      events.findById(room)
@@ -134,25 +106,15 @@ function getRoomUsers(room) {
                             }
                         },
                     ]).exec((err, chats) => {
-                        if (err)
-                            return console.log(err);
+                        if (err) return console.log(err);
                         else {
                             res.render('room', { room: room, chats: chats, title: event.purpose });
                         }
                     });
                 })
-                .catch((error) => {
-                    console.log((error));
-                    return res.status(500)
-                })
+                .catch((error) => {return res.status(500).send(error) })
             })
-            .catch((error) => {
-                res.status(404).json({
-                    message: "Không tìm thấy phòng"
-                });
-            })
-                    
-
+            .catch(() => { res.status(404).json({ message: "Không tìm thấy phòng" })  })                  
 }
 module.exports = {
     userJoin,
@@ -161,7 +123,6 @@ module.exports = {
     getRoomUsers,
     formatMessage,
     Update_UserJoin,
-    //Save_message,
     getImage,
     Save_Mess
 };

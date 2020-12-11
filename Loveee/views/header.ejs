@@ -133,7 +133,7 @@
                 <form action="/logout" method="GET">
                   <div class="user-account">
                     <div class="user-info">
-                      <img src="<%=image%>" width="35" height="35" alt="">
+                      <img src="<%=image%>" id='avatar_header' width="35" height="35" alt="">
                             <i class="la la-sort-down"></i>
                     </div>
                     <div class="user-account-settingss">
@@ -151,6 +151,14 @@
         </nav>
       </header>
       <!--header end--> 
-      <script>
-      </script>
+      <script>   
+      // fetch('/api/imageUser')
+      // .then(data=>{
+      //   data.json()
+      //   .then((res)=>{
+      //     document.getElementById('avatar_header').src  = res.data;
+      //     console.log(res.data)
+      //   })
+      // })
+        </script>
     </div>

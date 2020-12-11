@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const geocoder = require('../middleware/geocoder')
-const request = require('request');
+const date = require('date-and-time');
 const Schema = mongoose.Schema;
 
 const infEvent = new Schema({
@@ -8,8 +7,8 @@ const infEvent = new Schema({
     address_City: { type: String },
     address_District: { type: String },
     address_Ward: { type: String },
-    address_stress:{ type: String },
-    location: { 
+    address_stress: { type: String },
+    location: {
         type: {
             type: String,
             enum: ["Point"],
@@ -40,5 +39,12 @@ const infEvent = new Schema({
     email_posted: { type: mongoose.Schema.ObjectId, ref: 'users' },
 });
 
+infEvent.pre('save', function (next) {
+    const now = new Date();
+    this.time_post = date.format(now, 'HH:mm DD/MM/YYYY');
+    next()
+})
+
 infEvent.index({ '$**': 'text' });
+
 module.exports = mongoose.model('infEvent', infEvent)
