@@ -7,13 +7,13 @@ const avatar = [];
 
 class Setting {
         async GetPage(req, res, next) {
-           User.findById(req.userId)
-                  .then((user) => {
+                User.findById(req.userId)
+                        .then((user) => {
                                 var newDate = moment(user.Dob).utc().format("YYYY-MM-DD")
                                 res.render('setting', { user: user, Dob: newDate })
                         })
-                        .catch(error => {  res.status(400).json({ error:  error}); })
-        }  
+                        .catch(error => { res.status(400).json({ error: error }); })
+        }
         async Store(req, res, next) {
                 const option_image = {
                         folder: 'avatar',
@@ -42,9 +42,9 @@ class Setting {
                         .then(() => {
                                 image = avatar[0];
                                 avatar.length = 0;
-                                res.redirect('/setting');                              
-                         })
-                        .catch((err) => { res.status(400).json({ error:  err}) })
+                                res.redirect('/setting');
+                        })
+                        .catch((err) => { res.status(400).json({ error: err }) })
         }
         async ChangePassword(req, res, next) {
                 const old_pass = req.body.old_password
@@ -59,9 +59,9 @@ class Setting {
                                         if (same) {
                                                 user.UpdatePassword(newpass)
                                                         .then(() => { res.redirect('/setting') })
-                                                        .catch((err) => { res.status(400).json({ error:  err}) })
+                                                        .catch((err) => { res.status(400).json({ error: err }) })
                                         }
-                                          else { res.status(400).json({ message: "Mật khẩu cũ không chính xác" }) }
+                                        else { res.status(400).json({ message: "Mật khẩu cũ không chính xác" }) }
                                 }
                                 else { res.satatus(404).json({ message: "Không tìm thấy người dùng" }); }
                         })

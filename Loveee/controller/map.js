@@ -4,7 +4,7 @@ async function getMap(req, res, next) {
   }
 async function getAddress(req, res, next) {
   try {
-    const stores = await infEvent.find();
+    const stores = await infEvent.find().sort( { "_id" : -1 } );
     return res.status(200).json({
       success: true,
       count: stores.length,

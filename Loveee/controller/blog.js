@@ -12,13 +12,13 @@ class CreateBlog {
         const option_image = {
             folder: 'blogs',
             transformation: 
-            [
-                {
-                    width: 1349,
-                    crop: "scale"
+            [{
+               width: 1349,
+              crop: "scale"
                 },
-                { quality: "100" }
-            ]
+            { 
+             quality: "100" 
+            }]
         }
       if(req.userId===undefined || req.userId===null ) throw 'Chua dang nhap'
         if (req.files !== undefined && req.files !== null) {
@@ -47,7 +47,6 @@ class CreateBlog {
         await blog.save()
             .then(() => {
                 arr_image.length = 0;
-                console.log("lưu thành công");
                 res.redirect('/blog')
             })
             .catch(error => {

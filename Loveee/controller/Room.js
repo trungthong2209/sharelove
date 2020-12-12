@@ -4,28 +4,17 @@ const User = require('../model/user');
 const events = require('../model/infEvent');
 const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
-const ObjectId = require('mongodb').ObjectID;
 const users = [];
-
-async function getname(token) {
-    const userID = jwt.verify(token, accessTokenSecret);
-    return User.findById(userID.id)
-        .then(user => user.fullname);
-}
 async function getImage(token) {
     const userID = jwt.verify(token, accessTokenSecret);
     return User.findById(userID.id)
         .then(user => user.imageUser);
 }
-async function getID(token) {
-    const userID = jwt.verify(token, accessTokenSecret);
-    return User.findById(userID.id)
-        .then(user => user.id);
-}
 async function userJoin(id, token, room) {
-    let username = await getname(token);
-    let ID_user = await getID(token);
-    let image = await getImage(token);
+    const userID = jwt.verify(token, accessTokenSecret).id
+    let username = await User.getName(userID);
+    let ID_user = await User.getID(userID);
+    let image = await User.getImage(userID);
     const user = { id, username, room, ID_user, image };
     if (users.length == 0) {
         users.push(user)
@@ -35,8 +24,8 @@ async function userJoin(id, token, room) {
         if (pos == -1) {
             users.push(user);
         }
-        else { 
-            return 1 
+        else {
+            return 1
         }
     }
     return user;
@@ -59,62 +48,32 @@ function userLeave(id) {
     }
 }
 async function Save_Mess(room, token, data) {
- const userID = jwt.verify(token, accessTokenSecret);
+    const userID = jwt.verify(token, accessTokenSecret);
     const message = new chatMessage({
         post_id: room,
         authorUsername: userID.id,
         message: data,
     })
-   const results = await message.save()
-     return results;
+    const results = await message.save()
+    return results;
 }
 function getRoomUsers(room) {
     return users.filter(user => user.room === room);
 }
- function Update_UserJoin(req, res, next) {
+function Update_UserJoin(req, res, next) {
     const room = req.params.room;
-    const token = req.cookies.token;
-    const userID = jwt.verify(token, accessTokenSecret);
-     events.findById(room)
-    .then( (event) => {
-         event.updateOne({ $addToSet: { user_joinEvent: userID.id } })
+    console.log(req.userId);
+    if(req.userId==undefined) return res.status(401).send('Unauthorized')
+    events.findById(room)
+        .then((event) => {
+            event.updateOne({ $addToSet: { user_joinEvent: req.userId } })
                 .then(async () => {
-                       await chatMessage.aggregate([
-                        {
-                            $match: { 'post_id': ObjectId(room) }
-                        },
-                        {
-                            $lookup: {
-                                from: 'users',
-                                localField: 'authorUsername',
-                                foreignField: '_id',
-                                as: 'messages'
-                            }
-                        },
-
-                        {
-                            $unwind: '$messages',
-                        },
-                        {
-                            $project: {
-                                _id: "$_id",
-                                Id_Event: "$messages.post_id",
-                                author_name: "$messages.fullname",
-                                author_url: "$messages.imageUser",
-                                timeSend: 1,
-                                message: 1
-                            }
-                        },
-                    ]).exec((err, chats) => {
-                        if (err) return console.log(err);
-                        else {
-                            res.render('room', { room: room, chats: chats, title: event.purpose });
-                        }
-                    });
-                })
-                .catch((error) => {return res.status(500).send(error) })
-            })
-            .catch(() => { res.status(404).json({ message: "Không tìm thấy phòng" })  })                  
+                   const chats = await chatMessage.getRoom(room)                
+                       res.render('room', { room: room, chats: chats, title: event.purpose });
+                 })
+                .catch((error) => { return res.status(500).send(error) })
+        })
+        .catch(() => { res.status(404).json({ message: "Không tìm thấy phòng" }) })
 }
 module.exports = {
     userJoin,

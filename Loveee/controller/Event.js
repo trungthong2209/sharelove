@@ -7,9 +7,8 @@ const allowedExt = /png|jpeg|jpg|gif/;
 
 class CreateEvent {
   async EventPost(req, res) {
-  //  if(req.role==='silver_User') throw 'Không có quyền đăng bài'
     if (!req.files || Object.keys(req.files).length === 0) {
-      res.status(400).send('No file uploaded');
+      return res.status(400).send('No file upload') 
     }
     else {
       const image = req.files.image;
@@ -20,7 +19,7 @@ class CreateEvent {
           transformation: [
           { width: 600, 
             crop: "scale" },
-          {quality: "auto" }
+          {  quality: "auto" }
         ]}
        if (image != undefined) {
         if (!allowedExt.test(image.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
@@ -60,8 +59,7 @@ class CreateEvent {
       //       arr_image.push(result_video.secure_url);
       //       id_image.push(result_video.public_id)
           
-      //   }
-     
+      //   }    
       const address_1 = req.body.wards + " " + req.body.district + " " + req.body.city + " Việt Nam";
       const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(address_1) + '.json?access_token=' + process.env.API_mapbox + '&limit=1';
       request({ url: url, json: true }, async function (error, response) {

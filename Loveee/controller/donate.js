@@ -1,41 +1,47 @@
 const paypal = require('../middleware/paypal')
-const donate = require('../model/donate');
-const accessTokenSecret = process.env.accessTokenSecret;
+const donates = require('../model/donate');
+const infEvent = require('../model/infEvent')
 const jwt = require("jsonwebtoken");
-const money = [];
+
+const accessTokenSecret = process.env.accessTokenSecret;
+var amount = null;
+var user = null;
+var idEvent = null;
 async function Donate(req, res, next) {
     const total = req.body.money;
     const token = req.cookies.token;
-    if (total < 0 || total == undefined) throw "Không ủng hộ được thì thôi";
-    money.push(total);
+   // const idEvent = req.query.event;
+      idEvent = '5fd337bd6c9f972d045ada38';
+   const checkRole = await infEvent.isValidRole(idEvent)
+    if (total < 0 || total === 0 ||total === undefined) return res.status(401).json("Không ủng hộ được thì thôi");
+    amount = total;
     if (token != undefined || token != null) {
-        const userID = jwt.verify(token, accessTokenSecret);
-        money.push(userID.id);
+        user  = jwt.verify(token, accessTokenSecret).id
     }
-   const create_payment_json = {
+     if(checkRole[0].role ==='silver_User') return res.status(401).json("Người đăng bài không có quyền ủng hộ")
+     var create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
         },
         "redirect_urls": {
             "return_url": "http://localhost:3000/success",
-            "cancel_url": "http://localhost:3000/cancel"
+            "cancel_url": "http://localhost:3000/home"
         },
         "transactions": [{
             "item_list": {
                 "items": [{
                     "name": "Donate",
                     "sku": "001",
-                    "price": money[0],
+                    "price": amount,
                     "currency": "USD",
                     "quantity": 1
                 }]
             },
             "amount": {
                 "currency": "USD",
-                "total": money[0]
+                "total": amount
             },
-
         }]
     };
     paypal.payment.create(create_payment_json, function (error, payment) {
@@ -58,34 +64,30 @@ function Success(req, res, next) {
         "transactions": [{
             "amount": {
                 "currency": "USD",
-                "total": money[0]
+                "total": amount
             }
         }]
-};
+    };
 paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
         if (error) {
-            res.status(400).send('Error'+ error)
-               throw error;
+            console.log(error.response);
+            throw error;
         } else {
-            if (money[1] != undefined || money[1] != null) {
-                const done = new donate({
-                    userID: money[1],
-                    money: money[0],
+       const donate = new donates({
+                    userID: user,
+                    money: amount,
+                    eventID: idEvent,
                 })
-                done.save()
-                    .then(() => { console.log("Save schema donate success")
+                donate.save()
+                    .then(() => {
+                        console.log("Save schema donate success")
                     })
                     .catch(error => {
-                        res.status(400).send('Error'+ error)
+                        console.log("save fail " + error);
                     })
-            }
-            money.length = 0;
+            
             res.redirect('/home');
         }
     });
-    
 }
-function cancel(req, res) {
-    res.json("Ủng hộ sắp thành công");
-}
-module.exports = { Donate, Success, cancel }
+module.exports = { Donate, Success }

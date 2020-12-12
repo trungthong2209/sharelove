@@ -7,18 +7,19 @@ class SearchController {
         if (req.query.search) {
             await infEvent.find({ $text: { $search: query } }, function (err, All_infEvent) {
                 if (err) {
-                    res.status(400).json({ error:  err});
+                    res.status(400).json({ error: err });
                 } else {
                     res.json(All_infEvent);
                 }
             })
-        } else {  res.status(400).json({ message: "Query is not correct" }) }
+        } else { res.status(400).json({ message: "Query is not correct" }) }
     }
     async Search_user(req, res, next) {
         const query = req.query.search;
         if (req.query.search) {
             await User.find({ $text: { $search: query } }, function (err, Alluser) {
-                if (err) { res.status(400).json({ error:  err});
+                if (err) {
+                    res.status(400).json({ error: err });
                 } else { res.json(Alluser) }
             }).lean();
         } else { res.status(400).json({ message: "user is not correct." }) }

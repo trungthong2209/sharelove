@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema;
-
 const User = new Schema({
   fullname: {
     type: String,
@@ -42,22 +41,50 @@ User.pre('save', function (next) {
     next()
   })
 })
+
 User.methods.isValidPassword = async function(password) {
   const user = this;
   const compare = await bcrypt.compare(password, user.password);
   return compare;
 }
+
 User.methods.UpdatePassword = async function(password) {
   const user = this;
   const hash = await bcrypt.hash(password, 10)
   return await user.updateOne({ password: hash })
  }
+
 User.methods.UpdatePassword_Forget = async function(password) {
   const user = this;
   const hash = await bcrypt.hash(password, 10)
   return user.updateOne({ password: hash ,$unset: { reset_link: ""}})
 }
 
-User.index({ '$**': 'text' });
+User.statics.getInfo =  function(id) {
+  const User = this;
+  if(id!=undefined || id!=null ) return User.findById(id)
+  else {
+    return 'user'
+  }
+}
 
+User.statics.getName = async function(id) {
+  const User = this;
+  return User.findById(id)
+      .then(user => user.fullname); 
+}
+
+User.statics.getImage = async function(id) {
+  const User = this;
+  return User.findById(id)
+  .then(user => user.imageUser); 
+}
+
+User.statics.getID = async function(id) {
+  const User = this;
+  return User.findById(id)
+  .then(user => user.id); 
+}
+
+User.index({ '$**': 'text' });
 module.exports = mongoose.model('user', User)

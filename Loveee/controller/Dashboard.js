@@ -3,13 +3,10 @@ const infEvent = require('../model/infEvent');
 const User = require('../model/user');
 const donate = require('../model/donate');
 const blog = require('../model/blog');
-const jwt = require("jsonwebtoken");
-
-const accessTokenSecret = process.env.accessTokenSecret;
 
 class Dashboard {
     async getAlluser(req, res, next) {
-        if(req.role!=='ADMIN') res.status(401).json( {message:'UNAUTHORIZED'})
+        if(req.role!=='ADMIN') return res.status(401).json( {message:'UNAUTHORIZED'})
         else {
             User.find({})
             .then((users)=>{
@@ -20,7 +17,7 @@ class Dashboard {
       
     } 
     async getAllevent(req, res, next) {
-        if(req.role!=='ADMIN')  res.status(401).json( {message:'UNAUTHORIZED'})
+        if(req.role!=='ADMIN') return res.status(401).json( {message:'UNAUTHORIZED'})
         else {
         await infEvent.aggregate([
             {
@@ -67,7 +64,7 @@ class Dashboard {
         }
     }
     async getAllblog(req, res, next) {
-    if(req.role!=='ADMIN')  res.status(401).json( {message:'UNAUTHORIZED'})
+    if(req.role!=='ADMIN') return res.status(401).json( {message:'UNAUTHORIZED'})
     else {
      await  blog.aggregate([
             {
@@ -98,10 +95,7 @@ class Dashboard {
             },
         ]).exec((err, blogs) => {
             if (err) return res.status(400).send('Error'+ err)
-            else {
-              //  res.render('blog', { blogs: blogs })
-              res.status(200).json(blogs)
-            }
+            else { res.status(200).json(blogs) }
         })
     }
    }
