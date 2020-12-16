@@ -5,6 +5,6 @@ const verify = require('../middleware/verifyToken');
 
 router
 .get('/setting', verify, setting.GetPage)
-.post('/setting/profile', setting.Store)
-.post('/setting/password', setting.ChangePassword)
+.post('/setting',verify, setting.Store)
+.post('/setting/password',verify, setting.ChangePassword)
 module.exports = router;

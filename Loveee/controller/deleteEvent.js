@@ -1,39 +1,35 @@
 
 const infEvent = require('../model/infEvent');
+const room = require('../model/ChatMessage');
 const cloudinary = require('../middleware/cloudinary');
 
 let DeletePost = async function (req, res, next) {
-  var id = req.params.id;
-  infEvent.findByIdAndDelete(id, async function (err, event) {
+  const id = req.params.id;
+  infEvent.findById(id, async function (err, event) {
     if (event) {
-      if(event.ID_image2.multiple_image !== undefined) {
-        await cloudinary.uploader.destroy(event.ID_image2.multiple_image)
-      }
-      if(event.ID_image3.multiple_image !== undefined) {
-        await cloudinary.uploader.destroy(event.ID_image3.multiple_image)
-      }
-     await cloudinary.uploader.destroy(event.ID_image.multiple_image, async function (err, event) {
-        if (err) {
-          console.log(err);
-          res.json({
-            status: "error",
-            message: "Xóa ảnh bị lỗi"
+      if (event.email_posted.toString() !== req.userId) return res.status(401).json({ message: "Người đăng bài mới có thể xóa" })
+      else {
+        if (event.ID_image2.multiple_image !== undefined) {
+          await cloudinary.uploader.destroy(event.ID_image2.multiple_image)
+        }
+        if (event.ID_image3.multiple_image !== undefined) {
+            await cloudinary.uploader.destroy(event.ID_image3.multiple_image)
+        }
+        if (event.ID_image.multiple_image !== undefined) {
+          await cloudinary.uploader.destroy(event.ID_image.multiple_image)
+        }
+        event.deleteOne()
+          .then(() => {
+           room.removeRoom(event)
+              .then(() => {
+                   res.redirect('/home')
+             })
           })
-        }
-        else {
-          res.redirect('/home')
-        }
+              .catch(err => { res.status(500).json({ message: "Xóa bị lỗi" + err }) })
+          .catch(err => { res.status(500).json({ message: "Xóa sự kiện bị lỗi" + err }) })
       }
-      );
     }
-    else {
-      console.log(err);
-      res.json({
-        status: "error",
-        message: "Không tìm thấy sự kiện"
-      });
-    }
-
+    else { res.status(404).json({ message: "Không tìm thấy sự kiện" }) }
   })
 }
 module.exports.DeletePost = DeletePost;

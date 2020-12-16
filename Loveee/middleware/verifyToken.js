@@ -9,11 +9,11 @@ function auth (req, res, next){
       jwt.verify(token, accessTokenSecret, function (err, verified) {
         if(verified)  {
           req.userId = verified.id;
+          req.role = verified.role;
           next();
-
         }
         else {
-          console.log(err)
+          res.send(err)
         }
      })
      
@@ -21,9 +21,7 @@ function auth (req, res, next){
             res.send(err)
 }
   } else{
-    res.status(200).json({
-            message: "Bạn chưa đăng nhập"
-  });     
+    res.status(200).json({ message: "Bạn chưa đăng nhập" });     
   }
 }
 module.exports = auth;
