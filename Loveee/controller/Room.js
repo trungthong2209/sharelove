@@ -68,8 +68,9 @@ function Update_UserJoin(req, res, next) {
         .then((event) => {
             event.updateOne({ $addToSet: { user_joinEvent: req.userId } })
                 .then(async () => {
-                   const chats = await chatMessage.getRoom(room)                
-                       res.render('room', { room: room, chats: chats, title: event.purpose });
+                   const chats = await chatMessage.getRoom(room)           
+                   const joiner = await events.getallJoiner(room)
+                    res.render('room', {joiner:joiner, room: room, chats: chats, title: event.purpose });
                  })
                 .catch((error) => { return res.status(500).send(error) })
         })

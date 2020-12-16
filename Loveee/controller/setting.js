@@ -2,11 +2,12 @@ const moment = require("moment");
 const User = require('../model/user');
 const cloudinary = require('../middleware/cloudinary');
 const path = require("path");
+const { isBuffer } = require("lodash");
 const allowedExt = /png|jpeg|jpg|gif/;
-const avatar = [];
 
 class Setting {
         async GetPage(req, res, next) {
+              
                 User.findById(req.userId)
                         .then((user) => {
                                 var newDate = moment(user.Dob).utc().format("YYYY-MM-DD")
@@ -15,11 +16,14 @@ class Setting {
                         .catch(error => { res.status(400).json({ error: error }); })
         }
         async Store(req, res, next) {
+                const avatar = [];
                 const option_image = {
                         folder: 'avatar',
                         width: 150, height: 150,
-                        gravity: "face",
-                        crop: "thumb"
+                        radius: "max",
+                       // gravity: "face",
+                        crop: "fill",
+                        format: 'jpg',
                 }
                 if (req.files != null) {
                         var imagee = req.files.image;
@@ -33,6 +37,7 @@ class Setting {
                         Dob: req.body.dob,
                         email: req.body.email,
                         Numberphone: req.body.sdt,
+                        sex:  req.body.sex,
                         tieusu: req.body.story,
                 }
                 if (avatar.length > 0) {
@@ -40,9 +45,10 @@ class Setting {
                 }
                 User.findByIdAndUpdate(req.userId, user)
                         .then(() => {
-                                image = avatar[0];
-                                avatar.length = 0;
-                                res.redirect('/setting');
+                                if(avatar.length > 0){
+                                    image = avatar[0];
+                                }
+                              res.redirect('/setting');
                         })
                         .catch((err) => { res.status(400).json({ error: err }) })
         }

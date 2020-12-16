@@ -11,7 +11,7 @@ async function newProfile(req, res, next) {
         .then((infevents)=>{
             donate.getProfile(req.userId)
             .then((alldonate)=>{              
-                    res.render('profile',{ infevents, user, alldonate, total, newDate})  
+                     res.render('profile',{ infevents, user, alldonate, total, newDate})  
             })
         })
 }

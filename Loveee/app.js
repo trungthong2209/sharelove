@@ -38,7 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //Socket 
-const botname = "ShareLove Bot";
+const botname = "SpreadLove Bot";
 io.on("connection", function (socket) {
 
     console.log("A user is connected: " + socket.id);
@@ -59,21 +59,19 @@ io.on("connection", function (socket) {
                 room: user.room,
                 users: getRoomUsers(user.room)
             });
-       }
+      }
     });
     socket.on("chatMessage",  ({msg, room}) => {
         var cookies = cookie.parse(socket.request.headers.cookie);
         const user = getCurrentUser(socket.id);
             Save_Mess(room, cookies.token, msg)
         .then((value)=>{
-            console.log(value);
             io.to(user.room).emit("message", formatMessage(user.username,  msg, user.image));
         })
         .catch(error => {
             console.log(error);
          })
-         
-    });
+ });
     socket.on("disconnect", () => {
         const user = userLeave(socket.id);
         if (user) {

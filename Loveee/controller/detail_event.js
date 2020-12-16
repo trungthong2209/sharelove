@@ -5,9 +5,9 @@ function detail_event(req, res, next) {
     infEvents.getDetail(idEvent)
     .then((event)=>{
         donates.getTotal(event[0]._id)
-             .then((value)=>{
-                console.log(value)
-                 res.render('info_event', { event: event })
+             .then((total)=>{
+                console.log(total)
+                 res.render('info_event', { event: event, total: total})
         })
                .catch(error=>{
                 res.status(400).send('Error' + error)

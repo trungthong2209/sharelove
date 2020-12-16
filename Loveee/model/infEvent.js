@@ -45,12 +45,12 @@ infEvent.pre('save', function (next) {
     this.time_post = date.format(now, 'HH:mm DD/MM/YYYY');
     next()
 })
-infEvent.statics.isValidRole = async function(id) {
+infEvent.statics.isValidRole = async function (id) {
     const infEvent = this;
     return infEvent.aggregate([
         {
             $match: { '_id': ObjectId(id) }
-        }, 
+        },
         {
             $lookup: {
                 from: 'users',
@@ -58,7 +58,7 @@ infEvent.statics.isValidRole = async function(id) {
                 foreignField: '_id',
                 as: 'user_post'
             }
-        }, 
+        },
         {
             $unwind: '$user_post',
 
@@ -66,12 +66,28 @@ infEvent.statics.isValidRole = async function(id) {
             $project: {
                 role: "$user_post.Role"
             }
-        },{
+        }, {
             $limit: 1
-        } 
+        }
     ])
 }
-infEvent.statics.getDetail = async function(id) {
+infEvent.statics.isValidDate = async function (id) {
+    const infEvent = this;
+    const now = new Date();
+    const checkdate = await infEvent.findById(id)
+    const timenew_hour = date.format(now, 'HH:mm');
+    const timenow_date = date.format(now, 'YYYY-MM-DD');
+    if (checkdate.date > timenow_date) {
+        return true
+    }
+    else if (checkdate.date == timenow_date) {
+        if (checkdate.time > timenew_hour)
+            return true
+    }
+    return false;
+
+}
+infEvent.statics.getDetail = async function (id) {
     const infEvent = this;
     return infEvent.aggregate([
         {
@@ -110,7 +126,7 @@ infEvent.statics.getDetail = async function(id) {
         }
     ])
 }
-infEvent.statics.getProfile = async function(id) {
+infEvent.statics.getProfile = async function (id) {
     const infEvent = this;
     return infEvent.aggregate([
         {
@@ -151,8 +167,47 @@ infEvent.statics.getProfile = async function(id) {
     ])
 }
 
-
-infEvent.statics.getallEvent = async function() {
+infEvent.statics.getUserjoined = async function (id) {
+    const infEvent = this;
+    return infEvent.aggregate([
+        {
+            $match: { 'user_joinEvent': ObjectId(id) }
+        },
+        {
+            $lookup: {
+                from: 'users',
+                localField: 'email_posted',
+                foreignField: '_id',
+                as: 'user_post'
+            }
+        },
+        {
+            $unwind: '$user_post'
+        }, {
+            $project: {
+                purpose: 1,
+                address_City: 1,
+                address_District: 1,
+                address_Ward: 1,
+                address_stress: 1,
+                time_post: 1,
+                time: 1,
+                date: 1,
+                description: 1,
+                Image_URL: '$ID_image.image_url',
+                Image_URL2: '$ID_image2.image_url',
+                Image_URL3: '$ID_image3.image_url',
+                user_name: "$user_post.fullname",
+                imageUser: "$user_post.imageUser",
+                Joined_er: { $cond: { if: { $isArray: "$user_joinEvent" }, then: { $size: "$user_joinEvent" }, else: 0 } }
+            }
+        },
+        {
+            $sort: { _id: -1 }
+        },
+    ])
+}
+infEvent.statics.getallEvent = async function () {
     const infEvent = this;
     return infEvent.aggregate([
         {
@@ -167,7 +222,7 @@ infEvent.statics.getallEvent = async function() {
             $unwind: '$user_post'
         }, {
             $project: {
-                _id:1,
+                _id: 1,
                 purpose: 1,
                 address_City: 1,
                 address_District: 1,
@@ -192,7 +247,7 @@ infEvent.statics.getallEvent = async function() {
         }
     ])
 }
-infEvent.statics.getTop = async function() {
+infEvent.statics.getTop = async function () {
     const infEvent = this;
     return infEvent.aggregate([
         {
@@ -207,7 +262,7 @@ infEvent.statics.getTop = async function() {
             $unwind: '$user_post'
         }, {
             $project: {
-                _id:1,
+                _id: 1,
                 purpose: 1,
                 user_name: "$user_post.fullname",
                 imageUser: "$user_post.imageUser",
@@ -223,6 +278,37 @@ infEvent.statics.getTop = async function() {
     ])
 }
 
+infEvent.statics.getallJoiner= async function (id) {
+    const infEvent = this;
+    return infEvent.aggregate([
+        {
+            $match: { '_id': ObjectId(id) }
+        },
+        {
+            $lookup: {
+                from: 'users',
+                localField: 'user_joinEvent',
+                foreignField: '_id',
+                as: 'Joiner'
+            }
+        },
+        {
+            $unwind: '$Joiner'
+        }, 
+        {
+            $project: 
+            {
+                _id: 1,
+                user_name: "$Joiner.fullname",
+                imageUser: "$Joiner.imageUser",
+                Joined_er: { $cond: { if: { $isArray: "$user_joinEvent" }, then: { $size: "$user_joinEvent" }, else: 0 } }
+            }
+        },
+        {
+            $sort: { Joined_er: -1 }
+        },
+    ])
+}
 
 infEvent.index({ '$**': 'text' });
 

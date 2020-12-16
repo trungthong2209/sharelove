@@ -4,22 +4,25 @@ const infEvent = require('../model/infEvent')
 const jwt = require("jsonwebtoken");
 
 const accessTokenSecret = process.env.accessTokenSecret;
-var amount = null;
-var user = null;
-var idEvent = null;
+
 async function Donate(req, res, next) {
+    var amount = null;
+    var user = null;
+    var idEvent = null;
     const total = req.body.money;
     const token = req.cookies.token;
-   // const idEvent = req.query.event;
-      idEvent = '5fd337bd6c9f972d045ada38';
-   const checkRole = await infEvent.isValidRole(idEvent)
-    if (total < 0 || total === 0 ||total === undefined) return res.status(401).json("Không ủng hộ được thì thôi");
+    //  idEvent = req.query.event;
+    idEvent = '5fd62ba0f9f5173270aa958b';
+    const checkRole = await infEvent.isValidRole(idEvent)
+    const checkDate = await infEvent.isValidDate(idEvent)
+    if (checkDate == false) return res.status(201).json("Bài đăng đã hết hạn");
+    if (total < 0 || total == 0 || total == undefined) return res.status(201).json("Không ủng hộ được thì thôi");
     amount = total;
     if (token != undefined || token != null) {
-        user  = jwt.verify(token, accessTokenSecret).id
+        user = jwt.verify(token, accessTokenSecret).id
     }
-     if(checkRole[0].role ==='silver_User') return res.status(401).json("Người đăng bài không có quyền ủng hộ")
-     var create_payment_json = {
+    if (checkRole[0].role === 'silver_User') return res.status(401).json("Người đăng bài không có quyền ủng hộ")
+    var create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
@@ -68,24 +71,24 @@ function Success(req, res, next) {
             }
         }]
     };
-paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+    paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
         if (error) {
             console.log(error.response);
             throw error;
         } else {
-       const donate = new donates({
-                    userID: user,
-                    money: amount,
-                    eventID: idEvent,
+            console.log(payment.transactions[0].amount.total);
+            const donate = new donates({
+                userID: user,
+                money: payment.transactions[0].amount.total,
+                eventID: idEvent,
+            })
+            donate.save()
+                .then(() => { 
+                    console.log("Save schema donate success")
                 })
-                donate.save()
-                    .then(() => {
-                        console.log("Save schema donate success")
-                    })
-                    .catch(error => {
-                        console.log("save fail " + error);
-                    })
-            
+                .catch(error => { 
+                    console.log("save fail " + error);
+        })
             res.redirect('/home');
         }
     });

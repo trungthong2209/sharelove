@@ -1,12 +1,13 @@
 const infEvent = require('../model/infEvent');
 const cloudinary = require('../middleware/cloudinary');
 const request = require('request');
-const arr_image = [];//array image URL
-const id_image = []; //array image ID
-const allowedExt = /png|jpeg|jpg|gif/;
+
 
 class CreateEvent {
   async EventPost(req, res) {
+     const arr_image = [];
+     const id_image = []; 
+     const allowedExt = /png|jpeg|jpg|gif/;
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No file upload') 
     }
@@ -16,11 +17,13 @@ class CreateEvent {
       const image3 = req.files.image3;    
       const option_image = {
            folder: 'image', 
-          transformation: [
+           format: 'jpg',
+           transformation: [
           { width: 600, 
             crop: "scale" },
-          {  quality: "auto" }
+          {  quality: "100" }
         ]}
+
        if (image != undefined) {
         if (!allowedExt.test(image.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
         else {
@@ -40,7 +43,6 @@ class CreateEvent {
       if (image3 != undefined) {
         if (!allowedExt.test(image3.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
        else {
-         console.log(image3);
           const result3 = await cloudinary.uploader.upload(image3.tempFilePath, option_image)
           arr_image.push(result3.secure_url);
           id_image.push(result3.public_id)
@@ -95,7 +97,7 @@ class CreateEvent {
               formattedAddress: response.body.features[0].place_name
             }
           })
-          await InfEvent.save()
+           InfEvent.save()
             .then(() => {
               arr_image.length = 0;
               id_image.length = 0;

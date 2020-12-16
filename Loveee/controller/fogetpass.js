@@ -6,6 +6,7 @@ let MAILGUN_KEY = process.env.MAILGUN_KEY;
 let CLIENT_URL = process.env.CLIENT_URL;
 const mg = mailgun({ apiKey: MAILGUN_KEY, domain: DOMAIN });
 const forgotPassword_Token = process.env.forgotPassword_Token;
+
 class Fogetpass {
     async FogetPassword(req, res, next) {
         res.render('foget')
@@ -29,19 +30,19 @@ class Fogetpass {
                     else {
                        mg.messages().send(data, function (error, body) {
                             if (error) { return res.status(400).json({message: "error send token:" + error }) }
-                            else {  return res.status(200).json({ message: `Check mail ${user.email} and click link ` }) }
+                            else {  return res.status(200).json({ message: `Kiểm tra email ${user.email} và nhấn vào liên kết` }) }
                         });
                     }
                 })
             }
-            else {  res.status(404).json({ message: "Email does not exist" })  }
+            else {  res.status(404).json({ message: "Người dùng không tồn tại" })  }
         });
     }
     async GetresetPassword(req, res, next) {
         const resetPasswordToken = req.params.token;
         await User.findOne({ reset_link: resetPasswordToken }, (error, user) => {
             if (user) { res.render('newpass', { token: resetPasswordToken }) }
-            else { res.status(404).json({ message: "Userr does not exist" }) }
+            else { res.status(404).json({ message: "Người dùng không tồn tại" }) }
         });
     }
     async PostresetPassword(req, res, next) {
@@ -52,7 +53,7 @@ class Fogetpass {
                  user.UpdatePassword_Forget(new_password)
                     .then(() => { res.redirect('/') })
                     .catch((err) => { return res.status(400).json({ error: " Error save new password" + err }) })
-            } else {  res.status(404).send( "Userr does not exist" ) }
+            } else {  res.status(404).send( "Người dùng không tồn tại" ) }
         })
     }
 }

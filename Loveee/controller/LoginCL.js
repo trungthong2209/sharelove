@@ -7,6 +7,7 @@ class LoginCL {
         let password = req.body.psw;
         await User.findOne({ login_name: login_name }, async (error, user) => {
             if (user) { 
+                if(user.Action === false) return res.status(401).json('Tài khoản bạn đã bị khóa.')
                 const same = await user.isValidPassword(password)
                 if (same) {
                     const token = jwt.sign({ id: user._id, role: user.Role }, accessTokenSecret);

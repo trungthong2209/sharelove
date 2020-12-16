@@ -4,10 +4,11 @@ const blog = require('../controller/blog');
 const verify = require('../middleware/verifyToken');
 
 router
+
 .get('/blog', blog.loadBlog)
+.get('/create_blog', verify, blog.get_Blog)
+.get('/blog/delete/:id', verify, blog.DeletePost)
 .post('/create/blog', verify, blog.BLogPost)
-.get('/create_blog', blog.get_Blog)
-.get('/info_blog',function(req, res, next) {
-    res.render('info_blog');
- })
+.get('/blog/:id', blog.detail_blog)
+
 module.exports = router;

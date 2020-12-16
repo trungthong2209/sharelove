@@ -27,6 +27,7 @@ const User = new Schema({
     enum: ['silver_User', 'Admin', 'gold_User'],
     default: 'silver_User',
   },
+  Action: {type: Boolean, default: true},
   Numberphone: { type: String },
   reset_link: { type: String },
   accesstoken: { type: String },
@@ -47,7 +48,10 @@ User.methods.isValidPassword = async function(password) {
   const compare = await bcrypt.compare(password, user.password);
   return compare;
 }
-
+User.methods.isValidAction =  function() {
+  const user = this;
+   return user.Action   
+}
 User.methods.UpdatePassword = async function(password) {
   const user = this;
   const hash = await bcrypt.hash(password, 10)
@@ -59,7 +63,6 @@ User.methods.UpdatePassword_Forget = async function(password) {
   const hash = await bcrypt.hash(password, 10)
   return user.updateOne({ password: hash ,$unset: { reset_link: ""}})
 }
-
 User.statics.getInfo =  function(id) {
   const User = this;
   if(id!=undefined || id!=null ) return User.findById(id)
@@ -67,7 +70,6 @@ User.statics.getInfo =  function(id) {
     return 'user'
   }
 }
-
 User.statics.getName = async function(id) {
   const User = this;
   return User.findById(id)

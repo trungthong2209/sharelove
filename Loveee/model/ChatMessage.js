@@ -45,7 +45,11 @@ ChatMessage.statics.getRoom = async function(room) {
         }
     ])
 }
-
+ChatMessage.statics.removeRoom =  function(id) {
+    const ChatMessage = this;
+   return ChatMessage.deleteMany({'post_id':id})
+    
+}
 
 ChatMessage.index({ '$**': 'text' });
 const Room = mongoose.model("ChatMessage", ChatMessage);
