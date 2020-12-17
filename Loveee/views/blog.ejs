@@ -16,7 +16,10 @@
   <div class="container">
     <div class="row">
       <% blogs.forEach(function(blog){ %>
-      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-md-3 mt-3">
+          <img src="<%= blog.Image_URL %>"  alt="Image" style="width: 200px; height: 200px; float: right; margin-bottom: 30px;" />
+        </div>
+      <div class="col-lg-9 col-md-9 mx-auto" style="width: 200px; height: 200px; padding-top: 40px;">
         <div class="post-preview">
           <a href=" /blog/<%= blog._id%>">
             <h2 class="post-title">
@@ -35,7 +38,10 @@
             tại <%= blog.timeCreate%></p>
         </div>
         <hr>
-        <!-- Pager -->       
+        
+        
+        <!-- Pager -->
+        
       </div>
       <% }) %>
 

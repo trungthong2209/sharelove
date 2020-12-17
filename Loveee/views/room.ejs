@@ -144,7 +144,7 @@
             <div class="card-footer"></div>
         </div></div>
         <div class="col-md-8 col-xl-6 chat">
-            <div class="card">
+            <div class="card" >
                 <div class="card-header msg_head">
                     <div class="d-flex bd-highlight">
                         <div class="img_cont">
@@ -164,7 +164,7 @@
                     </div>
                 </div>
                 
-                <div class="card-body msg_card_body">
+                <div class="card-body msg_card_body" id="div">
                   
                   <% chats.forEach(function(chat){ %>
                     <div class="d-flex justify-content-start mb-4">
@@ -300,7 +300,13 @@ if (e.keyCode == 13) {
   form.reset()
   return false
 }
-})  
+})
+
+//scroll at bottom
+var atbot = document.getElementById("div");
+console.log(atbot);
+  atbot.scrollTop = atbot.scrollHeight - atbot.clientHeight;
+  
 </script>
 
 </html>
@@ -330,6 +336,9 @@ main{
 }
 .msg_card_body{
     overflow-y: auto;
+    height: 500px;
+
+ 
 }
 .card-header{
     border-radius: 15px 15px 0 0 !important;
@@ -835,11 +844,6 @@ nav > ul > li > a:hover {
 .px{
 	height: 70px;
 }
-/* scroll at bottom
-.msg_card_body{
-    overflow-y: auto;
-    display: flex; 
-    flex-direction: column-reverse;
-}
-*/
+
+
 </style>
