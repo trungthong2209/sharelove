@@ -1,4 +1,5 @@
 <%include header %>
+
 <main>
   <div class="px"></div>
   <div class="main-section">
@@ -177,9 +178,6 @@
             <!--main-ws-sec end-->
           </div>
           <!-- main-section-data end-->
-        </div>   
-        <%include chat_mess %>
-    </main>
           <div class="col-lg-3 pd-right-none no-pd">
 
             <div class="widget suggestions full-width">
@@ -188,15 +186,16 @@
                 <i class="la la-ellipsis-v"></i>
               </div>
               <!--sd-title end-->
-              <% top_event.forEach(function(event){ %>
+              
               <div class="suggestions-list">
+                <% top_event.forEach(function(event){ %>
                 <div class="suggestion-item">
                   <img src="<%= event.imageUser%>" width="35px" height="" alt="" />
                   <div class="sgt-text">
                     <h4><%= event.purpose%></h4>
                     <span><%= event.user_name%></span>
                   </div>
-                  <span><i class="la la-plus"></i></span>
+                  <span><img src="images/hh.png" alt="" style="width: 35px; height: 35px;"></span>
                 </div>
                 <% }) %>
                 <div class="view-more">
@@ -205,7 +204,7 @@
               </div>
               <!--suggestions-list end-->
             </div>
-          </div>
+
           <div class="widget suggestions full-width">
 
             <div class="sd-title">
@@ -216,14 +215,15 @@
             <div class="suggestions-list">
               <% topdonates.forEach(function(topdonate){ %>
               <div class="suggestion-item">
-                <img src="<%= topdonate.url_author %>" width="35" height="35px" alt="" />
+                <img src="<%= topdonate.url_author %>" width="30" height="30px" alt="" />
                 <div class="sgt-text">
                   <h4><%= topdonate.author_name %></h4>
                   <span class="vnd"><%= topdonate.total %></span>
                 </div>
-                <span><i class="la la-plus"></i></span>
-                <% }) %>
+                <span><img src="images/crown.png" alt="" style="width: 35px; height: 35px;"></span>
               </div>
+                <% }) %>
+              
               <div class="view-more">
                 <a href="Top-donate" title="">Xem thêm</a>
               </div>
@@ -233,10 +233,14 @@
 
           <!--right-sidebar end-->
         </div>
+        </div>   
+        
+          
       </div>
     </div>
     <!-- main-section-data end-->
   </div>
+  <%include chat_mess %>
 </main>
 
 <div class="post-popup pst-pj widget">

@@ -413,13 +413,13 @@ select{-webkit-appearance:none;-moz-appearance:none}
 .inp-field{float:left;width:100%;position:relative}
 .inp-field:before{content:'\f107';position:absolute;top:13px;right:15px;color:#717171;font-family:fontawesome}
 .post-popup.event_post .price-br{width:100%!important}
-.chatbox-list{position:fixed;bottom:0;right:0}
+.chatbox-list{position:fixed;bottom:30px;right:10px !important;}
 .chatbox{display:inline-block;margin-right:13px;position:relative}
 .chat-mg{display:inline-block;position:relative}
 .chat-mg img{width:70px;height:70px;-webkit-border-radius:100px;-moz-border-radius:100px;-ms-border-radius:100px;-o-border-radius:100px;border-radius:100px}
 .chat-mg span{position:absolute;top:-5px;right:10px;width:20px;height:20px;background-color:#53D690;text-align:center;font-size:12px;color:#fff;line-height:20px;-webkit-border-radius:100px;-moz-border-radius:100px;-ms-border-radius:100px;-o-border-radius:100px;border-radius:100px}
 .chat-mg.bx img{-webkit-box-shadow:0 0 15px rgba(0,0,0,0.30);-moz-box-shadow:0 0 15px rgba(0,0,0,0.30);-ms-box-shadow:0 0 15px rgba(0,0,0,0.30);-o-box-shadow:0 0 15px rgba(0,0,0,0.30);box-shadow:0 0 15px rgba(0,0,0,0.30)}
-.conversation-box{position:absolute;bottom:132%;right:100%;width:350px;background-color:#fff;-webkit-box-shadow:0 0 10px rgba(0,0,0,0.17);-moz-box-shadow:0 0 10px rgba(0,0,0,0.17);-ms-box-shadow:0 0 10px rgba(0,0,0,0.17);-o-box-shadow:0 0 10px rgba(0,0,0,0.17);box-shadow:0 0 10px rgba(0,0,0,0.17);opacity:0;visibility:hidden;z-index:0}
+.conversation-box{position:absolute;bottom:132%;right:15%;width:350px;background-color:#fff;-webkit-box-shadow:0 0 10px rgba(0,0,0,0.17);-moz-box-shadow:0 0 10px rgba(0,0,0,0.17);-ms-box-shadow:0 0 10px rgba(0,0,0,0.17);-o-box-shadow:0 0 10px rgba(0,0,0,0.17);box-shadow:0 0 10px rgba(0,0,0,0.17);opacity:0;visibility:hidden;z-index:0}
 .conversation-box.active{opacity:1;visibility:visible;z-index:9999}
 .conversation-box:before{content:'';position:absolute;bottom:-7px;right:26px;border-top:15px solid #fff;border-right:15px solid transparent;-webkit-transform:rotate(225deg);-moz-transform:rotate(225deg);-ms-transform:rotate(225deg);-o-transform:rotate(225deg);transform:rotate(225deg)}
 .con-title{float:left;width:100%;background-color:#53D690;padding:15px 25px;-webkit-border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-ms-border-radius:10px 10px 0 0;-o-border-radius:10px 10px 0 0;border-radius:10px 10px 0 0}

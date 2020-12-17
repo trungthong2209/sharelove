@@ -1,0 +1,264 @@
+<%include header%>
+
+
+
+<main id="page-top" style="margin-top: 10px;">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav sidebar sidebar-dark accordion nav-pills" id="pills-tab" role="tablist" style="background-color: #53D690;">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html" style="margin-top: 20px;">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <img style="width: 50px; height: 50px;" src="https://res.cloudinary.com/share-love/image/upload/v1606900436/avatar/Love_Logo_bftnhz.png" alt="">
+                </div>
+                <div class="sidebar-brand-text mx-4">SPREAD LOVE AMDIN </div>
+            </a>
+
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Chức năng   
+            </div>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item ">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#users" role="tab" aria-controls="pills-home" aria-selected="true">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Quản lý tài khoản</span></a>
+            </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#event" role="tab" aria-controls="pills-profile" aria-selected="false">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Quản lý sự kiện</span></a>
+            </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#blog" role="tab" aria-controls="pills-contact" aria-selected="false">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Quản lý blog</span></a>
+            </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Phê duyệt người dùng</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="pills-tabContent" class="d-flex flex-column tab-content">
+            <div id="users" class="tab-pane fade show active" role="tabpanel" aria-labelledby="pills-home-tab" style="width:105rem;" >
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 style="margin-top: 40px;" class="h3 mb-2 text-white-800">Quản lý tài khoản</h1>
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Danh sách tài khoản người dùng</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center">ID</th>
+                                            <th style="text-align: center">User_name</th>
+                                            <th style="text-align: center">Email</th>
+                                            <th style="text-align: center">Sự kiện</th>
+                                            <th style="text-align: center">Ủng hộ</th>
+                                            <th style="text-align: center">Vai trò</th>
+                                            <th style="text-align: center">Trạng thái</th>
+                                            <th style="text-align: center" > Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td style="text-align: center">#id</td>
+                                            <td style="text-align: center">#use</td>
+                                            <td style="text-align: center">#email</td>
+                                            <td style="text-align: center">#evnet</td>
+                                            <td style="text-align: center">$donate</td>
+                                            <td style="text-align: center">#role</td>
+                                            <td style="text-align: center">Hoạt động</td>
+                                            <td style="text-align: center">
+                                                <div class="btn_action" style="display: flex; padding-left: 30%;">
+                                                    <button type="button" id="" name="" class='btn btn-success'>Mở khóa </button>
+                                                                <button type="button" id="" name="" class='btn btn-dark'>Khóa</button>
+                                                  </div>
+                                            </td>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- event -->
+            <div id="event" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-profile-tab" style="width:105rem;" >
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 style="margin-top: 40px;" class="h3 mb-2 text-white-800">Quản lý sự kiện</h1>
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Danh sách sự kiện</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                          <th style="text-align: center">ID</th>
+                                          <th style="text-align: center">Id_người tạo</th>
+                                          <th style="text-align: center">Tên sự kiện</th>
+                                          <th style="text-align: center">Ngày tạo</th>
+                                          <th style="text-align: center">Tham gia</th>
+                                          <th style="text-align: center">Ủng hộ</th>
+                                          <th style="text-align: center">Trạng thái</th>
+                                          <th style="text-align: center"> Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <td style="text-align: center">#id</td>
+                                       <td style="text-align: center">#id_user</td>
+                                       <td style="text-align: center">#name</td>
+                                       <td style="text-align: center">#date</td>
+                                       <td style="text-align: center">#join</td>
+                                       <td style="text-align: center">#donate</td>
+                                       <td style="text-align: center">Hoạt động</td>
+                                      
+                                       <td style="text-align: center">
+                                           <div class="btn_action" style="display: flex; padding-left: 30%;">
+                                               <button type="button" id="" name="" class='btn btn-success'>Mở khóa </button>
+                                                           <button type="button" id="" name="" class='btn btn-dark'>Khóa</button>
+                                             </div>
+                                       </td>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+            <!--blog-->
+            <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="pills-contact-tab" style="width:105rem;" >
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 style="margin-top: 40px;" class="h3 mb-2 text-white-800">Quản lý blog</h1>
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Danh sách blog</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                          <th style="text-align: center">ID</th>
+                                            <th style="text-align: center">Id_người tạo</th>
+                                            <th style="text-align: center">Tên blog</th>
+                                            <th style="text-align: center">Ngày tạo</th>
+                                            <th style="text-align: center">Trạng thái</th>
+                                            <th style="text-align: center" > Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <td style="text-align: center">#id</td>
+                                       <td style="text-align: center">#id_user</td>
+                                       <td style="text-align: center">#name</td>
+                                       <td style="text-align: center">#date</td>
+                                       <td style="text-align: center">Hoạt động</td>
+                                      
+                                       <td style="text-align: center">
+                                           <div class="btn_action" style="display: flex; padding-left: 30%;">
+                                               <button type="button" id="" name="" class='btn btn-success'>Mở khóa </button>
+                                                           <button type="button" id="" name="" class='btn btn-dark'>Khóa</button>
+                                             </div>
+                                       </td>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="stylesheets/sb-admin-2.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="javascripts/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="javascripts/datatables-demo.js"></script>
+    <script>
+            $(document).ready(function() {
+            $('#dataTable_info').DataTable({
+                "lengthChange": false
+            }
+  })
+});
+    </script>
+</main>
+    
+</html>

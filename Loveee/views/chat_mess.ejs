@@ -1,4 +1,4 @@
-<div class="chatbox-list">
+<div class="chatbox-list" style="">
     <div class="chatbox">
       <div class="chat-mg bx">
         <a href="#" title=""><img src="images/chat.png" alt="" /></a>
@@ -14,27 +14,43 @@
               </div>
               
               <div class="card-body msg_card_body " style="height: 400px; overflow-x: hidden;">
-                  <div class="d-flex justify-content-start mb-4">
-                      <div class="img_cont_msg">
-                          <img src="http://via.placeholder.com/50x50" class="rounded-circle user_img_msg">
-                      </div>
-                      <div class="msg_cotainer">
-                        <span class="msg_name"> SPREAD LOVE BOT</span>
-                        HELLO
-                        <span class="msg_time">11:20 AM</span>
-                      </div>
-                  </div>
+                <div class="messages-line">		
+									<div class="main-message-box st3">
+										<div class="message-dt st3">
+											<div class="message-inner-dt">
+												<p>Xin chào, mình là chatbot</p>
+											</div><!--message-inner-dt end-->
+											<span>1 phút trước</span>
+										</div><!--message-dt end-->
+										<div class="messg-usr-img">
+											<img src="https://res.cloudinary.com/share-love/image/upload/v1606900436/avatar/Love_Logo_bftnhz.png" alt="">
+										</div><!--messg-usr-img end-->
+									</div><!--main-message-box end-->
+									<div class="main-message-box ta-right">
+										<div class="message-dt">
+											<div class="message-inner-dt">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+											</div><!--message-inner-dt end-->
+											<span>  24/12/2020 08:40 AM </span>
+										</div><!--message-dt end-->
+									</div><!--main-message-box end-->
+									
+								</div><!--messages-line end-->
+								
                  
                   
                 </div>
               <!--chat-list end--></div>
         
-        <form action="" method="POST">
-            <div class="in" style="display: flex;">
-                <input type="text" name="" id="" style="width: 100%;">
-                <button type="submit">gửi</button>
-            </div>
-        </form>
+            
+              <form>
+                <div class="mf-field" style="display: flex;">
+                  <input type="text" name="message" placeholder="Nhập tin nhắn" style="width: 295px;" >
+                  <button type="submit">Gửi</button>
+                </div>
+              </form>
+            
+        
         
        
         
@@ -76,6 +92,194 @@ font-size: 10px;
     overflow-y: auto;
     display: flex; 
     flex-direction: column-reverse;
+}
+
+.main-conversation-box {
+	float: left;
+	width: 100%;
+	background-color: #fff;
+	position: relative;
+	border-right: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+}
+.message-bar-head {
+	float: left;
+	width: 100%;
+	background-color: rgba(255,255,255,0.95);
+	padding: 20px;
+	border-bottom: 1px solid #eaeaea;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+}
+.message-bar-head .usr-msg-details {
+	float: left;
+	width: auto;
+}
+.message-bar-head > a {
+	float: right;
+	color: #b2b2b2;
+	font-size: 20px;
+	padding-top: 15px;
+}
+.main-message-box {
+	float: left;
+	width: 100%;
+	position: relative;
+	margin-bottom: 15.5px;
+}
+.messg-usr-img {
+	position: absolute;
+	
+	left: 0px;
+	width: 50px;
+}
+.messg-usr-img img {
+	width: 100%;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	-ms-border-radius: 100px;
+	-o-border-radius: 100px;
+	border-radius: 100px;
+}
+.message-dt {
+	float: left;
+	width: auto;
+  top: 5px;
+	padding-left: 55px;
+}
+.main-message-box.ta-right {
+	float: right;
+}
+.main-message-box.ta-right .messg-usr-img {
+	left: auto;
+	right: 0px;
+	bottom: 25px;
+}
+.main-message-box.ta-right .message-dt {
+	padding-left: 0;
+	padding-right: 0px;
+}
+.main-message-box.ta-right .message-dt > span {
+	float: right;
+	width: auto;
+}
+.message-inner-dt {
+	float: left;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-o-border-radius: 15px;
+	border-radius: 15px;
+	width: 100%;
+}
+.img-bx {
+	background-color: #efefef;
+	padding: 0px;
+}
+.message-inner-dt > img {
+	display: inline-block;
+	width: auto;
+	margin-right: 5px;
+}
+.message-dt > span {
+	color: #b2b2b2;
+	font-size: 14px;
+	float: left;
+	width: 100%;
+	margin-top: 7px;
+}
+.message-inner-dt > p {
+	float: right;
+	width: 60%;
+	background-color: #EFEFEF;
+	font-size: 13px;
+	line-height: 22px;
+	padding: 10px 10px 10px 10px;
+	color: rgb(0, 0, 0);
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-o-border-radius: 15px;
+	border-radius: 15px;
+}
+.message-dt.st3 .message-inner-dt > p {
+	background-color: #efefef;
+	color: #686868;
+	width: auto;
+	padding: 10px 15px;
+	float: left;
+}
+.message-dt.st3 .message-inner-dt > p img {
+	float: right;
+	position: relative;
+	top: 3px;
+	padding-left: 5px;
+}
+.main-message-box.st3 .messg-usr-img {
+	bottom: 13px;
+}
+.messages-line {
+	float: left;
+	width: 100%;
+	height: 100%;
+}
+
+/* ============== message-send-area ============ */
+
+.message-send-area {
+	float: left;
+	width: 100%;
+	background-color: #f3f5f7;
+	padding: 25px 20px 15px 20px;
+	border: 1px solid #eeeeee;
+}
+.message-send-area form {
+	float: left;
+	width: 100%;
+}
+.mf-field {
+	float: left;
+	width: 100%;
+}
+.mf-field input {
+	float: left;
+	width: 80%;
+	background-color: #fff;
+	color: #b2b2b2;
+	font-size: 16px;
+	padding: 0 15px;
+	border: 1px solid #e6e6e6;
+	height: 45px;
+}
+.mf-field button {
+	float: left;
+	width: 17%;
+	background-color: #53D690;
+	height: 45px;
+	text-align: center;
+	color: #fff;
+	font-weight: 600;
+	border: 0;
+	margin-left: 0px;
+	cursor: pointer;
+}
+.message-send-area form > ul {
+	float: left;
+	width: 100%;
+	margin-top: 15px;
+}
+.message-send-area form > ul li {
+	display: inline-block;
+	margin-right: 20px;
+}
+.message-send-area form > ul li a {
+	color: #b2b2b2;
+	font-size: 18px;
+}
+.st3{
+  margin-top: 5px;
 }
   </style>
   <!--chatbox-list end-->
