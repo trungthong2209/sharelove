@@ -5,7 +5,7 @@ const loadNewFeeds = require('../controller/NewsFeeds.js');
 router
 
 .get('/', function(req, res, next) {
-    res.render('manage_event');
+    res.render('index');
  })
 .get('/home', loadNewFeeds.newsFeed)
  .get('/news',function(req, res, next) {
