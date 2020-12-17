@@ -1,10 +1,11 @@
 const infEvent = require('../model/infEvent');
-const cloudinary = require('../middleware/cloudinary');
+const cloudinary = require('../service/cloudinary');
 const request = require('request');
 
 
 class CreateEvent {
   async EventPost(req, res) {
+    var socketio = req.app.get('socketio');
      const arr_image = [];
      const id_image = []; 
      const allowedExt = /png|jpeg|jpg|gif/;
@@ -99,6 +100,7 @@ class CreateEvent {
           })
            InfEvent.save()
             .then(() => {
+              socketio.emit('newEvent', InfEvent )
               arr_image.length = 0;
               id_image.length = 0;
               res.redirect('/home')

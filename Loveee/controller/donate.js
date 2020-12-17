@@ -1,14 +1,12 @@
-const paypal = require('../middleware/paypal')
+const paypal = require('../service/paypal')
 const donates = require('../model/donate');
 const infEvent = require('../model/infEvent')
 const jwt = require("jsonwebtoken");
-
 const accessTokenSecret = process.env.accessTokenSecret;
-
-async function Donate(req, res, next) {
-    var amount = null;
-    var user = null;
-    var idEvent = null;
+var amount = null;
+var user = null;
+var idEvent = null;
+async function Donate(req, res, next) {   
     const total = req.body.money;
     const token = req.cookies.token;
     //  idEvent = req.query.event;
@@ -18,9 +16,14 @@ async function Donate(req, res, next) {
     if (checkDate == false) return res.status(201).json("Bài đăng đã hết hạn");
     if (total < 0 || total == 0 || total == undefined) return res.status(201).json("Không ủng hộ được thì thôi");
     amount = total;
-    if (token != undefined || token != null) {
-        user = jwt.verify(token, accessTokenSecret).id
-    }
+    if (token != undefined || token != null) { 
+       jwt.verify(token, accessTokenSecret, function (err, verified) {
+                if (verified) {
+                    user = verified.id;
+                }
+                else { return res.redirect('/logout') }
+            })
+        }
     if (checkRole[0].role === 'silver_User') return res.status(401).json("Người đăng bài không có quyền ủng hộ")
     var create_payment_json = {
         "intent": "sale",
@@ -79,16 +82,12 @@ function Success(req, res, next) {
             console.log(payment.transactions[0].amount.total);
             const donate = new donates({
                 userID: user,
-                money: payment.transactions[0].amount.total,
+                money: amount,
                 eventID: idEvent,
             })
             donate.save()
-                .then(() => { 
-                    console.log("Save schema donate success")
-                })
-                .catch(error => { 
-                    console.log("save fail " + error);
-        })
+                .then(() => {  console.log("Save schema donate success") })
+                .catch(error => { console.log("save fail " + error) })
             res.redirect('/home');
         }
     });

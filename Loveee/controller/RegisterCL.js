@@ -3,9 +3,7 @@ const User = require('../model/user');
 const avatar = [];
 const avatar_nam = "https://res.cloudinary.com/share-love/image/upload/v1605793821/avatar/pngtree-vector-users-icon-png-image_4144740_ujffkh.jpg";
 const avatar_nu = "https://res.cloudinary.com/share-love/image/upload/v1606137189/avatar/t%E1%BA%A3i_xu%E1%BB%91ng_ftlawb.png"
-
 class RegisCL {
-
 Register(req, res, next) { res.render('Rigister') }
  Store(req, res, next) {
                 const login_namecheck = req.body.login_name;

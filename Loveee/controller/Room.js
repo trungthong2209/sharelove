@@ -5,13 +5,30 @@ const events = require('../model/infEvent');
 const accessTokenSecret = process.env.accessTokenSecret;
 const jwt = require("jsonwebtoken");
 const users = [];
+
 async function getImage(token) {
     const userID = jwt.verify(token, accessTokenSecret);
     return User.findById(userID.id)
         .then(user => user.imageUser);
 }
+async function api_image(req, res, next) {
+        const token = req.cookies.token
+    if(token!=undefined) {
+            const userID = jwt.verify(token, accessTokenSecret);
+            res.json(userID.avatar);
+      }
+  return null;
+}
 async function userJoin(id, token, room) {
-    const userID = jwt.verify(token, accessTokenSecret).id
+    var userID = null;
+    jwt.verify(token, accessTokenSecret, function (err, verified) {
+        if (verified) {
+            userID = verified.id;
+        }
+        else {   
+            return 2
+        }
+    })
     let username = await User.getName(userID);
     let ID_user = await User.getID(userID);
     let image = await User.getImage(userID);
@@ -48,10 +65,18 @@ function userLeave(id) {
     }
 }
 async function Save_Mess(room, token, data) {
-    const userID = jwt.verify(token, accessTokenSecret);
+    var userID = null;
+    jwt.verify(token, accessTokenSecret, function (err, verified) {
+        if (verified) {
+            userID = verified.id;
+        }
+        else { 
+             return 2 
+        }
+    })
     const message = new chatMessage({
         post_id: room,
-        authorUsername: userID.id,
+        authorUsername: userID,
         message: data,
     })
     const results = await message.save()
@@ -62,7 +87,6 @@ function getRoomUsers(room) {
 }
 function Update_UserJoin(req, res, next) {
     const room = req.params.room;
-    console.log(req.userId);
     if(req.userId==undefined) return res.status(401).send('Unauthorized')
     events.findById(room)
         .then((event) => {
@@ -84,5 +108,7 @@ module.exports = {
     formatMessage,
     Update_UserJoin,
     getImage,
-    Save_Mess
+    Save_Mess,
+    api_image
+    
 };

@@ -18,6 +18,7 @@ app.io = io;
 
 //router
 var dashboard = require('./routes/dashboard');
+var API_header = require('./routes/API_header');
 var login = require('./routes/login');
 var forget = require('./routes/forget_password');
 var createEvent = require('./routes/create_Event');
@@ -36,11 +37,11 @@ var event = require('./routes/event');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.set('socketio', io);
 //Socket 
 const botname = "SpreadLove Bot";
 io.on("connection", function (socket) {
-
+    var logout = '/logout';
     console.log("A user is connected: " + socket.id);
     //Create room 
     socket.on("joinRoom", async function (room) {
@@ -50,6 +51,9 @@ io.on("connection", function (socket) {
         if (user == 1) {
             var destination = '/home';
             socket.emit("CheckID", destination)
+        }
+        if (user == 2) {
+             socket.emit("CheckID", logout)
         }
        else {
             socket.join(user.room);
@@ -66,7 +70,13 @@ io.on("connection", function (socket) {
         const user = getCurrentUser(socket.id);
             Save_Mess(room, cookies.token, msg)
         .then((value)=>{
-            io.to(user.room).emit("message", formatMessage(user.username,  msg, user.image));
+            if(value==2) {
+                socket.emit("CheckID", logout)
+            }
+            else { 
+                 io.to(user.room).emit("message", formatMessage(user.username,  msg, user.image));
+            }
+            
         })
         .catch(error => {
             console.log(error);
@@ -101,12 +111,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload({  useTempFiles: true }));
 
 global.loggedIn = null;
-global.image= null;
 app.use("*", async function (req, res, next)  {
-    global.loggedIn = req.cookies.token;
-      if(loggedIn!==undefined && loggedIn!==null && image===null){
-        image = await getImage(loggedIn);
-    }
+    global.loggedIn = req.cookies.token;   
      next()
 });
 app.use(login);
@@ -125,6 +131,7 @@ app.use(topUser);
 app.use(map);
 app.use(event);
 app.use(dashboard);
+app.use(API_header);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));

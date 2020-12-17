@@ -10,8 +10,9 @@ class LoginCL {
                 if(user.Action === false) return res.status(401).json('Tài khoản bạn đã bị khóa.')
                 const same = await user.isValidPassword(password)
                 if (same) {
-                    const token = jwt.sign({ id: user._id, role: user.Role }, accessTokenSecret);
+                    const token = jwt.sign({ id: user._id, role: user.Role, avatar: user.imageUser }, accessTokenSecret);
                     res.cookie("token", token, { httpOnly: true });
+                   
                     res.redirect('/home')
                 }
                 else { res.status(400).json({ message: "Mật khẩu không chính xác" }) }
@@ -22,7 +23,6 @@ class LoginCL {
     Logout(req, res, next) {
         res.clearCookie('token');
         loggedIn = null;
-        image = null;
         res.redirect('/');
     }
 }

@@ -1,14 +1,14 @@
 
 const blogs = require('../model/blog');
-const cloudinary = require('../middleware/cloudinary');
+const cloudinary = require('../service/cloudinary');
 const allowedExt = /png|jpeg|jpg|gif/;
 const backgr = 'https://res.cloudinary.com/share-love/image/upload/c_scale,w_1349/v1607431222/blogs/bg_wfpasx.jpg';
 class CreateBlog {
-    get_Blog(req, res) {
+    get_Blog(req, res) {    
         res.render('create_blog');
     }
-    async BLogPost(req, res, next) {
-         const arr_image = [];       
+    async BLogPost(req, res, next) {    
+        const arr_image = [];
         const option_image = {
             folder: 'blogs',
             format: 'jpg',
@@ -23,9 +23,7 @@ class CreateBlog {
         if (req.userId === undefined || req.userId === null) return res.status(401).send('Unauthorized')
         if (req.files !== undefined && req.files !== null) {
             const image = req.files.image;
-            if (!allowedExt.test(image.name)) {
-                res.status(400).send('Tiện ích không được hỗ trợ')
-            }
+            if (!allowedExt.test(image.name)) { res.status(400).send('Tiện ích không được hỗ trợ')}
             else {
                 const result = await cloudinary.uploader.upload(image.tempFilePath, option_image)
                 arr_image.push(result.secure_url);
@@ -68,15 +66,15 @@ class CreateBlog {
         const id = req.params.id;
         blogs.findById(id, async function (err, blog) {
             if (blog) {
-                if (blog.author.toString() !== req.userId) return res.status(401).json({ message: "Người đăng bài mới có thể xóa" })
-                else {
-                    if (blog.ID_image.multiple_image !== undefined) {
-                        await cloudinary.uploader.destroy(blog.ID_image.multiple_image)
-                    }
-                    blog.deleteOne()
-                        .then(() => { res.redirect('/blog') })
-                        .catch(err => { res.status(400).json({ message: "Xóa bị lỗi" + err }) })
+                if (req.role !== 'ADMIN') {
+                    if (blog.author.toString() !== req.userId) return res.status(401).json({ message: "Người đăng bài mới có thể xóa" })
                 }
+                if (blog.ID_image.multiple_image !== undefined) {
+                    await cloudinary.uploader.destroy(blog.ID_image.multiple_image)
+                }
+                blog.deleteOne()
+                    .then(() => { res.redirect('/blog') })
+                    .catch(err => { res.status(400).json({ message: "Xóa bị lỗi" + err }) })
             }
             else { res.status(404).json({ message: "Không tìm thấy blog" }) }
         })

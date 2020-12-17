@@ -1,11 +1,7 @@
 const User = require('../model/user');
 const jwt = require("jsonwebtoken");
-const mailgun = require("mailgun-js");
-const DOMAIN = process.env.DOMAIN;
-let MAILGUN_KEY = process.env.MAILGUN_KEY;
-let CLIENT_URL = process.env.CLIENT_URL;
-const mg = mailgun({ apiKey: MAILGUN_KEY, domain: DOMAIN });
 const forgotPassword_Token = process.env.forgotPassword_Token;
+const mailgun = require('../service/mailgun');
 
 class Fogetpass {
     async FogetPassword(req, res, next) {
@@ -16,22 +12,11 @@ class Fogetpass {
         await User.findOne({ login_name: login_name }, async function (error, user) {
             if (user) {
                 const token = jwt.sign({ id: user._id }, forgotPassword_Token);
-                const data = {
-                    from: 'Sharelove.com@gmail.com',
-                    to: user.email,
-                    subject: 'Forgot Password Link',
-                    html: `
-                         <h2> Click on link to reset your password </h2>
-                         <p> ${CLIENT_URL}/forgetpassword/${token} </p>
-                        `
-                };
+              
                 await user.updateOne({ reset_link: token }, function (error, success) {
                     if (error) { return res.status(400).json({ error: " error update reset link " }) }
                     else {
-                       mg.messages().send(data, function (error, body) {
-                            if (error) { return res.status(400).json({message: "error send token:" + error }) }
-                            else {  return res.status(200).json({ message: `Kiểm tra email ${user.email} và nhấn vào liên kết` }) }
-                        });
+                        mailgun.sendEmail(res, user.email, token);
                     }
                 })
             }
