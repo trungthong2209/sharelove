@@ -11,7 +11,7 @@ class CreateBlog {
         const arr_image = [];
         const option_image = {
             folder: 'blogs',
-            format: 'jpg',
+            format: 'png',
             transformation:
                 [{
                     width: 1349,

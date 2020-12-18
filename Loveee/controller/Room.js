@@ -14,11 +14,12 @@ async function getImage(token) {
 async function api_image(req, res, next) {
         const token = req.cookies.token
     if(token!=undefined) {
-            const userID = jwt.verify(token, accessTokenSecret);
-            res.json(userID.avatar);
+        const userID = jwt.verify(token, accessTokenSecret);
+        res.json(userID.avatar);
       }
   return null;
 }
+
 async function userJoin(id, token, room) {
     var userID = null;
     jwt.verify(token, accessTokenSecret, function (err, verified) {

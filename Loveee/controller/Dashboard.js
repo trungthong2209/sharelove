@@ -15,7 +15,18 @@ class Dashboard {
           })  
         }
       
-    } 
+    }
+    
+    async getDashboard(req, res, next) {
+        if(req.role!=='ADMIN') return res.status(401).json( {message:'UNAUTHORIZED'})
+    
+         
+        res.render('Dashboard')
+            
+        
+        
+      
+    }
     async getAllevent(req, res, next) {
         if(req.role!=='ADMIN') return res.status(401).json( {message:'UNAUTHORIZED'})
         else {

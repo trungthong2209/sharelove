@@ -22,7 +22,7 @@ class Setting {
                         radius: "max",
                        // gravity: "face",
                         crop: "fill",
-                        format: 'jpg',
+                        format: 'png',
                 }
                 if (req.files != null) {
                         var imagee = req.files.image;
@@ -46,10 +46,11 @@ class Setting {
                         .then((user) => {
                                 if (avatar.length > 0) {
                                         res.clearCookie('token');
-                                        const token = jwt.sign({ id: user._id, role: user.Role, avatar: avatar }, accessTokenSecret);
-                                        res.cookie("token", token, { httpOnly: true });                               
+                                        const token = jwt.sign({ id: user._id, name: user.fullname, role: user.Role, avatar: avatar }, accessTokenSecret);
+                                        res.cookie("token", token, { httpOnly: true });  
+                                        res.redirect('/setting');                             
                              }
-                        res.redirect('/setting');
+                       
                         })
                         .catch((err) => { res.status(400).json({ error: err }) })
         }

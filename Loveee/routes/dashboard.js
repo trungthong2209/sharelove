@@ -7,7 +7,7 @@ router
 .get('/manager-accounts', verify, Dashboard.getAlluser)
 .get('/manager-events',verify, Dashboard.getAllevent )
 .get('/manager-blogs', verify, Dashboard.getAllblog)
-.get('/Dashboard', verify, Dashboard.getAllblog)
+.get('/dashboard', verify, Dashboard.getDashboard)
 
 
 

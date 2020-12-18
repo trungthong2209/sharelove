@@ -18,7 +18,7 @@ class CreateEvent {
       const image3 = req.files.image3;    
       const option_image = {
            folder: 'image', 
-           format: 'jpg',
+           format: 'png',
            transformation: [
           { width: 600, 
             crop: "scale" },

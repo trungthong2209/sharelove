@@ -1,66 +1,5 @@
 <%include header %>
-<<<<<<< HEAD
   <script src="/socket.io/socket.io.js"></script>
-=======
-
-<main>
-  <div class="px"></div>
-  <div class="main-section">
-    <div class="container">
-      <div class="main-section-data">
-        <div class="row">
-          <div class="col-lg-3 col-md-4 pd-left-none no-pd">
-            <div class="main-left-sidebar no-margin">
-              <% if(loggedIn !== null && loggedIn !== undefined) { %>
-              <div class="user-data full-width widget">
-                <div class="user-profile ">
-                  <div class="username-dt">
-                    <div class="usr-pic">
-                      <img src="<%=user.imageUser %>" alt="" />
-                    </div>
-                  </div>
-                  <!--username-dt end-->
-                  <div class="user-specs">
-                    <h3><%= user.fullname %></h3>
-
-                  </div>
-                </div>
-                <!--user-profile end-->
-                <ul class="user-fw-status">
-
-                  <li>
-                    <a href="profile" title="">Trang cá nhân</a>
-                  </li>
-                </ul>
-              </div>
-
-              <% } %>
-
-
-            </div>
-            <!--main-left-sidebar end-->
-          </div>
-          <div class="col-lg-6 col-md-8 no-pd">
-            <div class="main-ws-sec">
-              <div class="post-topbar">
-                <div class="user-avatar">
-
-                </div>
-                <div class="post-st">
-                  <ul>
-                    <li>
-                      <a class="post_event" href="#" title="">Thêm sự kiện mới</a>
-                    </li>
-
-                    <li>
-                      <a class="post-jb active" href="create_blog" title="">Thêm bài viết mới</a>
-                    </li>
-                  </ul>
-                </div>
-                <!--post-st end-->
-              </div>
-              <!--post-topbar end-->
->>>>>>> 544555c692cf55c9d81cf994db3e619ca3e839d7
 
   <main>
     <div class="px"></div>
@@ -88,7 +27,6 @@
                     </div>
                     <!--user-profile end-->
                     <ul class="user-fw-status">
-
                       <li>
                         <a href="profile" title="">Trang cá nhân</a>
                       </li>
@@ -256,14 +194,7 @@
               </div>
               <!--main-ws-sec end-->
             </div>
-<<<<<<< HEAD
             <div class="col-lg-3 pd-right-none no-pd">
-=======
-            <!--main-ws-sec end-->
-          </div>
-          <!-- main-section-data end-->
-          <div class="col-lg-3 pd-right-none no-pd">
->>>>>>> 544555c692cf55c9d81cf994db3e619ca3e839d7
 
               <div class="widget suggestions full-width">
                 <div class="sd-title">
@@ -293,56 +224,9 @@
                   <!--suggestions-list end-->
               </div>
             </div>
-            <div class="widget suggestions full-width">
-
-              <div class="sd-title">
-                <h3>Top Người ủng hộ</h3>
-                <i class="la la-ellipsis-v"></i>
-              </div>
-              <!--sd-title end-->
-<<<<<<< HEAD
-              <div class="suggestions-list">
-                <% topdonates.forEach(function(topdonate){ %>
-                  <div class="suggestion-item">
-                    <img src="<%= topdonate.url_author %>" width="35" height="35px" alt="" />
-                    <div class="sgt-text">
-                      <h4>
-                        <%= topdonate.author_name %>
-                      </h4>
-                      <span class="vnd">
-                        <%= topdonate.total %>
-                      </span>
-                    </div>
-                    <span><i class="la la-plus"></i></span>
-                    <% }) %>
-                  </div>
-                  <div class="view-more">
-                    <a href="Top-donate" title="">Xem thêm</a>
-                  </div>
-              </div>
-              <!--suggestions-list end-->
-            </div>
-
-            <!--right-sidebar end-->
-=======
+                   <!--sd-title end-->
               
-              <div class="suggestions-list">
-                <% top_event.forEach(function(event){ %>
-                <div class="suggestion-item">
-                  <img src="<%= event.imageUser%>" width="35px" height="" alt="" />
-                  <div class="sgt-text">
-                    <h4><%= event.purpose%></h4>
-                    <span><%= event.user_name%></span>
-                  </div>
-                  <span><img src="images/hh.png" alt="" style="width: 35px; height: 35px;"></span>
-                </div>
-                <% }) %>
-                <div class="view-more">
-                  <a href="List_event" title="">Xem thêm</a>
-                </div>
-              </div>
-              <!--suggestions-list end-->
-            </div>
+            
 
           <div class="widget suggestions full-width">
 
@@ -368,23 +252,13 @@
               </div>
             </div>
             <!--suggestions-list end-->
->>>>>>> 544555c692cf55c9d81cf994db3e619ca3e839d7
           </div>
-        </div>
-        </div>   
         
           
       </div>
       <!-- main-section-data end-->
     </div>
-<<<<<<< HEAD
   </main>
-=======
-    <!-- main-section-data end-->
-  </div>
-  <%include chat_mess %>
-</main>
->>>>>>> 544555c692cf55c9d81cf994db3e619ca3e839d7
 
   <div class="post-popup pst-pj widget">
     <div class="post-event">
