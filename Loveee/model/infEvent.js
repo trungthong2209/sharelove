@@ -244,7 +244,8 @@ infEvent.statics.getallEvent = async function () {
         },
         {
             $sort: { _id: -1 }
-        }
+        },
+        
     ])
 }
 infEvent.statics.getTop = async function () {
@@ -307,6 +308,7 @@ infEvent.statics.getallJoiner= async function (id) {
         {
             $sort: { Joined_er: -1 }
         },
+       
     ])
 }
 

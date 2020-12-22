@@ -13,11 +13,12 @@ async function getImage(token) {
 }
 async function api_image(req, res, next) {
         const token = req.cookies.token
+        const icon = 'https://res.cloudinary.com/share-love/image/upload/v1608286591/avatar/vhuciu62iea99t0sad69.png'
     if(token!=undefined) {
-        const userID = jwt.verify(token, accessTokenSecret);
-        res.json(userID.avatar);
+        const userAvt = jwt.verify(token, accessTokenSecret).avatar;
+         return res.status(200).json(userAvt);
       }
-  return null;
+    return res.status(200).json(icon);
 }
 
 async function userJoin(id, token, room) {
@@ -111,5 +112,4 @@ module.exports = {
     getImage,
     Save_Mess,
     api_image
-    
 };

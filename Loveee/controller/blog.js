@@ -4,7 +4,7 @@ const cloudinary = require('../service/cloudinary');
 const allowedExt = /png|jpeg|jpg|gif/;
 const backgr = 'https://res.cloudinary.com/share-love/image/upload/c_scale,w_1349/v1607431222/blogs/bg_wfpasx.jpg';
 class CreateBlog {
-    get_Blog(req, res) {    
+    get_Blog(req, res) {       
         res.render('create_blog');
     }
     async BLogPost(req, res, next) {    
@@ -12,13 +12,7 @@ class CreateBlog {
         const option_image = {
             folder: 'blogs',
             format: 'png',
-            transformation:
-                [{
-                    width: 1349,
-                    crop: "scale"
-                }, {
-                    quality: "100"
-                }]
+            transformation: [{ quality: "100" }]
         }
         if (req.userId === undefined || req.userId === null) return res.status(401).send('Unauthorized')
         if (req.files !== undefined && req.files !== null) {
@@ -49,7 +43,7 @@ class CreateBlog {
             .then(() => {
                 res.redirect('/blog')
             })
-            .catch(error => {
+            .catch(error => { 
                 res.status(500).send('Error' + error)
             })
     }

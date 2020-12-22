@@ -2,6 +2,7 @@ const paypal = require('../service/paypal')
 const donates = require('../model/donate');
 const infEvent = require('../model/infEvent')
 const jwt = require("jsonwebtoken");
+const formatAlert = require('./alert/alert');
 const accessTokenSecret = process.env.accessTokenSecret;
 var amount = null;
 var user = null;
@@ -13,8 +14,8 @@ async function Donate(req, res, next) {
     idEvent = '5fd62ba0f9f5173270aa958b';
     const checkRole = await infEvent.isValidRole(idEvent)
     const checkDate = await infEvent.isValidDate(idEvent)
-    if (checkDate == false) return res.status(201).json("Bài đăng đã hết hạn");
-    if (total < 0 || total == 0 || total == undefined) return res.status(201).json("Không ủng hộ được thì thôi");
+    if (checkDate == false) return res.status(201).send(formatAlert("Bài đăng đã hết hạn"))
+    if (total < 0 || total == 0 || total == undefined) return res.status(201).send(formatAlert("Không ủng hộ được thì thôi"))
     amount = total;
     if (token != undefined || token != null) { 
        jwt.verify(token, accessTokenSecret, function (err, verified) {
@@ -24,7 +25,7 @@ async function Donate(req, res, next) {
                 else { return res.redirect('/logout') }
             })
         }
-    if (checkRole[0].role === 'silver_User') return res.status(401).json("Người đăng bài không có quyền ủng hộ")
+    if (checkRole[0].role === 'silver_User')  return res.status(201).send(formatAlert("Người đăng bài không có quyền ủng hộ"))
     var create_payment_json = {
         "intent": "sale",
         "payer": {

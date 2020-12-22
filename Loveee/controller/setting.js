@@ -3,6 +3,8 @@ const User = require('../model/user');
 const cloudinary = require('../service/cloudinary');
 const path = require("path");
 const jwt = require("jsonwebtoken");
+const formatAlert = require('./alert/alert');
+
 const accessTokenSecret = process.env.accessTokenSecret;
 class Setting {
         async GetPage(req, res, next) {            
@@ -27,7 +29,7 @@ class Setting {
                 if (req.files != null) {
                         var imagee = req.files.image;
                         const extension = path.extname(imagee.name);
-                        if (!allowedExt.test(extension)) res.status(400).send("Tiện ích mở rộng không được hỗ trợ");
+                        if (!allowedExt.test(extension)) return res.status(400).send(formatAlert('Tiện ích không được hỗ trợ'));
                         const result = await cloudinary.uploader.upload(imagee.tempFilePath, option_image)
                         avatar.push(result.secure_url);
                 }
@@ -69,12 +71,14 @@ class Setting {
                                                         .then(() => { res.redirect('/setting') })
                                                         .catch((err) => { res.status(400).json({ error: err }) })
                                         }
-                                        else { res.status(400).json({ message: "Mật khẩu cũ không chính xác" }) }
+                                        else { 
+                                                return res.status(400).send(formatAlert('Mật khẩu không chính xác'))
+                                        }
                                 }
-                                else { res.satatus(404).json({ message: "Không tìm thấy người dùng" }); }
+                                else {  return res.status(400).send(formatAlert('Không tìm thấy người dùng'))}
                         })
                 }
-                else { res.satatus(400).json({ message: "Mật khẩu chưa trùng khớp" }); }
+                else { return res.status(400).send(formatAlert('Mật khẩu chưa trùng khớp')) }
         }
 }
 

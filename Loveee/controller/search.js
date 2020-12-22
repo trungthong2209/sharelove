@@ -7,7 +7,7 @@ class SearchController {
         if (req.query.search) {
             await infEvent.find({ $text: { $search: query } }, function (err, All_infEvent) {
                 if (err) {
-                    res.status(400).json({ error: err });
+                    res.status(404).json({ error: err });
                 } else {
                     res.json(All_infEvent);
                 }
@@ -19,7 +19,7 @@ class SearchController {
         if (req.query.search) {
             await User.find({ $text: { $search: query } }, function (err, Alluser) {
                 if (err) {
-                    res.status(400).json({ error: err });
+                    res.status(404).json({ error: err });
                 } else { res.json(Alluser) }
             }).lean();
         } else { res.status(400).json({ message: "user is not correct." }) }

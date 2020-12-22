@@ -8,7 +8,7 @@ const dataDB = require('./model/db');
 const fileUpload = require('express-fileupload')
 const cookie = require('cookie');
 require('dotenv').config();
-const { Save_Mess ,userJoin, getCurrentUser, userLeave, getRoomUsers, formatMessage, getImage } = require("./controller/Room");
+const websocket = require("./service/socketio");
 
 //connect database
 dataDB.connect();
@@ -34,66 +34,73 @@ var blog = require('./routes/blog');
 var topUser = require('./routes/topUser');
 var map = require('./routes/map');
 var event = require('./routes/event');
+var email = require('./routes/mail');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('socketio', io);
 //Socket 
-const botname = "SpreadLove Bot";
+// const botname = "SpreadLove Bot";
 io.on("connection", function (socket) {
-    var logout = '/logout';
-    console.log("A user is connected: " + socket.id);
-    //Create room 
-    socket.on("joinRoom", async function (room) {
-        var cookies = cookie.parse(socket.request.headers.cookie);
-        const user = await userJoin(socket.id, cookies.token, room);
-       
-        if (user == 1) {
-            var destination = '/home';
-            socket.emit("CheckID", destination)
-        }
-        if (user == 2) {
-             socket.emit("CheckID", logout)
-        }
-       else {
-            socket.join(user.room);
-            socket.emit("message", formatMessage(botname,  `${user.username} đã vào phòng`, user.image));
-            socket.broadcast.to(user.room).emit("message", formatMessage(botname, `${user.username} đã vào phòng`,user.image));
-            io.to(user.room).emit("roomUsers", {
-                room: user.room,
-                users: getRoomUsers(user.room)
-            });
-      }
-    });
-    socket.on("chatMessage",  ({msg, room}) => {
-        var cookies = cookie.parse(socket.request.headers.cookie);
-        const user = getCurrentUser(socket.id);
-            Save_Mess(room, cookies.token, msg)
-        .then((value)=>{
-            if(value==2) {
-                socket.emit("CheckID", logout)
-            }
-            else { 
-                 io.to(user.room).emit("message", formatMessage(user.username,  msg, user.image));
-            }
-            
-        })
-        .catch(error => {
-            console.log(error);
-         })
- });
-    socket.on("disconnect", () => {
-        const user = userLeave(socket.id);
-        if (user) {
-            io.to(user.room).emit("message", formatMessage(botname, `${user.username} đã rời phòng`, user.image));
-            io.to(user.room).emit("roomUsers", {
-                room: user.room,
-                users: getRoomUsers(user.room)
-            });
-        }
-    });
+    websocket(socket) 
+})
+//     var logout = '/logout';
+//     console.log("A user is connected: " + socket.id);
+//     socket.on("block", function (data) {
+//         actionUser.updateActionUserBlock(data)
+//             .then((status) => {
+//                 socket.emit('blockSuccess', ({ data, status }))
+//             })
+//     })
+//     //Create room 
+//     socket.on("joinRoom", async function (room) {
+//         var cookies = cookie.parse(socket.request.headers.cookie);
+//         const user = await userJoin(socket.id, cookies.token, room);
+//         if (user == 1) {
+//             var destination = '/home';
+//             socket.emit("CheckID", destination)
+//         }
+//         if (user == 2) {
+//             socket.emit("CheckID", logout)
+//         }
+//         else {
+//             socket.join(user.room);
+//             socket.emit("message", formatMessage(botname, `${user.username} đã vào phòng`, user.image));
+//             socket.broadcast.to(user.room).emit("message", formatMessage(botname, `${user.username} đã vào phòng`, user.image));
+//             io.to(user.room).emit("roomUsers", {
+//                 room: user.room,
+//                 users: getRoomUsers(user.room)
+//             });
+//         }
+//     });
+//     socket.on("chatMessage", ({ msg, room }) => {
+//         var cookies = cookie.parse(socket.request.headers.cookie);
+//         const user = getCurrentUser(socket.id);
+//         Save_Mess(room, cookies.token, msg)
+//             .then((value) => {
+//                 if (value == 2) {
+//                     socket.emit("CheckID", logout)
+//                 }
+//                 else {
+//                     io.to(user.room).emit("message", formatMessage(user.username, msg, user.image));
+//                 }
+//             })
+//             .catch(error => { 
+//                  console.log(error);
+//             })
+//     });
+//     socket.on("disconnect", () => {
+//         const user = userLeave(socket.id);
+//         if (user) {
+//             io.to(user.room).emit("message", formatMessage(botname, `${user.username} đã rời phòng`, user.image));
+//             io.to(user.room).emit("roomUsers", {
+//                 room: user.room,
+//                 users: getRoomUsers(user.room)
+//             });
+//         }
+//     });
 
-});
+// });
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -108,12 +115,12 @@ app.use(cookieParser({
 );
 app.use(express.static(path.join(__dirname, 'public')));
 //Upload Image
-app.use(fileUpload({  useTempFiles: true }));
+app.use(fileUpload({ useTempFiles: true }));
 
 global.loggedIn = null;
-app.use("*", async function (req, res, next)  {
-    global.loggedIn = req.cookies.token;   
-     next()
+app.use("*", async function (req, res, next) {
+    global.loggedIn = req.cookies.token;
+    next()
 });
 app.use(login);
 app.use(register);
@@ -129,6 +136,7 @@ app.use(profile);
 app.use(blog);
 app.use(topUser);
 app.use(map);
+app.use(email);
 app.use(event);
 app.use(dashboard);
 app.use(API_header);

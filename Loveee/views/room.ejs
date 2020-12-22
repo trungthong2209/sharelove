@@ -237,7 +237,6 @@ socket.on('CheckID', function(destination) {
       window.location.href = destination;
 });
 socket.on("roomUsers", ({users,room}) =>{
-   
     outputUsers(users);
 });
 socket.on("message", message =>{
@@ -253,7 +252,6 @@ function getMess(){
 
   socket.emit("chatMessage", ({msg, room}));
   form.addEventListener('click', function submitForm (event) {
- 
    event.preventDefault()
    form.reset()
   })

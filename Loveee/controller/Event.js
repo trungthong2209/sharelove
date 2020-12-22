@@ -1,7 +1,7 @@
 const infEvent = require('../model/infEvent');
 const cloudinary = require('../service/cloudinary');
 const request = require('request');
-
+const formatAlert = require('./alert/alert');
 
 class CreateEvent {
   async EventPost(req, res) {
@@ -10,7 +10,7 @@ class CreateEvent {
      const id_image = []; 
      const allowedExt = /png|jpeg|jpg|gif/;
     if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send('No file upload') 
+      return res.status(400).send(formatAlert('No file upload')) 
     }
     else {
       const image = req.files.image;
@@ -20,13 +20,15 @@ class CreateEvent {
            folder: 'image', 
            format: 'png',
            transformation: [
-          { width: 600, 
-            crop: "scale" },
+          { 
+            width: 600, 
+            crop: "scale" 
+          },
           {  quality: "100" }
         ]}
 
        if (image != undefined) {
-        if (!allowedExt.test(image.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
+        if (!allowedExt.test(image.name)) { return res.status(400).send(formatAlert('Tiện ích không được hỗ trợ')) }
         else {
           const result = await cloudinary.uploader.upload(image.tempFilePath, option_image)
           arr_image.push(result.secure_url);
@@ -34,7 +36,7 @@ class CreateEvent {
         }
       }
       if (image2 != undefined) {
-        if (!allowedExt.test(image2.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
+        if (!allowedExt.test(image2.name)) {  return res.status(400).send(formatAlert('Tiện ích không được hỗ trợ'))}
         else {
           const result2 = await cloudinary.uploader.upload(image2.tempFilePath, option_image)
           arr_image.push(result2.secure_url);
@@ -42,7 +44,7 @@ class CreateEvent {
         }
       }
       if (image3 != undefined) {
-        if (!allowedExt.test(image3.name)) { res.status(400).send('Tiện ích không được hỗ trợ') }
+        if (!allowedExt.test(image3.name)) {  return res.status(400).send(formatAlert('Tiện ích không được hỗ trợ')) }
        else {
           const result3 = await cloudinary.uploader.upload(image3.tempFilePath, option_image)
           arr_image.push(result3.secure_url);
@@ -100,9 +102,9 @@ class CreateEvent {
           })
            InfEvent.save()
             .then(() => {
-              socketio.emit('newEvent', InfEvent )
               arr_image.length = 0;
               id_image.length = 0;
+              socketio.emit('newEvent', InfEvent )
               res.redirect('/home')
             })
             .catch(error => { res.status(400).send('Error'+error) })

@@ -155,7 +155,9 @@
       .then(data=>{
         data.json()
         .then((url)=>{
-          document.getElementById('avatar_header').src  = url;
+          if(url != null){
+            document.getElementById('avatar_header').src  = url;
+          }
         })
       })
         </script>

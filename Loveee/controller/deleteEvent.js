@@ -2,13 +2,14 @@
 const infEvent = require('../model/infEvent');
 const room = require('../model/ChatMessage');
 const cloudinary = require('../service/cloudinary');
+const formatAlert = require('./alert/alert');
 
 let DeletePost = async function (req, res, next) {
   const id = req.params.id;
   infEvent.findById(id, async function (err, event) {
     if (event) {
       if (req.role !== 'ADMIN') {
-        if (event.email_posted.toString() !== req.userId) return res.status(401).json({ message: "Người đăng bài mới có thể xóa" })
+        if (event.email_posted.toString() !== req.userId) return res.status(401).send(formatAlert("Người đăng bài mới có thể xóa"))
       }
       if (event.ID_image2.multiple_image !== undefined) {
         await cloudinary.uploader.destroy(event.ID_image2.multiple_image)

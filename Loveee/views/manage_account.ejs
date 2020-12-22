@@ -1,158 +1,205 @@
 <%include header%>
 
+    <main id="page-top" style="margin-top: 10px;">
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar"
+                style="background-color: #53D690;">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html"
+                    style="margin-top: 20px;">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <img style="width: 50px; height: 50px;"
+                            src="https://res.cloudinary.com/share-love/image/upload/v1606900436/avatar/Love_Logo_bftnhz.png"
+                            alt="">
+                    </div>
+                    <div class="sidebar-brand-text mx-4">SPREAD LOVE AMDIN </div>
+                </a>
 
 
-<main id="page-top" style="margin-top: 10px;">
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #53D690;">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html" style="margin-top: 20px;">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <img style="width: 50px; height: 50px;" src="https://res.cloudinary.com/share-love/image/upload/v1606900436/avatar/Love_Logo_bftnhz.png" alt="">
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Chức năng
                 </div>
-                <div class="sidebar-brand-text mx-4">SPREAD LOVE AMDIN </div>
-            </a>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="manager-accounts">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Quản lý tài khoản</span></a>
+                </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="manager-events">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Quản lý sự kiện</span></a>
+                </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="manager-blogs">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Quản lý blog</span></a>
+                </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Phê duyệt người dùng</span></a>
+                </li>
 
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Chức năng   
-            </div>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Quản lý tài khoản</span></a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Quản lý sự kiện</span></a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Quản lý blog</span></a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Phê duyệt người dùng</span></a>
-            </li>
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            </ul>
+            <!-- End of Sidebar -->
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
 
-        </ul>
-        <!-- End of Sidebar -->
+                <!-- Main Content -->
+                <div id="content">
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
 
-            <!-- Main Content -->
-            <div id="content">
+                        <!-- Page Heading -->
+                        <h1 style="margin-top: 40px;" class="h3 mb-2 text-white-800">Quản lý tài khoản</h1>
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Danh sách tài khoản người dùng</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">ID</th>
+                                                <th style="text-align: center">User_name</th>
+                                                <th style="text-align: center">Email</th>
+                                                <th style="text-align: center">Giới tính</th>
+                                                <th style="text-align: center">Số điện thoại</th>
+                                                <th style="text-align: center">Vai trò</th>
+                                                <th style="text-align: center">Trạng thái</th>
+                                                <th style="text-align: center"> Chức năng</th>
+                                            </tr>
+                                        </thead>
+                                        <% users.forEach(function(user){ %>
+                                            <form id='block-form' action="/blockuser" method="POST">
+                                                <tbody>
+                                                    <td style="text-align: center">
+                                                        <%= user._id %>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <%= user.fullname %>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <%= user.email %>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <%= user.sex %>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <%= user.Numberphone %>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <%= user.Role %>
+                                                    </td>
+                                                    <% if(user.Action){ %>
+                                                        <td style="text-align: center">
+                                                            <div class="btn_action"
+                                                                style="display: flex; padding-left: 30%;">
+                                                                <button type="button" class='btn btn-success'
+                                                                    name='btnblock' id='<%= user._id %>'
+                                                                    onclick="sendBlock('<%= user._id %>')">Khóa</button>                                                           </div>
 
-                    <!-- Page Heading -->
-                    <h1 style="margin-top: 40px;" class="h3 mb-2 text-white-800">Quản lý tài khoản</h1>
-
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Danh sách tài khoản người dùng</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align: center">ID</th>
-                                            <th style="text-align: center">User_name</th>
-                                            <th style="text-align: center">Email</th>
-                                            <th style="text-align: center">Sự kiện</th>
-                                            <th style="text-align: center">Ủng hộ</th>
-                                            <th style="text-align: center">Vai trò</th>
-                                            <th style="text-align: center">Trạng thái</th>
-                                            <th style="text-align: center" > Chức năng</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <td style="text-align: center">#id</td>
-                                            <td style="text-align: center">#use</td>
-                                            <td style="text-align: center">#email</td>
-                                            <td style="text-align: center">#evnet</td>
-                                            <td style="text-align: center">$donate</td>
-                                            <td style="text-align: center">#role</td>
-                                            <td style="text-align: center">Hoạt động</td>
-                                            <td style="text-align: center">
-                                                <div class="btn_action" style="display: flex; padding-left: 30%;">
-                                                    <button type="button" id="" name="" class='btn btn-success'>Mở khóa </button>
-                                                                <button type="button" id="" name="" class='btn btn-dark'>Khóa</button>
-                                                  </div>
-                                            </td>
-                                        
-                                    </tbody>
-                                </table>
+                                                        </td>
+                                                        <% } else {%>
+                                                            <td style="text-align: center">
+                                                                <div class="btn_action"
+                                                                    style="display: flex; padding-left: 30%;">
+                                                                    <button type="button"  name="unblock"
+                                                                    id='<%= user._id %>' onclick="sendBlock('<%= user._id %>')" class='btn btn-success'>Mở khóa </button>
+                                                                </div>
+                                                            </td>
+                                                            <% } %>
+                                                </tbody>
+                                            </form>
+                                            <% }) %>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+                    <!-- /.container-fluid -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            
-            <!-- End of Footer -->
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+        <link href="stylesheets/sb-admin-2.min.css" rel="stylesheet">
+        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link href="stylesheets/sb-admin-2.min.css" rel="stylesheet">
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="javascripts/sb-admin-2.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="javascripts/sb-admin-2.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="javascripts/datatables-demo.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+    </main>
 
-    <!-- Page level custom scripts -->
-    <script src="javascripts/datatables-demo.js"></script>
+    </html>
+    <script>
+        var socket = io("http://localhost:3000")
+        function sendBlock(value) {
+        socket.emit("block", (value));  
+        }
+         socket.on('blockSuccess', function(data){
+             $(':button').map(function(){
+                if(this.id == data.data){
+                if(data.status==1){
+                    $('#'+this.id+'').text('Mở khóa');
+                }
+                   else{
+                    $('#'+this.id+'').text('Khóa');
+                   }
+                }
+            })
+        })
 
-</main>
-
-</html>
+    </script>

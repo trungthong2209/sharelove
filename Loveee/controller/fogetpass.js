@@ -2,6 +2,7 @@ const User = require('../model/user');
 const jwt = require("jsonwebtoken");
 const forgotPassword_Token = process.env.forgotPassword_Token;
 const mailgun = require('../service/mailgun');
+const formatAlert = require('./alert/alert');
 
 class Fogetpass {
     async FogetPassword(req, res, next) {
@@ -17,17 +18,20 @@ class Fogetpass {
                     if (error) { return res.status(400).json({ error: " error update reset link " }) }
                     else {
                         mailgun.sendEmail(res, user.email, token);
+                        
                     }
                 })
             }
-            else {  res.status(404).json({ message: "Người dùng không tồn tại" })  }
+            else {  
+                return res.status(404).send(formatAlert('Người dùng không tồn tại')) 
+             }
         });
     }
     async GetresetPassword(req, res, next) {
         const resetPasswordToken = req.params.token;
         await User.findOne({ reset_link: resetPasswordToken }, (error, user) => {
             if (user) { res.render('newpass', { token: resetPasswordToken }) }
-            else { res.status(404).json({ message: "Người dùng không tồn tại" }) }
+            else { return res.status(404).send(formatAlert('Người dùng không tồn tại'))  }
         });
     }
     async PostresetPassword(req, res, next) {
@@ -38,7 +42,9 @@ class Fogetpass {
                  user.UpdatePassword_Forget(new_password)
                     .then(() => { res.redirect('/') })
                     .catch((err) => { return res.status(400).json({ error: " Error save new password" + err }) })
-            } else {  res.status(404).send( "Người dùng không tồn tại" ) }
+            } else {  
+                return res.status(404).send(formatAlert('Người dùng không tồn tại')) 
+         }
         })
     }
 }
