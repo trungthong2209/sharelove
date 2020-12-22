@@ -11,6 +11,12 @@ router
  .get('/news',function(req, res, next) {
    res.render('news');
 })
+.get('/contact',function(req, res, next) {
+   res.render('contact');
+})
+.get('/donate',function(req, res, next) {
+   res.render('donate');
+})
 
 
 module.exports = router;

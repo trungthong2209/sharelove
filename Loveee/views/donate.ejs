@@ -1,0 +1,113 @@
+<html>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+  
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+      </style>
+      <!-- Custom styles for this template -->
+      <link href="form-validation.css" rel="stylesheet">
+    <style>
+        .glot-sub-active{
+          color: #1296ba !important;
+        }
+        
+        .glot-sub-hovered{
+          color: #1296ba !important;
+        }
+        .glot-sub-clzz{
+          cursor: pointer;
+        }
+        .glot-sub-clzz:hover{
+          color: #1296ba !important;
+        }
+        </style></head>
+    <body class="bg-light vsc-initialized">
+      <div class="container">
+    <div class="py-5 text-center">
+      
+      <h2>Ủng hộ</h2>
+    </div>
+  
+    <div class="row">
+      
+      <div class="col-md-12 order-md-1">
+        <h4 class="mb-3">Phương thức ủng hộ</h4>
+        <form class="needs-validation" novalidate="">
+  
+  
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+                <label class="custom-control-label" for="paypal">PayPal</label>
+              </div>
+            <div class="custom-control custom-radio">
+              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"  required="">
+              <label class="custom-control-label" for="credit" style="color: gray">Credit card (đang phát triển)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="debit" style="color: gray">Debit card (đang phát triển)</label>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">Tên trên thẻ</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+              <small class="text-muted">Nhập đầy đủ tên trên thẻ</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cc-number">Số thẻ</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">Ngày Mở thẻ</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+              <div class="invalid-feedback">
+                tháng/năm mở thẻ
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="cc-cvv">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+              
+            </div>
+          </div>
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Tiếp tục</button>
+          <a href="javascript:history.back()" class="btn btn-primary btn-lg btn-block" type="submit">Quay lại</a>
+        </form>
+      </div>
+    </div>
+      </div>
+    </body>
+</html>
+
+
+
+  
+
+ 
+

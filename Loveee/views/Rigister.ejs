@@ -37,9 +37,9 @@
 							<!-- Hiển thị giới thiệu về trang web-->
 							<div class="cmp-info">
 								<div class="cm-logo">
-                  LOGO
+                  <img src="https://res.cloudinary.com/share-love/image/upload/v1606900436/avatar/Love_Logo_bftnhz.png" alt="" style="width:100px; height:100px; margin-left: 110px;">
 									
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus hic incidunt ipsum vitae doloribus, alias atque repellendus possimus maiores quae, a in delectus nihil aperiam magni distinctio inventore fuga asperiores.</p>
+									<p>Một trong những điều ngọt ngào về đau khổ và u sầu là chúng cho ta thấy chúng ta được yêu nhiều như thế nào, sự tử tế tồn tại trên đời nhiều như thế nào, và dễ dàng như thế nào để giúp người khác hạnh phúc theo cách họ đã giúp ta khi họ cần tới sự trợ giúp và thấu hiểu.</p>
 								</div>
 								<img src="images/cm-main-img.png" alt="">			
 							</div><!--kết thúc tab giới thiệu-->
@@ -57,25 +57,34 @@
                         <div class="row">
                           <div class="col-lg-12 no-pdd">
                             <div class="sn-field">
-                              <input type="text" name="fullname" id="fullname" placeholder="Họ và tên">
+                              <input type="text" name="fullname" id="fullname" placeholder="Họ và tên"
+                              
+                               title="Bạn phải nhập đủ thông tin và chỉ được nhập chữ" required
+                              >
                               <i class="la la-user"></i>
                             </div>
                           </div>
                           <div class="col-lg-12 no-pdd">
                             <div class="sn-field">
-                              <input type="text" name="login_name" id="login_name" placeholder="Tên đăng nhập">
+                              <input type="text" name="login_name" id="login_name" placeholder="Tên đăng nhập"
+                              pattern="[a-zA-Z0-9]+" title="Bạn phải nhập đủ thông tin và không được nhập ký tự đặc biệt" required >
                               <i class="la la-user"></i>
                             </div>
                           </div>
                           <div class="col-lg-12 no-pdd">
                             <div class="sn-field">
-                              <input type="text" name="email" id="email" placeholder="Email">
+                              <input type="email" required name="email" id="email" placeholder="Email"
+                              pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+                              title="bạn phải bao gồm @ và tên miền. vd: @gmail.com"
+                              >
                               <i class="la la-inbox"></i>
+                              
                             </div>
                           </div>
                           <div class="col-lg-12 no-pdd">
                             <div class="sn-field">
-                              <input type="text" name="Numberphone" id="Numberphone" placeholder="Số điện thoại">
+                              <input type="text" name="Numberphone" id="Numberphone" placeholder="Số điện thoại"
+                              pattern="(\+84|0)\d{9,10}" title="Bạn phải nhập đúng số điện thoại" required >
                               <i class="la la-phone"></i>
                             </div>
                           </div>
@@ -83,8 +92,7 @@
                             <div class="sn-field">
                               <i class="la la-group"></i>
                               <select name="sex" id="sex">
-                                <option value="Nam" selected="-1">Chọn giới tính</option>
-                                <option value="Nam">Nam</option>
+                                <option value="Nam" selected="-1">Nam</option>
                                 <option value="Nữ">Nữ</option>
                               </select>
                             </div>
@@ -92,9 +100,9 @@
                           <div class="col-lg-12 no-pdd">
                             <div class="sn-field">
                               <input name="psw" id="new-password" placeholder="Nhập mật khẩu " type="password"
-													   
-													    oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự, có ít nhất một chữ hoa, và có ít nhất một chữ thường')"
-													    onkeyup='check();'>
+													    pattern="{6,}"
+													    oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự')"
+													    onkeyup='check();' required>
 													    <i class="la la-lock"></i>
 													
                             </div>
@@ -102,9 +110,9 @@
                           <div class="col-lg-12 no-pdd">
                             <div class="sn-field">
                               <input name="re-password" id="re-password" placeholder="Nhập lại mật khẩu" type="password"
-													   
-													    oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự, có ít nhất một chữ hoa, và có ít nhất một chữ thường')"
-													    onkeyup='check();'>
+													    pattern="{6,}"
+													    oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự')"
+													    onkeyup='check();' required>
 													    <i class="la la-lock"></i>
 													    <b class="msge" id='message'></b>
                             </div>
@@ -123,20 +131,22 @@
                           <div class="row">
                             <div class="col-lg-12 no-pdd">
                               <div class="sn-field">
-                                <input type="text" name="uname" placeholder="Tên đăng nhập">
+                                <input type="text" name="uname" placeholder="Tên đăng nhập"
+                                pattern="[a-zA-Z0-9]+" title="Bạn phải nhập đủ thông tin và không được nhập ký tự đặc biệt" required>
                                 <i class="la la-user"></i>
                               </div>
                             </div>
                             <div class="col-lg-12 no-pdd">
                               <div class="sn-field">
-                                <input type="password" name="psw" placeholder="Mật khẩu">
+                                <input type="password" id="password" name="psw" placeholder="Mật khẩu"
+                                oninvalid="setCustomValidity('nhập vào một mật khẩu mạnh, có ít nhất 6 ký tự')"
+													    onkeyup='checkpass();' required>
                                 <i class="la la-lock"></i>
                               </div>
                             </div>
                             <div class="col-lg-12 no-pdd">
                               <div class="checky-sec">
                                 <div class="fgt-sec">
-                                 
                                   <a  href="foget" title="">Quên mật khẩu?</a>
                                 </div><!--fgt-sec end-->
                                 <a  href="register" title="">Chưa có tài khoản?</a>
