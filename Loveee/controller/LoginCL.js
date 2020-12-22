@@ -14,7 +14,8 @@ class LoginCL {
                     res.cookie("token", token, { httpOnly: true });
                     res.redirect('/home')
                 }
-                else { res.status(400).json({ message: "Mật khẩu không chính xác" }) }
+                else { if(res.status(400))
+                    alert("Mật khẩu không chính xác") }
             }
             else { res.status(400).json({ message: "Tài khoản không tồn tại" }) }
         });

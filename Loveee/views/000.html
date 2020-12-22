@@ -1,0 +1,17 @@
+<link href="path/to/fullcalendar.css" rel="stylesheet">
+<script src="path/to/jquery.min.js"></script>
+<script src="path/to/moment.min.js"></script>
+<script src="path/to/fullcalendar.js"></script>
+<div id="fullcalendar"></div>
+<script>
+$(function() {
+    $('#fullcalendar').fullCalendar({
+        defaultDate: '2019-05-28',
+        events: [{
+            title: 'Event title',
+            start: '2019-05-28',
+            end: '2019-05-29'
+        }]
+    });
+});
+</script>

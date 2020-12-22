@@ -27,6 +27,19 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/css/style.css" />
     
     
+    <link href='fullca/lib/main.css' rel='stylesheet' />
+    <script src='fullca/lib/main.js'></script>  
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'resourceTimelineWeek'
+        });
+        calendar.render();
+      });
+
+    </script>
   </head>
 
   
@@ -126,6 +139,28 @@
                   <a class="dropdown-item" href="blog">Tất cả blog</a>
                 </div>
               </li>
+              <li class="nav-item">
+								<a href="#"  class="not-box-open nav-link" >
+									Thông báo
+								</a>
+								<div class="notification-box" style="border: solid 1px gray;">
+									<div class="nott-list">
+										<div class="notfication-details" style="width:300px">
+							  				<div class="noty-user-img">
+							  					<img src="https://icons.iconarchive.com/icons/treetog/junior/256/folder-blue-pictures-icon.png" alt="">
+							  				</div>
+							  				<div class="notification-info" >
+							  					<h3><a href="#" title="">XXX</a> Đã tạo 1 sự kiện mới.</h3>
+							  				
+							  				</div><!--notification-info -->
+						  				</div>
+						  				
+						  				<div class="view-all-nots">
+						  					<a href="#" title="">Xem tất cả thông báo</a>
+						  				</div>
+									</div><!--nott-list end-->
+								</div><!--notification-box end-->
+							</li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <% if(loggedIn != null && loggedIn.trim() != '' && loggedIn != undefined) { %>
@@ -137,6 +172,7 @@
                     </div>
                     <div class="user-account-settingss">
                       <h3 class="tc"><a href="setting" title="">Cài đặt</a></h3>
+                      <h3 class="tc"><a href="contact" title="">Nâng cấp tài khoản</a></h3>
                       <h3 class="tc"><a href="logout" title="">Đăng xuất</a></h3>
                     </div><!--user-account-settingss end-->
                   </div>
@@ -159,4 +195,9 @@
         })
       })
         </script>
+        <script>  
+            if(res.error == "Tài khoản bạn đã bị khóa."){
+              alert("Tài khoản bạn đã bị khóa.")
+            }
+          </script>
     </div>

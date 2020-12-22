@@ -4,6 +4,14 @@ let tabContent =document.querySelectorAll(".tabcontent");
 tabLinks.forEach(function(el) {
    el.addEventListener("click", openTabs);
 });
+//  ============ Notifications Open =============
+
+$(".not-box-open").on("click", function(){
+  $(this).next(".notification-box").toggleClass("active");
+});
+
+
+
 
  //  ============= SIGNIN CONTROL FUNCTION =========
 
@@ -262,16 +270,25 @@ function showPreview(event){
   }
  
   var check = function() {
-    if (document.getElementById('new-password').value ==
-        document.getElementById('re-password').value) {
+    if ((document.getElementById('new-password').value ==
+        document.getElementById('re-password').value) && (document.getElementById('new-password').value.length >=6)  ) {
         document.getElementById('message').style.color = 'green';
         document.getElementById('message').innerHTML = 'mật khẩu đã trùng khớp';
         document.getElementById('submit-pass').disabled = false;
     } else {
             document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'Mật khẩu chưa trùng khớp';
+        document.getElementById('message').innerHTML = 'Mật khẩu chưa trùng khớp hoặc chưa đủ mạnh';
         document.getElementById('submit-pass').disabled = true;
     }
+
+}
+var checkpass = function() {
+  if (document.getElementById('password').value.length >=6){
+      
+      document.getElementById('sendUser').disabled = false;
+  } else {
+      document.getElementById('sendUser').disabled = true;
+  }
 }
 
 //change avt
@@ -390,3 +407,63 @@ $('.carousel').carousel({
   }(jQuery));
   $("#money").inputFilter(function(value) {
     return /^\d*$/.test(value); });
+
+    var events = [
+      {
+        daysOfWeek: [0, 6], //Sundays and saturdays
+        rendering: "background",
+        color: "#eee",
+        overLap: false,
+        allDay: true
+      },
+      { start: "2020-12-23", title: "8h 0m, 1 issue" },
+    ];
+    
+    $(function () {
+      var calendarEl = document.getElementById("calendar");
+    
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: ["dayGrid", "timeGrid", "list", "interaction"],
+        timeZone: "UTC",
+        themeSystem: "standard",
+        eventOrder: "start,title,-duration",
+        header: {
+          //left: 'prevYear,prev, today next,nextYear',
+          left: "prev,next today",
+          center: "title",
+          //right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+          right: "dayGridMonth,listYear"
+        },
+        defaultDate: "2020-12-23",
+        firstDay: 1,
+        weekNumbers: true,
+        eventLimit: false, 
+        events: events,
+        //editable: true,
+        droppable: true,
+        eventResizableFromStart: true,
+        eventResizableFromEnd: true,
+        eventDurationEditable: true,
+        eventRender: function (info) {
+          if (info.view.type === "listMonth") {
+            return;
+          }
+    
+          let eventEl = info.el.querySelector(".fc-content");
+          let eventID = info.event.extendedProps.issueKey;
+          if (!eventID || !eventEl) return;
+    
+          let link = document.createElement("a");
+          link.innerHTML = eventID;
+          link.title = "Open in Jira";
+          link.href = "https://jira.dummyurl.com/browse/" + eventID;
+          link.classList.add("float-right");
+    
+          eventEl.appendChild(link);
+        }
+      });
+    
+      calendar.render();
+    });
+    
+    
