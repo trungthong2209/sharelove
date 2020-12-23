@@ -43,7 +43,6 @@ donate.statics.getTotal = async function (id) {
         },
     ])
 }
-
 donate.statics.getTop = async function () {
     const donate = this;
     return donate.aggregate([

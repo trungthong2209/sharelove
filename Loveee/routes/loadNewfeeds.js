@@ -14,9 +14,8 @@ router
 .get('/contact',function(req, res, next) {
    res.render('contact');
 })
-.get('/donate',function(req, res, next) {
-   res.render('donate');
-})
-
+// .get('/donate',function(req, res, next) {
+//    res.render('donate');
+// })
 
 module.exports = router;

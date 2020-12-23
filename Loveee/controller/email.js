@@ -1,35 +1,40 @@
 const mail = require('../model/mail');
 const cloudinary = require('../service/cloudinary');
-const formatAlert = require('./alert/alert');
+const formatAlertReturnHome = require('./alert/alertReturnHome');
 
 class Email {
     async sendEmail(req, res, next) {
         const allowedExt = /png|jpeg|jpg|gif/;
-        const avatar = [];
+        
         const option_image = {
             folder: 'avatar',
             format: 'png',
         }
-        if (req.files != null) {
-            var imagee = req.files.image;
-            const extension = path.extname(imagee.name);
-            if (!allowedExt.test(extension)) res.status(400).send(formatAlert("Tiện ích mở rộng không được hỗ trợ"));
-            const result = await cloudinary.uploader.upload(imagee.tempFilePath, option_image)
-            avatar.push(result.secure_url);
-        }
+         
         const email = new mail({
             subject: req.body.subject,
             content: req.body.content,
             author: req.userId,
         })
-        if (avatar.length > 0) {
-            user.ID_image = avatar[0];
+        if (req.files != null ) {
+               if(req.files.image!= null) {
+                var imagee = req.files.image;
+                if (!allowedExt.test(imagee.name)) res.status(400).send(formatAlert("Tiện ích mở rộng không được hỗ trợ"));
+                const result = await cloudinary.uploader.upload(imagee.tempFilePath, option_image)
+                //avatar.push(result.secure_url);
+                email.ID_image = result.secure_url;
+               }
+               if (req.files.image2 != undefined) {
+                var image2 = req.files.image2;
+                if (!allowedExt.test(image2.name)) {  return res.status(400).send(formatAlert('Tiện ích không được hỗ trợ')) }
+                const result2= await cloudinary.uploader.upload(image2.tempFilePath, option_image)
+                email.ID_image2 = result2.secure_url;
         }
+        }
+       
         email.save()
             .then(() => {
-                //res.redirect('/home')
-                //res.status(201).send('Gửi thành công')
-               return res.status(201).send(formatAlert("Gửi thành công"))
+            return res.status(201).send(formatAlertReturnHome("Gửi thành công", '/'))
             })
             .catch(error => { res.status(400).send('Error' + error) })
     }

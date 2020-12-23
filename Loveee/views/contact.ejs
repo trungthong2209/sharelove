@@ -3,28 +3,17 @@
             <div class="contact-image">
                 <img src="images/rocket_contact.png" alt="rocket_contact"/>
             </div>
-            <form method="post">
+            <form method="POST" action="/sendemail"  enctype="multipart/form-data">
                 <h3>Liên hệ với chúng tôi</h3>
                <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <input type="text" name="txtName" class="form-control" placeholder="Tên  *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="txtEmail" class="form-control" placeholder="email *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="txtPhone" class="form-control" placeholder="số điện thoại" value="" />
+                            <div class="form-group">
+                            <input type="text" name="subject" class="form-control" placeholder="Tiêu đề" value="" />
                         </div>
                         <div class="form-group" >
-                            <div class="form-input" style="background-color: #53D690;">
-
-                                <label for="file-ip-1" style="width: 191px;">Ảnh CMND mặt trước</label>
-                                <input type="file" id="file-ip-1" name='image' accept="image/*" onchange="showPreview(event);">
-                                <div class="preview" style="height: 100px; width: 200px; background-color: #53D690;">
-                                  <img id="file-ip-1-preview" style="height: 100px; width: 200px; background-color: #53D690;">
-                                </div>
-                              </div>
+                            <div class="form-group">
+                                <textarea name="content" class="form-control" placeholder="Nhâp nội dung *" style="width: 100%; height: 150px;"></textarea>
+                            </div>
                         </div>
                         <div class="form-group" style="margin-top: 30px;">
                             <input type="submit" name="btnSubmit" class="btnContact" value="Gửi" />
@@ -32,11 +21,18 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <textarea name="txtMsg" class="form-control" placeholder="Nhâp nội dung *" style="width: 100%; height: 150px;"></textarea>
+                            <div class="form-input" style="background-color: #53D690;">
+
+                                <label for="file-ip-1" style="width: 191px;">Ảnh CMND mặt trước (Nếu có)</label>
+                                <input type="file" id="file-ip-1" name='image' accept="image/*" onchange="showPreview(event);">
+                                <div class="preview" style="height: 100px; width: 200px; background-color: #53D690;">
+                                  <img id="file-ip-1-preview" style="height: 100px; width: 200px; background-color: #53D690;">
+                                </div>
+                              </div>
                         </div>
                         <div class="form-group" >
                             <div class="form-input" style="background-color: #53D690;">
-                                <label for="file-ip-2" style="width: 191px;" ></i>Ảnh CMND mặt sau</label>
+                                <label for="file-ip-2" style="width: 191px;" ></i>Ảnh CMND mặt sau (Nếu có) </label>
                                 <input type="file" id="file-ip-2" name='image2' accept="image/*" onchange="showPreview2(event);">
                                 <div class="preview2" style="height: 100px; width: 200px; background-color: #53D690;">
                                   <img id="file-ip-2-preview2" style="height: 100px; width: 200px; background-color: #53D690;">

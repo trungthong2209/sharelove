@@ -87,10 +87,10 @@ async function Save_Mess(room, token, data) {
 function getRoomUsers(room) {
     return users.filter(user => user.room === room);
 }
-function Update_UserJoin(req, res, next) {
+async function Update_UserJoin(req, res, next) {
     const room = req.params.room;
     if(req.userId==undefined) return res.status(401).send('Unauthorized')
-    events.findById(room)
+  await events.findById(room)
         .then((event) => {
             event.updateOne({ $addToSet: { user_joinEvent: req.userId } })
                 .then(async () => {

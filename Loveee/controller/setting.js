@@ -28,8 +28,7 @@ class Setting {
                 }
                 if (req.files != null) {
                         var imagee = req.files.image;
-                        const extension = path.extname(imagee.name);
-                        if (!allowedExt.test(extension)) return res.status(400).send(formatAlert('Tiện ích không được hỗ trợ'));
+                         if (!allowedExt.test(imagee.name)) return res.status(400).send(formatAlert('Tiện ích không được hỗ trợ'));
                         const result = await cloudinary.uploader.upload(imagee.tempFilePath, option_image)
                         avatar.push(result.secure_url);
                 }

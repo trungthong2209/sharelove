@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const forgotPassword_Token = process.env.forgotPassword_Token;
 const mailgun = require('../service/mailgun');
 const formatAlert = require('./alert/alert');
-
 class Fogetpass {
     async FogetPassword(req, res, next) {
         res.render('foget')

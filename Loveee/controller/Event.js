@@ -1,6 +1,6 @@
 const infEvent = require('../model/infEvent');
 const cloudinary = require('../service/cloudinary');
-const request = require('request');
+const requestt = require('request');
 const formatAlert = require('./alert/alert');
 
 class CreateEvent {
@@ -65,11 +65,18 @@ class CreateEvent {
       //       id_image.push(result_video.public_id)
           
       //   }    
+      // if(req.body.date==[]) {
+      //   return res.status(201).send(formatAlert("Bạn chưa nhập thời gian diễn ra sự kiện"))
+      //  }
+    
       const address_1 = req.body.wards + " " + req.body.district + " " + req.body.city + " Việt Nam";
+      console.log(address_1)
       const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(address_1) + '.json?access_token=' + process.env.API_mapbox + '&limit=1';
-      request({ url: url, json: true }, async function (error, response) {
+      requestt({ url: url, json: true }, async function (error, response) {
         if (error) {
-          callback('Unable to connect to Geocode API', undefined);
+          console.log(error)
+          console.log('Lỗi ở đây')
+          //callback('Unable to connect to Geocode API', undefined);
         }
         else {
           const InfEvent = new infEvent({
@@ -98,7 +105,8 @@ class CreateEvent {
               type: 'Point',
               coordinates: [ response.body.features[0].center[0], response.body.features[0].center[1] ],
               formattedAddress: response.body.features[0].place_name
-            }
+            },
+            user_joinEvent:req.userId ,
           })
            InfEvent.save()
             .then(() => {

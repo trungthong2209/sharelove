@@ -17,15 +17,14 @@ class loadNewFeeds {
                 else { return res.redirect('/logout') }
             })
         }
-        const user = await Users.getInfo(userID);
-        const userJoined = await infEvents.getUserjoined(userID)
+        const user = await Users.getInfo(userID);     
         infEvents.getallEvent()
             .then((events) => {
                  infEvents.getTop()
                      .then((top_event) => {
                          donates.getTop()
-                              .then((top_donate) => {
-                                    res.render('Newsfeeds', { userJoined: userJoined, infevents: events, user: user, topdonates: top_donate, top_event: top_event })
+                              .then((top_donate) => {                
+                                    res.render('Newsfeeds', {infevents: events, user: user, topdonates: top_donate, top_event: top_event })
                             })
                                .catch(error => {
                                      res.status(400).send('Error' + error)

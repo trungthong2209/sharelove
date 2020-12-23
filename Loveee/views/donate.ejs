@@ -45,10 +45,16 @@
     <div class="row">
       
       <div class="col-md-12 order-md-1">
+        <form  action="/donate/<%= event %>" method="POST" >
+        <h4 class="mb-3">Số tiền ủng hộ</h4>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input  type="text" name='money' placeholder="Nhập số tiền" class="form-control" id="money" placeholder=""  name ='money'>
+            
+          </div>
+        </div>
+
         <h4 class="mb-3">Phương thức ủng hộ</h4>
-        <form class="needs-validation" novalidate="">
-  
-  
           <div class="d-block my-3">
             <div class="custom-control custom-radio">
                 <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
@@ -67,7 +73,7 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="cc-name">Tên trên thẻ</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+              <input type="text" class="form-control" id="cc-name" placeholder=""  name =''>
               <small class="text-muted">Nhập đầy đủ tên trên thẻ</small>
               <div class="invalid-feedback">
                 Name on card is required
@@ -75,7 +81,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="cc-number">Số thẻ</label>
-              <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+              <input type="text" class="form-control" id="cc-number" placeholder="">
               <div class="invalid-feedback">
                 Credit card number is required
               </div>
@@ -84,24 +90,46 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="cc-expiration">Ngày Mở thẻ</label>
-              <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" >
               <div class="invalid-feedback">
                 tháng/năm mở thẻ
               </div>
             </div>
             <div class="col-md-3 mb-3">
               <label for="cc-cvv">CVV</label>
-              <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" >
               
             </div>
           </div>
           <hr class="mb-4">
           <button class="btn btn-primary btn-lg btn-block" type="submit">Tiếp tục</button>
-          <a href="javascript:history.back()" class="btn btn-primary btn-lg btn-block" type="submit">Quay lại</a>
         </form>
+        <a href="javascript:history.back()" class="btn btn-primary btn-lg btn-block" type="submit">Quay lại</a>
       </div>
     </div>
       </div>
+      <script>
+         //only number
+    (function ($) {
+      $.fn.inputFilter = function (inputFilter) {
+        return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+          if (inputFilter(this.value)) {
+            this.oldValue = this.value;
+            this.oldSelectionStart = this.selectionStart;
+            this.oldSelectionEnd = this.selectionEnd;
+          } else if (this.hasOwnProperty("oldValue")) {
+            this.value = this.oldValue;
+            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+          } else {
+            this.value = "";
+          }
+        });
+      };
+    }(jQuery));
+    $("#money").inputFilter(function (value) {
+      return /^\d*$/.test(value);
+    });
+      </script>
     </body>
 </html>
 

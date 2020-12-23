@@ -2,17 +2,16 @@
   <script src="/socket.io/socket.io.js"></script>
 
   <main>
-    <div class="px"></div>
+    
     <div class="main-section">
       <div class="container-fluid">
         <div class="main-section-data">
           <div class="row">
             <div class="col-lg-3  pd-left-none no-pd">
-              <div class="main-left-sidebar no-margin" >
-                
-                  <div class="user-data full-width widget" style="padding: 20px;">
-                    <div id='calendar'></div>
-                  </div>
+              <div class="main-left-sidebar no-margin">
+                <div class="user-data full-width widget" style="padding: 20px;">
+                  <div id='calendar'></div>
+                </div>
 
 
               </div>
@@ -41,7 +40,7 @@
 
                 <div class="posts-section" id="infevents">
                   <% infevents.forEach(function(infevent){ %>
-                    <div id ="news" class="post-bar widget">
+                    <div id="news" class="post-bar widget">
                       <div class="post_topbar">
                         <div class="usy-dt">
                           <img width="50" height="50" src="<%= infevent.imageUser %>" alt="" />
@@ -103,7 +102,8 @@
                           <%= infevent.description%>
 
                         </p>
-                        <div style="width: 100%; height: 100%;"  id="carouselId" class="carousel slide" data-interval="false" >
+                        <div style="width: 100%; height: 100%;" id="carouselId" class="carousel slide"
+                          data-interval="false">
                           <ol class="carousel-indicators">
                             <li data-target="#carouselId" data-slide-to="0" class="active"></li>
                             <li data-target="#carouselId" data-slide-to="1"></li>
@@ -139,9 +139,10 @@
                             </li>
                             <% if(infevent.role==='gold_User' || infevent.role==='ADMIN' ) { %>
                               <li>
-                                <button class="btn 7" data-toggle="modal" data-target="#exampleModalScrollable"><i
-                                    class="fa fa-usd"></i></i> Ủng hộ</button>
+                                <a class="btn 7" type="button" href="donate/<%=infevent._id%>"><i
+                                   class="fa fa-usd"></i></i> Ủng hộ</a>
                               </li>
+                              <label>Tổng tiền ủng hộ:<%=infevent.numberDonate%> </label>
                               <% } %>
                           </ul>
                           <% } else{ %>
@@ -152,9 +153,13 @@
                               </li>
                               <% if(infevent.role==='gold_User' || infevent.role==='ADMIN' ) { %>
                                 <li>
-                                  <button class="btn 7" data-toggle="modal" data-target="#exampleModalScrollable"><i
-                                      class="fa fa-usd"></i></i> Ủng hộ</button>
+                                  <a class="btn 7" type="button" href="donate/<%=infevent._id%>"><i
+                                      class="fa fa-usd"></i></i> Ủng hộ </a>
                                 </li>
+                                <li>
+                                  <label> Tổng tiền ủng hộ:<%=infevent.numberDonate%> </label>
+                                </li>
+                                
                             </ul>
                             <% } %>
                               <% } %>
@@ -176,7 +181,7 @@
                 </div>
                 <!--sd-title end-->
                 <div class="suggestions-list">
-                <% top_event.forEach(function(event){ %>
+                  <% top_event.forEach(function(event){ %>
                     <div class="suggestion-item">
                       <img src="<%= event.imageUser%>" width="35px" height="" alt="" />
                       <div class="sgt-text">
@@ -189,49 +194,53 @@
                       </div>
                       <span><i class="la la-plus"></i></span>
                     </div>
-                  <% }) %>
-                  <div class="view-more">
-                    <a href="List_event" title="">Xem thêm</a>
-                  </div>
+                    <% }) %>
+                      <div class="view-more">
+                        <a href="List_event" title="">Xem thêm</a>
+                      </div>
                 </div>
-                  <!--suggestions-list end-->
+                <!--suggestions-list end-->
               </div>
-            
-              
-                   <!--sd-title end-->
-              
-            
 
-          <div class="widget suggestions full-width">
 
-            <div class="sd-title">
-              <h3>Top Người ủng hộ</h3>
-              <i class="la la-ellipsis-v"></i>
-            </div>
-            <!--sd-title end-->
-            <div class="suggestions-list">
-              <% topdonates.forEach(function(topdonate){ %>
-              <div class="suggestion-item">
-                <img src="<%= topdonate.url_author %>" width="30" height="30px" alt="" />
-                <div class="sgt-text">
-                  <h4><%= topdonate.author_name %></h4>
-                  <span class="vnd"><%= topdonate.total %></span>
+              <!--sd-title end-->
+
+
+
+              <div class="widget suggestions full-width">
+
+                <div class="sd-title">
+                  <h3>Top Người ủng hộ</h3>
+                  <i class="la la-ellipsis-v"></i>
                 </div>
-                <span><img src="images/crown.png" alt="" style="width: 35px; height: 35px;"></span>
+                <!--sd-title end-->
+                <div class="suggestions-list">
+                  <% topdonates.forEach(function(topdonate){ %>
+                    <div class="suggestion-item">
+                      <img src="<%= topdonate.url_author %>" width="30" height="30px" alt="" />
+                      <div class="sgt-text">
+                        <h4>
+                          <%= topdonate.author_name %>
+                        </h4>
+                        <span class="vnd">
+                          <%= topdonate.total %>
+                        </span>
+                      </div>
+                      <span><img src="images/crown.png" alt="" style="width: 35px; height: 35px;"></span>
+                    </div>
+                    <% }) %>
+
+                      <div class="view-more">
+                        <a href="Top-donate" title="">Xem thêm</a>
+                      </div>
+                </div>
+                <!--suggestions-list end-->
               </div>
-                <% }) %>
-              
-              <div class="view-more">
-                <a href="Top-donate" title="">Xem thêm</a>
-              </div>
+
+
             </div>
-            <!--suggestions-list end-->
+            <!-- main-section-data end-->
           </div>
-        
-          
-      </div>
-      <!-- main-section-data end-->
-    </div>
   </main>
 
   <div class="post-popup pst-pj widget">
@@ -321,7 +330,7 @@
             <div class="col-lg-12">
               <ul>
                 <li>
-                  <button class="active registerbtn" type="submit"  id="btnsend">
+                  <button class="active registerbtn" type="submit" id="btnsend">
                     Đăng bài
                   </button>
                 </li>
@@ -379,58 +388,46 @@
       x[i].innerHTML = num;
       x[i].classList.add("currSign");
     }
-    //only number
-    (function ($) {
-      $.fn.inputFilter = function (inputFilter) {
-        return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
-          if (inputFilter(this.value)) {
-            this.oldValue = this.value;
-            this.oldSelectionStart = this.selectionStart;
-            this.oldSelectionEnd = this.selectionEnd;
-          } else if (this.hasOwnProperty("oldValue")) {
-            this.value = this.oldValue;
-            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-          } else {
-            this.value = "";
-          }
-        });
-      };
-    }(jQuery));
-    $("#money").inputFilter(function (value) {
-      return /^\d*$/.test(value);
-    });
+   
 
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
   <script>
     var socket = io("http://localhost:3000")
     console.log("Connected to server");
     socket.on('newEvent', function (event) {
-         console.log( event)
-        
+      console.log(event)
+
     });
   </script>
   <script>
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialDate: '2020-12-23',
-      navLinks: true, // can click day/week names to navigate views
-      businessHours: true, // display business hours
-      editable: true,
-      selectable: true,
-      events: [
-        {
-          title: 'Bảo vệ đồ án',
-          start: '2020-12-23',
-          
-        },
-      ]
+    function inputDate(date) {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        navLinks: true, // can click day/week names to navigate views
+        businessHours: true, // display business hours
+        editable: true,
+        selectable: true,
+        events:  date
+      });
+      calendar.render();
+    }
+    document.addEventListener('DOMContentLoaded', async function () {
+      const res = await fetch('/api/getDateCalender')
+      const data = await res.json();
+      const cal = data.map(event => {
+        var newDate = moment(event.date).format("YYYY-MM-DD")
+        console.log(newDate)
+        const events = {
+          title: event.purpose,
+          start: newDate
+        }
+        return events
+      })
+      inputDate(cal)
     });
 
-    calendar.render();
-  });
-
-</script>
+  </script>
   <%include footer %>

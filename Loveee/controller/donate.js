@@ -7,15 +7,19 @@ const accessTokenSecret = process.env.accessTokenSecret;
 var amount = null;
 var user = null;
 var idEvent = null;
+async function getPageDonate(req, res, next) {
+    const event = req.params.event;
+        res.render('donate', { event: event })
+     }    
 async function Donate(req, res, next) {   
+    idEvent = req.params.event;
     const total = req.body.money;
     const token = req.cookies.token;
-    //  idEvent = req.query.event;
-    idEvent = '5fd62ba0f9f5173270aa958b';
+   console.log(idEvent)
     const checkRole = await infEvent.isValidRole(idEvent)
     const checkDate = await infEvent.isValidDate(idEvent)
-    if (checkDate == false) return res.status(201).send(formatAlert("Bài đăng đã hết hạn"))
-    if (total < 0 || total == 0 || total == undefined) return res.status(201).send(formatAlert("Không ủng hộ được thì thôi"))
+    //if (checkDate == false) return res.status(201).send(formatAlert("Bài đăng đã hết hạn"))
+    //if (total < 0 || total == 0 || total == undefined) return res.status(201).send(formatAlert("Không ủng hộ được thì thôi"))
     amount = total;
     if (token != undefined || token != null) { 
        jwt.verify(token, accessTokenSecret, function (err, verified) {
@@ -80,7 +84,10 @@ function Success(req, res, next) {
             console.log(error.response);
             throw error;
         } else {
-            console.log(payment.transactions[0].amount.total);
+            infEvent.findById(idEvent).then( async (doc)=>{
+                const newMoney = parseInt(doc.numberDonate) +parseInt(amount);
+                await doc.updateOne({numberDonate:newMoney})
+            })
             const donate = new donates({
                 userID: user,
                 money: amount,
@@ -93,4 +100,4 @@ function Success(req, res, next) {
         }
     });
 }
-module.exports = { Donate, Success }
+module.exports = { Donate, Success, getPageDonate }

@@ -9,6 +9,7 @@ const infEvent = new Schema({
     address_District: { type: String },
     address_Ward: { type: String },
     address_stress: { type: String },
+    numberDonate:{type: Number, default:0},
     location: {
         type: {
             type: String,
@@ -43,6 +44,7 @@ const infEvent = new Schema({
 infEvent.pre('save', function (next) {
     const now = new Date();
     this.time_post = date.format(now, 'HH:mm DD/MM/YYYY');
+    
     next()
 })
 infEvent.statics.isValidRole = async function (id) {
@@ -186,19 +188,9 @@ infEvent.statics.getUserjoined = async function (id) {
         }, {
             $project: {
                 purpose: 1,
-                address_City: 1,
-                address_District: 1,
-                address_Ward: 1,
-                address_stress: 1,
-                time_post: 1,
                 time: 1,
                 date: 1,
-                description: 1,
-                Image_URL: '$ID_image.image_url',
-                Image_URL2: '$ID_image2.image_url',
-                Image_URL3: '$ID_image3.image_url',
                 user_name: "$user_post.fullname",
-                imageUser: "$user_post.imageUser",
                 Joined_er: { $cond: { if: { $isArray: "$user_joinEvent" }, then: { $size: "$user_joinEvent" }, else: 0 } }
             }
         },
@@ -239,6 +231,7 @@ infEvent.statics.getallEvent = async function () {
                 user_name: "$user_post.fullname",
                 role: "$user_post.Role",
                 imageUser: "$user_post.imageUser",
+                numberDonate: 1,
                 Joined_er: { $cond: { if: { $isArray: "$user_joinEvent" }, then: { $size: "$user_joinEvent" }, else: 0 } }
             }
         },

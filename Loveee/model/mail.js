@@ -7,6 +7,7 @@ const mail = new Schema({
     subject: { type: String },
     content: { type: String },
     ID_image: {type: String },
+    ID_image2: {type: String },
     timeSend: { type: String },
     author: { type: mongoose.Schema.ObjectId, ref: 'users' },
 });
