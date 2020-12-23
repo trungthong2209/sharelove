@@ -387,6 +387,8 @@ main{float:left;width:100%;padding:60px 0}
 .view-more > a:hover{color:#53D690}
 .post-popup{width:570px;margin:0 auto;margin-top:20px;position:fixed;top:50%;left:50%;-webkit-transform:translateX(-50%) translateY(-50%) scale(0.65);-moz-transform:translateX(-50%) translateY(-50%) scale(0.65);-ms-transform:translateX(-50%) translateY(-50%) scale(0.65);-o-transform:translateX(-50%) translateY(-50%) scale(0.65);transform:translateX(-50%) translateY(-50%) scale(0.65);opacity:0;visibility:hidden;z-index:999}
 .post-popup.active{opacity:1;visibility:visible;z-index:999}
+.edit-popup{width:570px;margin:0 auto;margin-top:20px;position:fixed;top:50%;left:50%;-webkit-transform:translateX(-50%) translateY(-50%) scale(0.65);-moz-transform:translateX(-50%) translateY(-50%) scale(0.65);-ms-transform:translateX(-50%) translateY(-50%) scale(0.65);-o-transform:translateX(-50%) translateY(-50%) scale(0.65);transform:translateX(-50%) translateY(-50%) scale(0.65);opacity:0;visibility:hidden;z-index:999}
+.edit-popup.active{opacity:1;visibility:visible;z-index:999}
 .post-event > a{position:absolute;top:-20px;right:-20px;color:#fff;font-size:22px;cursor:pointer}
 .post-event > a:hover{color:#fff}
 .post-event{float:left;width:100%;position:relative}

@@ -61,10 +61,10 @@
                             <% if(user._id !==undefined && infevent.email_posted !==undefined) { %>
                               <% if(user._id.toString()===infevent.email_posted.toString() && loggedIn !==null &&
                                 loggedIn !==undefined) { %>
-                                <li><a href="#" title="">Chỉnh sửa</a></li>
+                                <li><a  href="edit/<%=infevent._id%>" target="_blank"  title="">Chỉnh sửa</a></li>
                                 <li><a href="delete/<%=infevent._id%>" title="">Xóa</a></li>
                                 <% } else { %>
-                                  <li><a href="#" title="">Tham gia</a></li>
+                                  <li><a href="#" title=""><%= infevent.Joined_er%> Tham gia</a></li>
                                   <li><a href="#" title="">Ủng hộ</a></li>
                                   <% } %>
                                     <% } else { %>
@@ -135,7 +135,7 @@
                           <ul class="like-com">
                             <li>
                               <a class=" btn " type="button" href="room/<%=infevent._id%>"><i
-                                  class="fa fa-plus-circle"></i></i> Tham gia</a>
+                                  class="fa fa-plus-circle"></i></i><%= infevent.Joined_er%> Tham gia</a>
                             </li>
                             <% if(infevent.role==='gold_User' || infevent.role==='ADMIN' ) { %>
                               <li>
@@ -241,8 +241,8 @@
             </div>
             <!-- main-section-data end-->
           </div>
+       <%include chat_mess %>   
   </main>
-
   <div class="post-popup pst-pj widget">
     <div class="post-event">
       <h3>Thêm tin</h3>
@@ -348,6 +348,9 @@
     </div>
     <!--post- event end-->
   </div>
+
+
+  
   <!--post- event-popup end-->
   <!-- Modal -->
   <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"

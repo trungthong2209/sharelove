@@ -70,7 +70,7 @@ class CreateEvent {
       //  }
     
       const address_1 = req.body.wards + " " + req.body.district + " " + req.body.city + " Việt Nam";
-      console.log(address_1)
+      
       const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(address_1) + '.json?access_token=' + process.env.API_mapbox + '&limit=1';
       requestt({ url: url, json: true }, async function (error, response) {
         if (error) {

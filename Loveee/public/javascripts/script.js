@@ -194,6 +194,25 @@ $(".cancel").on("click", function(){
     return false;
 });
 
+//  ============= POST PROJECT POPUP FUNCTION =========
+
+  $(".edit_event").on("click", function(){
+    $(".edit-popup.pst-pj").addClass("active");
+    $(".wrapper").addClass("overlay");
+    return false;
+});
+$(".edit_event > a").on("click", function(){
+    $(".edit-popup.pst-pj").removeClass("active");
+    $(".wrapper").removeClass("overlay");
+    return false;
+});
+
+$(".cancel").on("click", function(){
+    $(".edit-popup.pst-pj").removeClass("active");
+    $(".wrapper").removeClass("overlay");
+    return false;
+});
+
 
 
 

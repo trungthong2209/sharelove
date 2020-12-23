@@ -115,6 +115,7 @@ infEvent.statics.getDetail = async function (id) {
                 time_post: 1,
                 time: 1,
                 date: 1,
+                idUser: "$user_post._id",
                 description: 1,
                 Image_URL: '$ID_image.image_url',
                 Image_URL2: '$ID_image2.image_url',
