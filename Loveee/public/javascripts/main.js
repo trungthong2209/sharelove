@@ -1,6 +1,6 @@
 
 const chatForm= document.getElementById('chat-form');
-const socket = io("http://localhost:3000");
+const socket = io("http://spreadlovee.herokuapp.com");
 
 const chatMessage= document.querySelector(".chat-messages");
 const roomName = document.getElementById("room-name");

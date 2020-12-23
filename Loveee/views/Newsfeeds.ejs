@@ -394,7 +394,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
   <script>
-    var socket = io("http://localhost:3000")
+    var socket = io("http://spreadlovee.herokuapp.com")
     console.log("Connected to server");
     socket.on('newEvent', function (event) {
       console.log(event)

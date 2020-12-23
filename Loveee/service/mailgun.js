@@ -1,9 +1,8 @@
 const mailgun = require("mailgun-js");
 const DOMAIN = process.env.DOMAIN;
 let MAILGUN_KEY = process.env.MAILGUN_KEY;
-let CLIENT_URL = process.env.CLIENT_URL;
+let CLIENT_URL = process.env.CLIENT_URL1;
 const mg = mailgun({ apiKey: MAILGUN_KEY, domain: DOMAIN });
-const formatAlert = require('../controller/alert/alert');
 const formatAlertReturnHome = require('../controller/alert/alertReturnHome');
 
 function sendEmail(res, email, token){

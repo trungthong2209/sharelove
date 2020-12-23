@@ -36,8 +36,8 @@ async function Donate(req, res, next) {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3000/success",
-            "cancel_url": "http://localhost:3000/home"
+            "return_url": "http://spreadlovee.herokuapp.com/success",
+            "cancel_url": "http://spreadlovee.herokuapp.com/home"
         },
         "transactions": [{
             "item_list": {

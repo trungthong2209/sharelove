@@ -27,7 +27,7 @@
     <div class="wrapper2 ">
       <header class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="http://localhost:3000/home">LOGO</a>
+          <a class="navbar-brand" href="http://spreadlovee.herokuapp.com/home">LOGO</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -144,8 +144,8 @@ const roomName = document.getElementById("room-name");
 const userList = document.getElementById("users");
 const room  = window.location.pathname.split('/')[2];
 if(room!==null && room!=="" && room!==undefined){
-  //var socket = io("https://spreadlovee.herokuapp.com/" );
-  var socket = io("http://localhost:3000")
+  var socket = io("https://spreadlovee.herokuapp.com/" );
+  //var socket = io("http://localhost:3000")
 if(socket!==undefined){
   console.log("Connected to server");
 
