@@ -57,10 +57,50 @@ async function Donate(req, res, next) {
     });
  
 }
+
+async function DonateAPI(req, res, next) {   
+    const total = req.body.money;
+    money.push(total);
+    var create_payment_json = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
+        },
+        "redirect_urls": {
+            "return_url": "http://localhost:3000/rooms",
+            "cancel_url": "http://localhost:3000/cancel"
+        },
+        "transactions": [{
+            "item_list": {
+                "items": [{
+                    "name": "Donate",
+                    "sku": "001",
+                    "price": money[0],
+                    "currency": "USD",
+                    "quantity": 1
+                }]
+            },
+            "amount": {
+                "currency": "USD",
+                "total": money[0]
+            },
+        }]
+    };
+    paypal.payment.create(create_payment_json, function (error, payment) {
+        if (error) {
+            throw error;
+        } else {
+            for (let i = 0; i < payment.links.length; i++) {
+                if (payment.links[i].rel === 'approval_url') {
+                    res.status(200).send(payment.links[i].href);
+                }
+            }
+        }
+    });
+}
 function Success(req, res, next) {
     const payerId = req.query.PayerID;
     const paymentId = req.query.paymentId;
-
     const execute_payment_json = {
         "payer_id": payerId,
         "transactions": [{
@@ -93,4 +133,25 @@ paypal.payment.execute(paymentId, execute_payment_json, function (error, payment
         }
     });
 }
-module.exports = { Donate, Success }
+function SuccessAPI(req, res, next) {
+    const payerId = req.query.PayerID;
+    const paymentId = req.query.paymentId;
+    const execute_payment_json = {
+        "payer_id": payerId,
+        "transactions": [{
+            "amount": {
+                "currency": "USD",
+                "total": money[0]
+            }
+        }]
+    };
+    paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+        if (error) {
+            console.log(error.response);
+            throw error;
+        } else {
+            res.status(200).send(payment);
+        }
+    });
+}
+module.exports = { Donate, Success , DonateAPI, SuccessAPI}
